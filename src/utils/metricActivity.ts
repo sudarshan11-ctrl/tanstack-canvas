@@ -42,3 +42,16 @@ export function inactiveRemarkFor(metricId: string): string {
   if (AWAITING_TARGET_METRIC_IDS.has(metricId)) return AWAITING_TARGET_REMARK;
   return INACTIVE_METRIC_REMARK;
 }
+
+export type MetricInactiveReason = "no-data" | "awaiting-target";
+
+/**
+ * Returns null if the metric is active. Otherwise returns why it is inactive:
+ *  - "awaiting-target": metric is defined but its target has not been entered
+ *  - "no-data": no uploaded data for this metric yet
+ */
+export function metricInactiveReason(metricId: string): MetricInactiveReason | null {
+  if (AWAITING_TARGET_METRIC_IDS.has(metricId)) return "awaiting-target";
+  if (!activeMetricIds.has(metricId)) return "no-data";
+  return null;
+}
