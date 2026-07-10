@@ -18,11 +18,23 @@ function formatPct(pct: number): string {
   return `${pct.toFixed(2)}%`;
 }
 
-function summaryBits(metrics: FirmHygieneMetric[]): string[] {
+interface SummaryLine {
+  id: string;
+  label: string;
+  value: string;
+}
+
+function summaryLines(metrics: FirmHygieneMetric[]): SummaryLine[] {
   return metrics.map((m) => {
-    if (m.kind === "rate") return `${m.title.split(" ").pop()}: ${formatPct(m.valuePct)}`;
+    if (m.kind === "rate") {
+      return { id: m.id, label: m.title, value: formatPct(m.valuePct) };
+    }
     const top = m.buckets[m.buckets.length - 1];
-    return top ? `${formatPct(top.sharePct)} < 1d` : m.title;
+    return {
+      id: m.id,
+      label: m.title,
+      value: top ? `${formatPct(top.sharePct)} ${top.label}` : "—",
+    };
   });
 }
 
