@@ -47,7 +47,7 @@ function HygieneShell({
 }) {
   return (
     <div
-      className="w-full min-w-0 rounded-[var(--radius)] px-3 py-2.5 sm:min-w-[12.5rem] sm:max-w-[15rem]"
+      className="flex w-full min-w-0 flex-col rounded-[var(--radius)] px-3 py-2.5"
       style={{
         backgroundColor: "var(--surface-2)",
         border: "1px solid var(--line)",
@@ -221,7 +221,7 @@ export default function HygieneMetricsPanel({
       <div
         id={panelId}
         hidden={!open}
-        className="flex flex-wrap items-stretch justify-start gap-3"
+        className="grid w-full min-w-0 grid-cols-1 items-stretch gap-3 sm:grid-cols-3"
       >
         {metrics.map((metric) =>
           metric.kind === "buckets" ? (
