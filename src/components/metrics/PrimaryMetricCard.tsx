@@ -26,6 +26,7 @@ export interface PrimaryMetricCardProps {
 
 export default function PrimaryMetricCard({ primary, metricValue, href, hrefParams, hrefSearch }: PrimaryMetricCardProps) {
   const passive = metricValue?.passive === true;
+  const awaitingTarget = passive && metricInactiveReason(primary.metricId) === "awaiting-target";
   const ragColor = passive ? "var(--text-2)" : RAG_FG[primary.rag];
   const lower = isLowerIsBetter(primary.metricId);
   const rr = passive || !metricValue ? null : runRateFor(metricValue);
@@ -37,7 +38,7 @@ export default function PrimaryMetricCard({ primary, metricValue, href, hrefPara
       <div className="flex items-center justify-between gap-2">
         <span
           className="font-metric-id flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider"
-          style={{ color: "var(--lks-accent)" }}
+          style={{ color: awaitingTarget ? AWAITING_TEXT : "var(--lks-accent)" }}
         >
           {primary.metricId}
           <ScorecardStar show={metricValue?.scorecardStar} />
@@ -45,9 +46,13 @@ export default function PrimaryMetricCard({ primary, metricValue, href, hrefPara
         {passive ? (
           <span
             className="rounded-full px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider"
-            style={{ backgroundColor: "var(--surface-2)", color: "var(--text-2)" }}
+            style={
+              awaitingTarget
+                ? { backgroundColor: AWAITING_CHIP_BG, color: AWAITING_TEXT }
+                : { backgroundColor: "var(--surface-2)", color: "var(--text-2)" }
+            }
           >
-            No data
+            {awaitingTarget ? "Awaiting target" : "No data"}
           </span>
         ) : (
           <DeltaBadge delta={metricValue?.deltaVsTarget ?? null} unit="%" lowerIsBetter={lower} />
@@ -55,11 +60,12 @@ export default function PrimaryMetricCard({ primary, metricValue, href, hrefPara
       </div>
       <div
         className="mt-1 line-clamp-2 text-[13px] font-semibold leading-snug"
-        style={{ color: passive ? "var(--text-2)" : "var(--text-1)" }}
+        style={{ color: passive ? (awaitingTarget ? AWAITING_TEXT : "var(--text-2)") : "var(--text-1)" }}
         title={primary.name}
       >
         {primary.name}
       </div>
+
 
       <div className="mt-1.5 flex items-end justify-between gap-2">
         <div className="font-mono text-[20px] font-semibold leading-none" style={{ color: ragColor }}>
