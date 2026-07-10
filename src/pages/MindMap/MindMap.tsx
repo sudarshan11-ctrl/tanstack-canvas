@@ -217,6 +217,8 @@ export default function MindMap() {
               .map(({ m, degree }) => {
                 const drives = visibleLinks.filter((l) => l.fromId === m.id);
                 const active = isMetricActive(m.id);
+                const reason = metricInactiveReason(m.id);
+                const awaitingTarget = reason === "awaiting-target";
                 const inner = (
                   <>
                     <span className="font-mono text-[10px] text-slate-400 w-12">{m.id}</span>
@@ -230,6 +232,10 @@ export default function MindMap() {
                           </span>
                         )}
                       </>
+                    ) : awaitingTarget ? (
+                      <span className="rounded-full border border-amber-300 bg-amber-100 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-amber-700">
+                        Awaiting target
+                      </span>
                     ) : (
                       <span className="rounded-full bg-slate-200 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-slate-500">
                         No data
@@ -241,15 +247,28 @@ export default function MindMap() {
                   return (
                     <div
                       key={m.id}
-                      title="Data not yet available for this metric."
+                      title={
+                        awaitingTarget
+                          ? "Metric will be calculated once the target is entered."
+                          : "Data not yet available for this metric."
+                      }
                       aria-disabled="true"
-                      className="flex cursor-not-allowed items-center gap-3 rounded-md border bg-slate-50 px-3 py-2 opacity-60"
-                      style={{ borderColor: "#e2e8f0", borderLeft: `3px solid #cbd5e1` }}
+                      className={
+                        awaitingTarget
+                          ? "flex cursor-not-allowed items-center gap-3 rounded-md border bg-amber-50 px-3 py-2 opacity-90"
+                          : "flex cursor-not-allowed items-center gap-3 rounded-md border bg-slate-50 px-3 py-2 opacity-60"
+                      }
+                      style={
+                        awaitingTarget
+                          ? { borderColor: "#fcd34d", borderLeft: `3px dashed #f59e0b` }
+                          : { borderColor: "#e2e8f0", borderLeft: `3px solid #cbd5e1` }
+                      }
                     >
                       {inner}
                     </div>
                   );
                 }
+
                 return (
                   <Link
                     key={m.id}
