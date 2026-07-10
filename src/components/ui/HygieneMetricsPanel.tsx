@@ -163,7 +163,7 @@ export default function HygieneMetricsPanel({
 
   if (metrics.length === 0) return null;
 
-  const bits = summaryBits(metrics);
+  const lines = summaryLines(metrics);
 
   return (
     <div className="flex flex-col items-end gap-2">
@@ -172,31 +172,44 @@ export default function HygieneMetricsPanel({
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex max-w-[280px] items-center gap-1.5 rounded-full px-2.5 py-1 text-left transition-opacity hover:opacity-80"
+        className="inline-flex w-full max-w-[280px] items-start gap-2 rounded-[var(--radius)] px-3 py-2 text-left transition-opacity hover:opacity-80"
         style={{
           backgroundColor: "var(--surface-2)",
           border: "1px solid var(--line)",
           color: "var(--text-1)",
         }}
       >
-        <span
-          className="text-[10px] font-semibold uppercase tracking-wider"
-          style={{ color: "var(--text-2)" }}
-        >
-          Matter Hygiene Metrics
-        </span>
-        {!open && (
+        <div className="flex min-w-0 flex-1 flex-col gap-1">
           <span
-            className="truncate text-[11px] font-medium tabular"
-            style={{ color: "var(--text-1)" }}
-            title={bits.join(" · ")}
+            className="text-[10px] font-semibold uppercase tracking-wider"
+            style={{ color: "var(--text-2)" }}
           >
-            {bits.join(" · ")}
+            Matter Hygiene Metrics
           </span>
-        )}
+          {!open && (
+            <ul className="flex flex-col gap-0.5">
+              {lines.map((l) => (
+                <li
+                  key={l.id}
+                  className="flex items-baseline justify-between gap-2 text-[11px]"
+                >
+                  <span className="truncate" style={{ color: "var(--text-2)" }}>
+                    {l.label}
+                  </span>
+                  <span
+                    className="tabular shrink-0 font-semibold"
+                    style={{ color: "var(--text-1)" }}
+                  >
+                    {l.value}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
         <ChevronDown
           size={14}
-          className="shrink-0 transition-transform duration-200"
+          className="mt-0.5 shrink-0 transition-transform duration-200"
           style={{
             color: "var(--text-2)",
             transform: open ? "rotate(0deg)" : "rotate(-90deg)",
