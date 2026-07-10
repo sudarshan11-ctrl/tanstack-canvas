@@ -5,7 +5,7 @@ import Card from "@/components/ui/card";
 import SectionLabel from "@/components/ui/SectionLabel";
 import { causalLinks } from "@/data/mockCausalLinks";
 import { mockMetricDefinitions } from "@/data/mockMetricDefinitions";
-import { isMetricActive } from "@/utils/metricActivity";
+import { isMetricActive, metricInactiveReason } from "@/utils/metricActivity";
 import type { MetricArea, Role } from "@/types";
 
 const ROLE_TABS: { id: Role; label: string }[] = [
