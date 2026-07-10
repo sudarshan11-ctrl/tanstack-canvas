@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import Card from "@/components/ui/Card";
+import { Card } from "@/components/ui/card";
 import SectionLabel from "@/components/ui/SectionLabel";
 import LPIDial from "@/components/ui/LPIDial";
 import LeagueTable from "@/components/ipl/LeagueTable";

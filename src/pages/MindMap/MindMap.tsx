@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { Link } from "@tanstack/react-router";
 import PageWrapper from "@/components/layout/PageWrapper";
-import Card from "@/components/ui/Card";
+import { Card } from "@/components/ui/card";
 import SectionLabel from "@/components/ui/SectionLabel";
 import { causalLinks } from "@/data/mockCausalLinks";
 import { mockMetricDefinitions } from "@/data/mockMetricDefinitions";

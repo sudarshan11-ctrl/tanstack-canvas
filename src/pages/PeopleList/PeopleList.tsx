@@ -2,7 +2,7 @@ import { useState, Fragment } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronDown, ChevronRight, ArrowUp, ArrowDown, ArrowUpDown, Search } from "lucide-react";
 import PageWrapper from "@/components/layout/PageWrapper";
-import Card from "@/components/ui/Card";
+import { Card } from "@/components/ui/card";
 import RAGDot from "@/components/ui/RAGDot";
 import { mockPeople } from "@/data/mockPeople";
 import { useDashboardStore } from "@/store/dashboardStore";
