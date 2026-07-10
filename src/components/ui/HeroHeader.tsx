@@ -99,100 +99,105 @@ export default function HeroHeader({
         />
       )}
 
-      {/* Main content row */}
-      <div className="flex flex-wrap items-center gap-6 p-6">
-        {/* Identity zone — left */}
-        <div className="flex items-center gap-4">
-          {/* Initials avatar */}
-          <div
-            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-[18px] font-bold"
-            style={{
-              backgroundColor: "color-mix(in srgb, var(--lks-accent) 15%, transparent)",
-              color: "var(--lks-accent)",
-              border: `2px solid color-mix(in srgb, var(--lks-accent) 30%, transparent)`,
-            }}
-          >
-            {initials}
-          </div>
-
-          <div className="min-w-0">
+      {/* Main content */}
+      <div className="flex flex-col gap-6 p-6">
+        {/* Top row — identity + hygiene + stats */}
+        <div className="flex flex-wrap items-start gap-6">
+          {/* Identity zone — left */}
+          <div className="flex items-center gap-4">
+            {/* Initials avatar */}
             <div
-              className="text-[11px] font-semibold uppercase tracking-wider"
-              style={{ color: "var(--text-2)" }}
+              className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-[18px] font-bold"
+              style={{
+                backgroundColor: "color-mix(in srgb, var(--lks-accent) 15%, transparent)",
+                color: "var(--lks-accent)",
+                border: `2px solid color-mix(in srgb, var(--lks-accent) 30%, transparent)`,
+              }}
             >
-              {eyebrow}
+              {initials}
             </div>
-            <div
-              className="font-display mt-0.5 text-[26px] leading-tight"
-              style={{ color: "var(--text-1)" }}
-            >
-              {name}
-            </div>
-            {chips && chips.length > 0 && (
-              <div className="mt-2 flex flex-wrap gap-1.5">
-                {chips.map((chip) => (
-                  <span
-                    key={chip}
-                    className="inline-block rounded-full px-2.5 py-0.5 text-[11px] font-medium"
-                    style={{
-                      backgroundColor: "var(--surface-2)",
-                      color: "var(--text-2)",
-                      border: "1px solid var(--line)",
-                    }}
-                  >
-                    {chip}
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
 
-        {/* Spacer */}
-        <div className="flex-1" />
-
-        {/* Stats band — all themes */}
-        {stats && stats.length > 0 && (
-          <div className="flex flex-wrap gap-3">
-            {stats.map((s) => (
+            <div className="min-w-0">
               <div
-                key={s.label}
-                className="flex min-w-[72px] flex-col items-center rounded-[var(--radius)] p-3 text-center"
-                style={{
-                  backgroundColor: "var(--surface-2)",
-                  border: "1px solid var(--line)",
-                }}
+                className="text-[11px] font-semibold uppercase tracking-wider"
+                style={{ color: "var(--text-2)" }}
               >
-                <span
-                  className="tabular text-[22px] font-bold leading-none"
-                  style={{ color: "var(--text-1)" }}
-                >
-                  {s.value}
-                </span>
-                <span
-                  className="mt-1 text-[10px] uppercase tracking-wide"
-                  style={{ color: "var(--text-2)" }}
-                >
-                  {s.label}
-                </span>
-                {s.sub && (
-                  <span className="mt-0.5 text-[9px]" style={{ color: "var(--text-2)", opacity: 0.7 }}>
-                    {s.sub}
-                  </span>
-                )}
+                {eyebrow}
               </div>
-            ))}
+              <div
+                className="font-display mt-0.5 text-[26px] leading-tight"
+                style={{ color: "var(--text-1)" }}
+              >
+                {name}
+              </div>
+              {chips && chips.length > 0 && (
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {chips.map((chip) => (
+                    <span
+                      key={chip}
+                      className="inline-block rounded-full px-2.5 py-0.5 text-[11px] font-medium"
+                      style={{
+                        backgroundColor: "var(--surface-2)",
+                        color: "var(--text-2)",
+                        border: "1px solid var(--line)",
+                      }}
+                    >
+                      {chip}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
-        )}
 
-        {/* Score zone — right: hygiene metrics + sparkline + dial */}
-        <div className="flex shrink-0 flex-wrap items-center gap-4">
+          {/* Spacer */}
+          <div className="flex-1" />
+
+          {/* Hygiene panel */}
           {hygieneMetrics && hygieneMetrics.length > 0 && (
             <HygieneMetricsPanel metrics={hygieneMetrics} />
           )}
+
+          {/* Stats band */}
+          {stats && stats.length > 0 && (
+            <div className="flex flex-wrap gap-3">
+              {stats.map((s) => (
+                <div
+                  key={s.label}
+                  className="flex min-w-[72px] flex-col items-center rounded-[var(--radius)] p-3 text-center"
+                  style={{
+                    backgroundColor: "var(--surface-2)",
+                    border: "1px solid var(--line)",
+                  }}
+                >
+                  <span
+                    className="tabular text-[22px] font-bold leading-none"
+                    style={{ color: "var(--text-1)" }}
+                  >
+                    {s.value}
+                  </span>
+                  <span
+                    className="mt-1 text-[10px] uppercase tracking-wide"
+                    style={{ color: "var(--text-2)" }}
+                  >
+                    {s.label}
+                  </span>
+                  {s.sub && (
+                    <span className="mt-0.5 text-[9px]" style={{ color: "var(--text-2)", opacity: 0.7 }}>
+                      {s.sub}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Bottom row — sparkline + LPI dial, right-aligned */}
+        <div className="flex flex-wrap items-center justify-end gap-4">
           {sparklineData && sparklineData.length > 1 && (
             <div
-              className="hidden w-[120px] sm:block"
+              className="hidden w-[160px] sm:block"
               style={{ height: 80 }}
               aria-hidden
             >
