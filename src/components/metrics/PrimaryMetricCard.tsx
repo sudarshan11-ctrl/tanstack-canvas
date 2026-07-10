@@ -78,14 +78,21 @@ export default function PrimaryMetricCard({ primary, metricValue, href, hrefPara
         </div>
       </div>
 
-      <div className="mt-1.5 text-[11px] font-medium" style={{ color: "var(--text-2)" }}>
+      <div
+        className="mt-1.5 text-[11px] font-medium"
+        style={{ color: awaitingTarget ? AWAITING_TEXT : "var(--text-2)" }}
+      >
         Target: {target}
       </div>
 
       {passive ? (
         <div
           className="mt-auto rounded px-2 py-1.5 text-[10px] italic"
-          style={{ backgroundColor: "var(--surface-2)", color: "var(--text-2)" }}
+          style={
+            awaitingTarget
+              ? { backgroundColor: AWAITING_CHIP_BG, color: AWAITING_TEXT }
+              : { backgroundColor: "var(--surface-2)", color: "var(--text-2)" }
+          }
         >
           {metricValue?.remark ?? "Data not yet available for this metric."}
         </div>
