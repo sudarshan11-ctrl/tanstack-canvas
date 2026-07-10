@@ -169,7 +169,7 @@ export default function FirmMetricsExplorer({
           <button
             key={rag}
             type="button"
-            onClick={() => setStatus(rag)}
+            onClick={() => setStatus(rag as StatusFilter)}
             className="rounded-full border px-2.5 py-1 text-[11px] font-semibold transition-opacity hover:opacity-80"
             style={{
               color: RAG_FG[rag],
