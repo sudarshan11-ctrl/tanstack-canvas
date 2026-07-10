@@ -7,11 +7,30 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
+import CommandPalette from "@/components/ui/CommandPalette";
+
+// Anti-FOUC: synchronously determine and apply theme before first paint
+const ANTI_FOUC_SCRIPT = `
+(function(){
+  try {
+    var s = localStorage.getItem('lks-theme');
+    var t = 'bento';
+    if (s) {
+      var p = JSON.parse(s);
+      var v = p && p.state && p.state.theme;
+      if (v === 'bento' || v === 'night' || v === 'ledger') t = v;
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      t = 'night';
+    }
+    document.documentElement.dataset.theme = t;
+  } catch(e) {}
+})();
+`;
 
 function NotFoundComponent() {
   return (
@@ -78,20 +97,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Dashboard" },
-      { name: "description", content: "A minimal dashboard starter." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Dashboard" },
-      { property: "og:description", content: "A minimal dashboard starter." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { title: "LKS Performance Dashboard" },
+      { name: "description", content: "Internal performance metrics portal for LKS law firm." },
     ],
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" as const },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&family=Geist+Mono:wght@400&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "stylesheet", href: appCss },
     ],
   }),
   shellComponent: RootShell,
@@ -102,9 +118,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="bento">
       <head>
         <HeadContent />
+        {/* Synchronous anti-FOUC: apply saved theme before first paint */}
+        <script dangerouslySetInnerHTML={{ __html: ANTI_FOUC_SCRIPT }} />
       </head>
       <body>
         {children}
@@ -116,11 +134,24 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const [cmdOpen, setCmdOpen] = useState(false);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setCmdOpen((v) => !v);
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
       <Toaster />
+      <CommandPalette open={cmdOpen} onClose={() => setCmdOpen(false)} />
     </QueryClientProvider>
   );
 }

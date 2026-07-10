@@ -1,0 +1,757 @@
+{
+  "source": "timesheet entry delay 2024-25,2025-26.xlsx",
+  "sheet": "2025-26",
+  "period": "FY2025-26",
+  "generatedAt": "2026-07-10T11:53:14.799Z",
+  "metric": "Avg Timesheet entry delay",
+  "unit": "days",
+  "availableDays": 238,
+  "hoursPerDay": 10,
+  "coverageNote": "coveragePct = (total billable+non-billable hours / 10) / availableDays × 100",
+  "entries": [
+    {
+      "personId": "lks-2171",
+      "name": "Aditya Jain",
+      "avgDelayDays": 195.57,
+      "daysEntered": 256,
+      "availableDays": 238,
+      "coveragePct": 107.6,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2250",
+      "name": "Agrim Arora",
+      "avgDelayDays": 29.9,
+      "daysEntered": 14.6,
+      "availableDays": 238,
+      "coveragePct": 6.1,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1572",
+      "name": "Akhilesh Kangsia",
+      "avgDelayDays": 31.34,
+      "daysEntered": 184.36,
+      "availableDays": 238,
+      "coveragePct": 77.5,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1041",
+      "name": "Anand Nainawati",
+      "avgDelayDays": 3.36,
+      "daysEntered": 92.85,
+      "availableDays": 238,
+      "coveragePct": 39,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2927",
+      "name": "Aniruddha A S",
+      "avgDelayDays": 132.56,
+      "daysEntered": 152.1,
+      "availableDays": 238,
+      "coveragePct": 63.9,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1117",
+      "name": "Anshul Mathur",
+      "avgDelayDays": 19.07,
+      "daysEntered": 22.23,
+      "availableDays": 238,
+      "coveragePct": 9.3,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-3334",
+      "name": "Anupam Misra",
+      "avgDelayDays": 49.93,
+      "daysEntered": 73.75,
+      "availableDays": 238,
+      "coveragePct": 31,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1654",
+      "name": "Anurag Kapur",
+      "avgDelayDays": 5,
+      "daysEntered": 6,
+      "availableDays": 238,
+      "coveragePct": 2.5,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2292",
+      "name": "Apeksha Bansal",
+      "avgDelayDays": 204.96,
+      "daysEntered": 143.65,
+      "availableDays": 238,
+      "coveragePct": 60.4,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-3049",
+      "name": "Astha Sinha",
+      "avgDelayDays": 100.04,
+      "daysEntered": 203.95,
+      "availableDays": 238,
+      "coveragePct": 85.7,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1453",
+      "name": "Chaitanya Bhatt",
+      "avgDelayDays": 4.17,
+      "daysEntered": 235.18,
+      "availableDays": 238,
+      "coveragePct": 98.8,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2142",
+      "name": "Chanda Sumanth",
+      "avgDelayDays": 106.34,
+      "daysEntered": 246,
+      "availableDays": 238,
+      "coveragePct": 103.4,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1123",
+      "name": "Charanya L",
+      "avgDelayDays": 10.34,
+      "daysEntered": 67.6,
+      "availableDays": 238,
+      "coveragePct": 28.4,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2109",
+      "name": "Charulatha Rajaji",
+      "avgDelayDays": 24.88,
+      "daysEntered": 42,
+      "availableDays": 238,
+      "coveragePct": 17.6,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-4434",
+      "name": "Darpan Bhuyan",
+      "avgDelayDays": 3.38,
+      "daysEntered": 3.75,
+      "availableDays": 238,
+      "coveragePct": 1.6,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2282",
+      "name": "Darshan Machchhar",
+      "avgDelayDays": 193.73,
+      "daysEntered": 245.3,
+      "availableDays": 238,
+      "coveragePct": 103.1,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1621",
+      "name": "Deepro Sen",
+      "avgDelayDays": 94.05,
+      "daysEntered": 228.8,
+      "availableDays": 238,
+      "coveragePct": 96.1,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1679",
+      "name": "Devinder Bagia",
+      "avgDelayDays": 54.31,
+      "daysEntered": 250.65,
+      "availableDays": 238,
+      "coveragePct": 105.3,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2196",
+      "name": "Dhruv Tiwari",
+      "avgDelayDays": 77.63,
+      "daysEntered": 234.92,
+      "availableDays": 238,
+      "coveragePct": 98.7,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1599",
+      "name": "Dinesh Eedi",
+      "avgDelayDays": 6.17,
+      "daysEntered": 87.57,
+      "availableDays": 238,
+      "coveragePct": 36.8,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1589",
+      "name": "Disha Bhandari",
+      "avgDelayDays": 3.32,
+      "daysEntered": 25.5,
+      "availableDays": 238,
+      "coveragePct": 10.7,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2337",
+      "name": "Gopakrushna Das",
+      "avgDelayDays": 52,
+      "daysEntered": 236.7,
+      "availableDays": 238,
+      "coveragePct": 99.5,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2152",
+      "name": "Gopalan D",
+      "avgDelayDays": 142.36,
+      "daysEntered": 224.98,
+      "availableDays": 238,
+      "coveragePct": 94.5,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2523",
+      "name": "Harshdeep Khurana",
+      "avgDelayDays": 115.05,
+      "daysEntered": 261,
+      "availableDays": 238,
+      "coveragePct": 109.7,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2682",
+      "name": "Harshit Khurana",
+      "avgDelayDays": 193.52,
+      "daysEntered": 236.6,
+      "availableDays": 238,
+      "coveragePct": 99.4,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2181",
+      "name": "Jay Chheda",
+      "avgDelayDays": 195.7,
+      "daysEntered": 184.5,
+      "availableDays": 238,
+      "coveragePct": 77.5,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2386",
+      "name": "Jayesh Talreja",
+      "avgDelayDays": 184.06,
+      "daysEntered": 239.05,
+      "availableDays": 238,
+      "coveragePct": 100.4,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1184",
+      "name": "Jigar Shah",
+      "avgDelayDays": 31.9,
+      "daysEntered": 120.2,
+      "availableDays": 238,
+      "coveragePct": 50.5,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1717",
+      "name": "Kalirajan D",
+      "avgDelayDays": 4.9,
+      "daysEntered": 244.3,
+      "availableDays": 238,
+      "coveragePct": 102.6,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2836",
+      "name": "Karthik Nair",
+      "avgDelayDays": 5.5,
+      "daysEntered": 0.4,
+      "availableDays": 238,
+      "coveragePct": 0.2,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2096",
+      "name": "Krithika Jaganathan",
+      "avgDelayDays": 19.02,
+      "daysEntered": 173.61,
+      "availableDays": 238,
+      "coveragePct": 72.9,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-4197",
+      "name": "Kruti Parashar",
+      "avgDelayDays": 174.36,
+      "daysEntered": 228.24,
+      "availableDays": 238,
+      "coveragePct": 95.9,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2798",
+      "name": "Kunal Aggarwal",
+      "avgDelayDays": 49.9,
+      "daysEntered": 251.45,
+      "availableDays": 238,
+      "coveragePct": 105.7,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2848",
+      "name": "Kunal Arora",
+      "avgDelayDays": 13.51,
+      "daysEntered": 14.73,
+      "availableDays": 238,
+      "coveragePct": 6.2,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2194",
+      "name": "Kunal Kapoor",
+      "avgDelayDays": 147.5,
+      "daysEntered": 3.9,
+      "availableDays": 238,
+      "coveragePct": 1.6,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2013",
+      "name": "Kunal Nikumbh",
+      "avgDelayDays": 187.75,
+      "daysEntered": 237,
+      "availableDays": 238,
+      "coveragePct": 99.6,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2043",
+      "name": "Kundan Kumar",
+      "avgDelayDays": 185.87,
+      "daysEntered": 242.6,
+      "availableDays": 238,
+      "coveragePct": 101.9,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2410",
+      "name": "Madhura Khandekar",
+      "avgDelayDays": 51.03,
+      "daysEntered": 52.48,
+      "availableDays": 238,
+      "coveragePct": 22.1,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1267",
+      "name": "Manish Jain",
+      "avgDelayDays": 21.41,
+      "daysEntered": 156.1,
+      "availableDays": 238,
+      "coveragePct": 65.6,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1349",
+      "name": "Narendra Dave",
+      "avgDelayDays": 4.25,
+      "daysEntered": 3,
+      "availableDays": 238,
+      "coveragePct": 1.3,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2658",
+      "name": "Neha Choudhary",
+      "avgDelayDays": 22.03,
+      "daysEntered": 33.3,
+      "availableDays": 238,
+      "coveragePct": 14,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2583",
+      "name": "Neha Sharma",
+      "avgDelayDays": 173.63,
+      "daysEntered": 185.4,
+      "availableDays": 238,
+      "coveragePct": 77.9,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1282",
+      "name": "Nirav Karia",
+      "avgDelayDays": 30.37,
+      "daysEntered": 160.6,
+      "availableDays": 238,
+      "coveragePct": 67.5,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-4209",
+      "name": "Nitum Jain",
+      "avgDelayDays": 11.06,
+      "daysEntered": 34.6,
+      "availableDays": 238,
+      "coveragePct": 14.5,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2373",
+      "name": "Noorul Hassan",
+      "avgDelayDays": 2.19,
+      "daysEntered": 57.4,
+      "availableDays": 238,
+      "coveragePct": 24.1,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-3186",
+      "name": "Pareesha Gupta",
+      "avgDelayDays": 64.79,
+      "daysEntered": 255.18,
+      "availableDays": 238,
+      "coveragePct": 107.2,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1626",
+      "name": "Payal Nahar",
+      "avgDelayDays": 191.77,
+      "daysEntered": 222.5,
+      "availableDays": 238,
+      "coveragePct": 93.5,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2548",
+      "name": "Prachi Bhardwaj",
+      "avgDelayDays": 143.97,
+      "daysEntered": 162.4,
+      "availableDays": 238,
+      "coveragePct": 68.2,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1563",
+      "name": "Priyanka Kalwani",
+      "avgDelayDays": 0.65,
+      "daysEntered": 197.6,
+      "availableDays": 238,
+      "coveragePct": 83,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2399",
+      "name": "Purvi Asati",
+      "avgDelayDays": 7.48,
+      "daysEntered": 15.3,
+      "availableDays": 238,
+      "coveragePct": 6.4,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-3376",
+      "name": "Rachit Arora",
+      "avgDelayDays": 68.73,
+      "daysEntered": 225.6,
+      "availableDays": 238,
+      "coveragePct": 94.8,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-3487",
+      "name": "Raghavan R",
+      "avgDelayDays": 16.51,
+      "daysEntered": 94.13,
+      "availableDays": 238,
+      "coveragePct": 39.6,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1587",
+      "name": "Rahul Tangri",
+      "avgDelayDays": 5.62,
+      "daysEntered": 263.9,
+      "availableDays": 238,
+      "coveragePct": 110.9,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2245",
+      "name": "Ranadeep Voriganti",
+      "avgDelayDays": 151.12,
+      "daysEntered": 226.84,
+      "availableDays": 238,
+      "coveragePct": 95.3,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1179",
+      "name": "Ratan Jain",
+      "avgDelayDays": 58.3,
+      "daysEntered": 213.85,
+      "availableDays": 238,
+      "coveragePct": 89.9,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-3487",
+      "name": "Ravi Raghavan",
+      "avgDelayDays": 0.44,
+      "daysEntered": 237.75,
+      "availableDays": 238,
+      "coveragePct": 99.9,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2660",
+      "name": "Ravi Sawana",
+      "avgDelayDays": 5.98,
+      "daysEntered": 30,
+      "availableDays": 238,
+      "coveragePct": 12.6,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2065",
+      "name": "Rohan Karia",
+      "avgDelayDays": 165.17,
+      "daysEntered": 246.35,
+      "availableDays": 238,
+      "coveragePct": 103.5,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-3459",
+      "name": "Rohan Verma",
+      "avgDelayDays": 11.53,
+      "daysEntered": 261.34,
+      "availableDays": 238,
+      "coveragePct": 109.8,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2186",
+      "name": "Sahana R",
+      "avgDelayDays": 1.47,
+      "daysEntered": 202.9,
+      "availableDays": 238,
+      "coveragePct": 85.3,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2373",
+      "name": "Sai Satya",
+      "avgDelayDays": 185.72,
+      "daysEntered": 228,
+      "availableDays": 238,
+      "coveragePct": 95.8,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-3896",
+      "name": "Samyak Lohade",
+      "avgDelayDays": 185.8,
+      "daysEntered": 239.5,
+      "availableDays": 238,
+      "coveragePct": 100.6,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2355",
+      "name": "Satish Gandla",
+      "avgDelayDays": 87.18,
+      "daysEntered": 240.05,
+      "availableDays": 238,
+      "coveragePct": 100.9,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2133",
+      "name": "Saurabh Malpani",
+      "avgDelayDays": 123.45,
+      "daysEntered": 190.4,
+      "availableDays": 238,
+      "coveragePct": 80,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2545",
+      "name": "Shankar Rochlani",
+      "avgDelayDays": 138.5,
+      "daysEntered": 229.9,
+      "availableDays": 238,
+      "coveragePct": 96.6,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-3967",
+      "name": "Shipra Verma",
+      "avgDelayDays": 191.3,
+      "daysEntered": 36.63,
+      "availableDays": 238,
+      "coveragePct": 15.4,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1155",
+      "name": "Shivam Mehta",
+      "avgDelayDays": 8,
+      "daysEntered": 0.15,
+      "availableDays": 238,
+      "coveragePct": 0.1,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2657",
+      "name": "Shreyash Agrawal",
+      "avgDelayDays": 72.57,
+      "daysEntered": 199.3,
+      "availableDays": 238,
+      "coveragePct": 83.7,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2193",
+      "name": "Shubham Vijay",
+      "avgDelayDays": 173.05,
+      "daysEntered": 250.73,
+      "availableDays": 238,
+      "coveragePct": 105.3,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1243",
+      "name": "Shweta Kathuria",
+      "avgDelayDays": 45.05,
+      "daysEntered": 55.23,
+      "availableDays": 238,
+      "coveragePct": 23.2,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2373",
+      "name": "Siddharth Sawhney",
+      "avgDelayDays": 31.81,
+      "daysEntered": 3.55,
+      "availableDays": 238,
+      "coveragePct": 1.5,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-3557",
+      "name": "Srabonee Roy",
+      "avgDelayDays": 11.11,
+      "daysEntered": 160.13,
+      "availableDays": 238,
+      "coveragePct": 67.3,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1657",
+      "name": "Srinidhi Ganeshan",
+      "avgDelayDays": 15,
+      "daysEntered": 1,
+      "availableDays": 238,
+      "coveragePct": 0.4,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1828",
+      "name": "Sukriti Das",
+      "avgDelayDays": 194.43,
+      "daysEntered": 198.63,
+      "availableDays": 238,
+      "coveragePct": 83.5,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-3589",
+      "name": "Sushrut Biswal",
+      "avgDelayDays": 7.46,
+      "daysEntered": 112.7,
+      "availableDays": 238,
+      "coveragePct": 47.4,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-4096",
+      "name": "Swathilekha TK",
+      "avgDelayDays": 76.04,
+      "daysEntered": 121.1,
+      "availableDays": 238,
+      "coveragePct": 50.9,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2597",
+      "name": "Tanmay Bhatnagar",
+      "avgDelayDays": 188.42,
+      "daysEntered": 238.54,
+      "availableDays": 238,
+      "coveragePct": 100.2,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-3103",
+      "name": "Tanya Garg",
+      "avgDelayDays": 148.33,
+      "daysEntered": 302.37,
+      "availableDays": 238,
+      "coveragePct": 127,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-2553",
+      "name": "Venkat Ramanan",
+      "avgDelayDays": 4.91,
+      "daysEntered": 219.85,
+      "availableDays": 238,
+      "coveragePct": 92.4,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1407",
+      "name": "VinayKumar Jain",
+      "avgDelayDays": 115.41,
+      "daysEntered": 227.6,
+      "availableDays": 238,
+      "coveragePct": 95.6,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-4468",
+      "name": "Vishakha Singh",
+      "avgDelayDays": 3.9,
+      "daysEntered": 45.75,
+      "availableDays": 238,
+      "coveragePct": 19.2,
+      "period": "FY2025-26"
+    },
+    {
+      "personId": "lks-1414",
+      "name": "Yogendra Aldak",
+      "avgDelayDays": 21.74,
+      "daysEntered": 178.33,
+      "availableDays": 238,
+      "coveragePct": 74.9,
+      "period": "FY2025-26"
+    }
+  ],
+  "unmatched": [
+    "Bhagwant Singh",
+    "Ishan Bhatt",
+    "Lakshmi Kumaran",
+    "Vivek Singh"
+  ]
+}

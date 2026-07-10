@@ -1,0 +1,1 @@
+export { mockPeople as people } from "./mockPeople";

@@ -9,16 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedPracticeHeadsRouteImport } from './routes/_authenticated/practice-heads'
+import { Route as AuthenticatedPartnersRouteImport } from './routes/_authenticated/partners'
+import { Route as AuthenticatedMindmapRouteImport } from './routes/_authenticated/mindmap'
+import { Route as AuthenticatedFirmRouteImport } from './routes/_authenticated/firm'
+import { Route as AuthenticatedAssociatesRouteImport } from './routes/_authenticated/associates'
+import { Route as AuthenticatedVerifyPersonIdRouteImport } from './routes/_authenticated/verify.$personId'
+import { Route as AuthenticatedSquadEpIdRouteImport } from './routes/_authenticated/squad.$epId'
+import { Route as AuthenticatedProfileIdRouteImport } from './routes/_authenticated/profile.$id'
+import { Route as AuthenticatedMetricIdRouteImport } from './routes/_authenticated/metric.$id'
+import { Route as AuthenticatedEpEpIdRouteImport } from './routes/_authenticated/ep.$epId'
+import { Route as AuthenticatedCohortRoleRouteImport } from './routes/_authenticated/cohort.$role'
+import { Route as AuthenticatedEpEpIdIndexRouteImport } from './routes/_authenticated/ep.$epId.index'
+import { Route as AuthenticatedEpEpIdPPartnerIdRouteImport } from './routes/_authenticated/ep.$epId.p.$partnerId'
+import { Route as AuthenticatedEpEpIdPPartnerIdIndexRouteImport } from './routes/_authenticated/ep.$epId.p.$partnerId.index'
+import { Route as AuthenticatedEpEpIdPPartnerIdAAssociateIdRouteImport } from './routes/_authenticated/ep.$epId.p.$partnerId.a.$associateId'
 
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
@@ -28,57 +37,216 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedPracticeHeadsRoute =
+  AuthenticatedPracticeHeadsRouteImport.update({
+    id: '/practice-heads',
+    path: '/practice-heads',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedPartnersRoute = AuthenticatedPartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMindmapRoute = AuthenticatedMindmapRouteImport.update({
+  id: '/mindmap',
+  path: '/mindmap',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedFirmRoute = AuthenticatedFirmRouteImport.update({
+  id: '/firm',
+  path: '/firm',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAssociatesRoute = AuthenticatedAssociatesRouteImport.update({
+  id: '/associates',
+  path: '/associates',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedVerifyPersonIdRoute =
+  AuthenticatedVerifyPersonIdRouteImport.update({
+    id: '/verify/$personId',
+    path: '/verify/$personId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSquadEpIdRoute = AuthenticatedSquadEpIdRouteImport.update({
+  id: '/squad/$epId',
+  path: '/squad/$epId',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedProfileIdRoute = AuthenticatedProfileIdRouteImport.update({
+  id: '/profile/$id',
+  path: '/profile/$id',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMetricIdRoute = AuthenticatedMetricIdRouteImport.update({
+  id: '/metric/$id',
+  path: '/metric/$id',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedEpEpIdRoute = AuthenticatedEpEpIdRouteImport.update({
+  id: '/ep/$epId',
+  path: '/ep/$epId',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedCohortRoleRoute = AuthenticatedCohortRoleRouteImport.update({
+  id: '/cohort/$role',
+  path: '/cohort/$role',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedEpEpIdIndexRoute =
+  AuthenticatedEpEpIdIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedEpEpIdRoute,
+  } as any)
+const AuthenticatedEpEpIdPPartnerIdRoute =
+  AuthenticatedEpEpIdPPartnerIdRouteImport.update({
+    id: '/p/$partnerId',
+    path: '/p/$partnerId',
+    getParentRoute: () => AuthenticatedEpEpIdRoute,
+  } as any)
+const AuthenticatedEpEpIdPPartnerIdIndexRoute =
+  AuthenticatedEpEpIdPPartnerIdIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedEpEpIdPPartnerIdRoute,
+  } as any)
+const AuthenticatedEpEpIdPPartnerIdAAssociateIdRoute =
+  AuthenticatedEpEpIdPPartnerIdAAssociateIdRouteImport.update({
+    id: '/a/$associateId',
+    path: '/a/$associateId',
+    getParentRoute: () => AuthenticatedEpEpIdPPartnerIdRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/auth': typeof AuthRoute
-  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/associates': typeof AuthenticatedAssociatesRoute
+  '/firm': typeof AuthenticatedFirmRoute
+  '/mindmap': typeof AuthenticatedMindmapRoute
+  '/partners': typeof AuthenticatedPartnersRoute
+  '/practice-heads': typeof AuthenticatedPracticeHeadsRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/cohort/$role': typeof AuthenticatedCohortRoleRoute
+  '/ep/$epId': typeof AuthenticatedEpEpIdRouteWithChildren
+  '/metric/$id': typeof AuthenticatedMetricIdRoute
+  '/profile/$id': typeof AuthenticatedProfileIdRoute
+  '/squad/$epId': typeof AuthenticatedSquadEpIdRoute
+  '/verify/$personId': typeof AuthenticatedVerifyPersonIdRoute
+  '/ep/$epId/': typeof AuthenticatedEpEpIdIndexRoute
+  '/ep/$epId/p/$partnerId': typeof AuthenticatedEpEpIdPPartnerIdRouteWithChildren
+  '/ep/$epId/p/$partnerId/': typeof AuthenticatedEpEpIdPPartnerIdIndexRoute
+  '/ep/$epId/p/$partnerId/a/$associateId': typeof AuthenticatedEpEpIdPPartnerIdAAssociateIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/auth': typeof AuthRoute
-  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/associates': typeof AuthenticatedAssociatesRoute
+  '/firm': typeof AuthenticatedFirmRoute
+  '/mindmap': typeof AuthenticatedMindmapRoute
+  '/partners': typeof AuthenticatedPartnersRoute
+  '/practice-heads': typeof AuthenticatedPracticeHeadsRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/cohort/$role': typeof AuthenticatedCohortRoleRoute
+  '/metric/$id': typeof AuthenticatedMetricIdRoute
+  '/profile/$id': typeof AuthenticatedProfileIdRoute
+  '/squad/$epId': typeof AuthenticatedSquadEpIdRoute
+  '/verify/$personId': typeof AuthenticatedVerifyPersonIdRoute
+  '/ep/$epId': typeof AuthenticatedEpEpIdIndexRoute
+  '/ep/$epId/p/$partnerId': typeof AuthenticatedEpEpIdPPartnerIdIndexRoute
+  '/ep/$epId/p/$partnerId/a/$associateId': typeof AuthenticatedEpEpIdPPartnerIdAAssociateIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
-  '/auth': typeof AuthRoute
-  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/associates': typeof AuthenticatedAssociatesRoute
+  '/_authenticated/firm': typeof AuthenticatedFirmRoute
+  '/_authenticated/mindmap': typeof AuthenticatedMindmapRoute
+  '/_authenticated/partners': typeof AuthenticatedPartnersRoute
+  '/_authenticated/practice-heads': typeof AuthenticatedPracticeHeadsRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/_authenticated/cohort/$role': typeof AuthenticatedCohortRoleRoute
+  '/_authenticated/ep/$epId': typeof AuthenticatedEpEpIdRouteWithChildren
+  '/_authenticated/metric/$id': typeof AuthenticatedMetricIdRoute
+  '/_authenticated/profile/$id': typeof AuthenticatedProfileIdRoute
+  '/_authenticated/squad/$epId': typeof AuthenticatedSquadEpIdRoute
+  '/_authenticated/verify/$personId': typeof AuthenticatedVerifyPersonIdRoute
+  '/_authenticated/ep/$epId/': typeof AuthenticatedEpEpIdIndexRoute
+  '/_authenticated/ep/$epId/p/$partnerId': typeof AuthenticatedEpEpIdPPartnerIdRouteWithChildren
+  '/_authenticated/ep/$epId/p/$partnerId/': typeof AuthenticatedEpEpIdPPartnerIdIndexRoute
+  '/_authenticated/ep/$epId/p/$partnerId/a/$associateId': typeof AuthenticatedEpEpIdPPartnerIdAAssociateIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/dashboard'
+  fullPaths:
+    | '/'
+    | '/associates'
+    | '/firm'
+    | '/mindmap'
+    | '/partners'
+    | '/practice-heads'
+    | '/settings'
+    | '/cohort/$role'
+    | '/ep/$epId'
+    | '/metric/$id'
+    | '/profile/$id'
+    | '/squad/$epId'
+    | '/verify/$personId'
+    | '/ep/$epId/'
+    | '/ep/$epId/p/$partnerId'
+    | '/ep/$epId/p/$partnerId/'
+    | '/ep/$epId/p/$partnerId/a/$associateId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/dashboard'
+  to:
+    | '/'
+    | '/associates'
+    | '/firm'
+    | '/mindmap'
+    | '/partners'
+    | '/practice-heads'
+    | '/settings'
+    | '/cohort/$role'
+    | '/metric/$id'
+    | '/profile/$id'
+    | '/squad/$epId'
+    | '/verify/$personId'
+    | '/ep/$epId'
+    | '/ep/$epId/p/$partnerId'
+    | '/ep/$epId/p/$partnerId/a/$associateId'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
-    | '/auth'
-    | '/_authenticated/dashboard'
+    | '/_authenticated/associates'
+    | '/_authenticated/firm'
+    | '/_authenticated/mindmap'
+    | '/_authenticated/partners'
+    | '/_authenticated/practice-heads'
+    | '/_authenticated/settings'
+    | '/_authenticated/cohort/$role'
+    | '/_authenticated/ep/$epId'
+    | '/_authenticated/metric/$id'
+    | '/_authenticated/profile/$id'
+    | '/_authenticated/squad/$epId'
+    | '/_authenticated/verify/$personId'
+    | '/_authenticated/ep/$epId/'
+    | '/_authenticated/ep/$epId/p/$partnerId'
+    | '/_authenticated/ep/$epId/p/$partnerId/'
+    | '/_authenticated/ep/$epId/p/$partnerId/a/$associateId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
-  AuthRoute: typeof AuthRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/_authenticated': {
       id: '/_authenticated'
       path: ''
@@ -93,22 +261,181 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/dashboard': {
-      id: '/_authenticated/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/practice-heads': {
+      id: '/_authenticated/practice-heads'
+      path: '/practice-heads'
+      fullPath: '/practice-heads'
+      preLoaderRoute: typeof AuthenticatedPracticeHeadsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/partners': {
+      id: '/_authenticated/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof AuthenticatedPartnersRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/mindmap': {
+      id: '/_authenticated/mindmap'
+      path: '/mindmap'
+      fullPath: '/mindmap'
+      preLoaderRoute: typeof AuthenticatedMindmapRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/firm': {
+      id: '/_authenticated/firm'
+      path: '/firm'
+      fullPath: '/firm'
+      preLoaderRoute: typeof AuthenticatedFirmRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/associates': {
+      id: '/_authenticated/associates'
+      path: '/associates'
+      fullPath: '/associates'
+      preLoaderRoute: typeof AuthenticatedAssociatesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/verify/$personId': {
+      id: '/_authenticated/verify/$personId'
+      path: '/verify/$personId'
+      fullPath: '/verify/$personId'
+      preLoaderRoute: typeof AuthenticatedVerifyPersonIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/squad/$epId': {
+      id: '/_authenticated/squad/$epId'
+      path: '/squad/$epId'
+      fullPath: '/squad/$epId'
+      preLoaderRoute: typeof AuthenticatedSquadEpIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/profile/$id': {
+      id: '/_authenticated/profile/$id'
+      path: '/profile/$id'
+      fullPath: '/profile/$id'
+      preLoaderRoute: typeof AuthenticatedProfileIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/metric/$id': {
+      id: '/_authenticated/metric/$id'
+      path: '/metric/$id'
+      fullPath: '/metric/$id'
+      preLoaderRoute: typeof AuthenticatedMetricIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/ep/$epId': {
+      id: '/_authenticated/ep/$epId'
+      path: '/ep/$epId'
+      fullPath: '/ep/$epId'
+      preLoaderRoute: typeof AuthenticatedEpEpIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/cohort/$role': {
+      id: '/_authenticated/cohort/$role'
+      path: '/cohort/$role'
+      fullPath: '/cohort/$role'
+      preLoaderRoute: typeof AuthenticatedCohortRoleRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/ep/$epId/': {
+      id: '/_authenticated/ep/$epId/'
+      path: '/'
+      fullPath: '/ep/$epId/'
+      preLoaderRoute: typeof AuthenticatedEpEpIdIndexRouteImport
+      parentRoute: typeof AuthenticatedEpEpIdRoute
+    }
+    '/_authenticated/ep/$epId/p/$partnerId': {
+      id: '/_authenticated/ep/$epId/p/$partnerId'
+      path: '/p/$partnerId'
+      fullPath: '/ep/$epId/p/$partnerId'
+      preLoaderRoute: typeof AuthenticatedEpEpIdPPartnerIdRouteImport
+      parentRoute: typeof AuthenticatedEpEpIdRoute
+    }
+    '/_authenticated/ep/$epId/p/$partnerId/': {
+      id: '/_authenticated/ep/$epId/p/$partnerId/'
+      path: '/'
+      fullPath: '/ep/$epId/p/$partnerId/'
+      preLoaderRoute: typeof AuthenticatedEpEpIdPPartnerIdIndexRouteImport
+      parentRoute: typeof AuthenticatedEpEpIdPPartnerIdRoute
+    }
+    '/_authenticated/ep/$epId/p/$partnerId/a/$associateId': {
+      id: '/_authenticated/ep/$epId/p/$partnerId/a/$associateId'
+      path: '/a/$associateId'
+      fullPath: '/ep/$epId/p/$partnerId/a/$associateId'
+      preLoaderRoute: typeof AuthenticatedEpEpIdPPartnerIdAAssociateIdRouteImport
+      parentRoute: typeof AuthenticatedEpEpIdPPartnerIdRoute
     }
   }
 }
 
+interface AuthenticatedEpEpIdPPartnerIdRouteChildren {
+  AuthenticatedEpEpIdPPartnerIdIndexRoute: typeof AuthenticatedEpEpIdPPartnerIdIndexRoute
+  AuthenticatedEpEpIdPPartnerIdAAssociateIdRoute: typeof AuthenticatedEpEpIdPPartnerIdAAssociateIdRoute
+}
+
+const AuthenticatedEpEpIdPPartnerIdRouteChildren: AuthenticatedEpEpIdPPartnerIdRouteChildren =
+  {
+    AuthenticatedEpEpIdPPartnerIdIndexRoute:
+      AuthenticatedEpEpIdPPartnerIdIndexRoute,
+    AuthenticatedEpEpIdPPartnerIdAAssociateIdRoute:
+      AuthenticatedEpEpIdPPartnerIdAAssociateIdRoute,
+  }
+
+const AuthenticatedEpEpIdPPartnerIdRouteWithChildren =
+  AuthenticatedEpEpIdPPartnerIdRoute._addFileChildren(
+    AuthenticatedEpEpIdPPartnerIdRouteChildren,
+  )
+
+interface AuthenticatedEpEpIdRouteChildren {
+  AuthenticatedEpEpIdIndexRoute: typeof AuthenticatedEpEpIdIndexRoute
+  AuthenticatedEpEpIdPPartnerIdRoute: typeof AuthenticatedEpEpIdPPartnerIdRouteWithChildren
+}
+
+const AuthenticatedEpEpIdRouteChildren: AuthenticatedEpEpIdRouteChildren = {
+  AuthenticatedEpEpIdIndexRoute: AuthenticatedEpEpIdIndexRoute,
+  AuthenticatedEpEpIdPPartnerIdRoute:
+    AuthenticatedEpEpIdPPartnerIdRouteWithChildren,
+}
+
+const AuthenticatedEpEpIdRouteWithChildren =
+  AuthenticatedEpEpIdRoute._addFileChildren(AuthenticatedEpEpIdRouteChildren)
+
 interface AuthenticatedRouteRouteChildren {
-  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedAssociatesRoute: typeof AuthenticatedAssociatesRoute
+  AuthenticatedFirmRoute: typeof AuthenticatedFirmRoute
+  AuthenticatedMindmapRoute: typeof AuthenticatedMindmapRoute
+  AuthenticatedPartnersRoute: typeof AuthenticatedPartnersRoute
+  AuthenticatedPracticeHeadsRoute: typeof AuthenticatedPracticeHeadsRoute
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedCohortRoleRoute: typeof AuthenticatedCohortRoleRoute
+  AuthenticatedEpEpIdRoute: typeof AuthenticatedEpEpIdRouteWithChildren
+  AuthenticatedMetricIdRoute: typeof AuthenticatedMetricIdRoute
+  AuthenticatedProfileIdRoute: typeof AuthenticatedProfileIdRoute
+  AuthenticatedSquadEpIdRoute: typeof AuthenticatedSquadEpIdRoute
+  AuthenticatedVerifyPersonIdRoute: typeof AuthenticatedVerifyPersonIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedAssociatesRoute: AuthenticatedAssociatesRoute,
+  AuthenticatedFirmRoute: AuthenticatedFirmRoute,
+  AuthenticatedMindmapRoute: AuthenticatedMindmapRoute,
+  AuthenticatedPartnersRoute: AuthenticatedPartnersRoute,
+  AuthenticatedPracticeHeadsRoute: AuthenticatedPracticeHeadsRoute,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+  AuthenticatedCohortRoleRoute: AuthenticatedCohortRoleRoute,
+  AuthenticatedEpEpIdRoute: AuthenticatedEpEpIdRouteWithChildren,
+  AuthenticatedMetricIdRoute: AuthenticatedMetricIdRoute,
+  AuthenticatedProfileIdRoute: AuthenticatedProfileIdRoute,
+  AuthenticatedSquadEpIdRoute: AuthenticatedSquadEpIdRoute,
+  AuthenticatedVerifyPersonIdRoute: AuthenticatedVerifyPersonIdRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -117,8 +444,17 @@ const AuthenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
-  AuthRoute: AuthRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

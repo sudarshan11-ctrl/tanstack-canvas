@@ -1,0 +1,10 @@
+{
+  "metric": "Matter creation time",
+  "period": "FY2025-26",
+  "description": "Share of matters created within each elapsed-time bucket (cumulative).",
+  "buckets": [
+    { "label": "< 1 hour", "count": 5691, "sharePct": 48.0 },
+    { "label": "< 6 hours", "count": 9229, "sharePct": 77.8 },
+    { "label": "< 1 day", "count": 10933, "sharePct": 92.2 }
+  ]
+}

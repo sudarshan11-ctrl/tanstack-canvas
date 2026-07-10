@@ -1,0 +1,173 @@
+{
+  "CM-01": {
+    "valueColumn": "total_clients",
+    "unitHint": "count",
+    "practice_head": "client-and-matter-total-clients-equity-partner",
+    "partner": "client-and-matter-total-clients-partner",
+    "associate": "client-and-matter-total-clients-associate"
+  },
+  "CM-02": {
+    "valueColumn": "total_matters",
+    "unitHint": "count",
+    "practice_head": "client-and-matter-total-matter-count-equity-partner",
+    "partner": "client-and-matter-total-matter-count-partner",
+    "associate": "client-and-matter-total-matter-count-associate"
+  },
+  "CM-03": {
+    "valueColumn": "client_retention_pct",
+    "unitHint": "%",
+    "needs_prev_fy": true,
+    "practice_head": "client-and-matter-client-retention-rate-equity-partner",
+    "partner": "client-and-matter-client-retention-rate-partner",
+    "associate": "client-and-matter-client-retention-rate-associate"
+  },
+  "CM-04": {
+    "valueColumn": "cohort_revenue_retention_pct",
+    "unitHint": "%",
+    "needs_prev_fy": true,
+    "practice_head": "client-and-matter-cohort-revenue-retention-equity-partner",
+    "partner": "client-and-matter-cohort-revenue-retention-partner"
+  },
+  "CM-06": {
+    "valueColumn": "repeat_client_share_pct",
+    "unitHint": "%",
+    "needs_prev_fy": true,
+    "practice_head": "client-and-matter-repeat-client-revenue-share-equity-partner",
+    "partner": "client-and-matter-repeat-client-revenue-share-partner",
+    "associate": "client-and-matter-repeat-client-revenue-share-associate"
+  },
+  "CM-07": {
+    "valueColumn": "pct_of_total",
+    "unitHint": "%",
+    "multiRow": true,
+    "practice_head": "client-and-matter-client-concentration-equity-partner",
+    "partner": "client-and-matter-client-concentration-partner",
+    "associate": "client-and-matter-client-concentration-associate"
+  },
+  "CM-11": {
+    "valueColumn": "cross_selling_rate_pct",
+    "unitHint": "%",
+    "practice_head": "client-and-matter-cross-selling-rate-equity-partner",
+    "partner": "client-and-matter-cross-selling-rate-partner"
+  },
+  "FH-01": {
+    "valueColumn": "total_revenue",
+    "unitHint": "₹Cr",
+    "scale": 1e-7,
+    "altColumns": ["book_revenue"],
+    "practice_head": "financial-health-total-revenue-equity-partner",
+    "partner": "financial-health-total-revenue-partner",
+    "associate": "financial-health-total-revenue-associate"
+  },
+  "FH-07": {
+    "valueColumn": "fixed_fee_revenue_share_pct",
+    "unitHint": "%",
+    "practice_head": "financial-health-fixed-fee-revenue-share-equity-partner",
+    "partner": "financial-health-fixed-fee-revenue-share-partner"
+  },
+  "FH-08": {
+    "valueColumn": "realization_rate_pct",
+    "unitHint": "%",
+    "practice_head": "financial-health-realization-rate-equity-partner",
+    "partner": "financial-health-realization-rate-partner",
+    "associate": "financial-health-realization-rate-associate"
+  },
+  "FH-10": {
+    "valueColumn": "leverage_ratio",
+    "unitHint": "ratio",
+    "practice_head": "financial-health-leverage-ratio-equity-partner",
+    "partner": "financial-health-leverage-ratio-partner"
+  },
+  "FH-12": {
+    "valueColumn": "revenue_per_lawyer",
+    "unitHint": "₹Cr",
+    "scale": 1e-7,
+    "practice_head": "financial-health-revenue-per-lawyer-equity-partner",
+    "partner": "financial-health-revenue-per-lawyer-partner",
+    "associate": "financial-health-revenue-per-lawyer-associate"
+  },
+  "FH-13": {
+    "valueColumn": "avg_billing_rate",
+    "unitHint": "₹/hr",
+    "practice_head": "financial-health-average-billing-rate-effective-equity-partner",
+    "partner": "financial-health-average-billing-rate-effective-partner",
+    "associate": "financial-health-average-billing-rate-effective-associate"
+  },
+  "FH-14": {
+    "valueColumn": "revenue_per_billable_hour",
+    "unitHint": "₹/hr",
+    "practice_head": "financial-health-revenue-per-billable-hour-equity-partner",
+    "partner": "financial-health-revenue-per-billable-hour-partner",
+    "associate": "financial-health-revenue-per-billable-hour-associate"
+  },
+  "FH-16": {
+    "valueColumn": "write_down_amount",
+    "unitHint": "₹Cr",
+    "scale": 1e-7,
+    "practice_head": "financial-health-write-downs-equity-partner",
+    "partner": "financial-health-write-downs-partner",
+    "associate": "financial-health-write-downs-associate"
+  },
+  "FH-17": {
+    "valueColumn": "write_off_amount",
+    "unitHint": "₹Cr",
+    "scale": 1e-7,
+    "practice_head": "financial-health-write-offs-equity-partner",
+    "partner": "financial-health-write-offs-partner",
+    "associate": "financial-health-write-offs-associate"
+  },
+  "FH-18": {
+    "valueColumn": "total_leakage",
+    "unitHint": "₹Cr",
+    "scale": 1e-7,
+    "practice_head": "financial-health-total-write-downs-write-offs-equity-partner",
+    "partner": "financial-health-total-write-downs-write-offs-partner",
+    "associate": "financial-health-total-write-downs-write-offs-associate"
+  },
+  "FH-19": {
+    "valueColumn": "wip_days",
+    "unitHint": "days",
+    "combineColumns": ["wip_days", "debtor_days"],
+    "practice_head": "financial-health-lockup-equity-partner",
+    "partner": "financial-health-lockup-partner",
+    "associate": "financial-health-lockup-associate"
+  },
+  "GP-01": {
+    "valueColumn": "revenue_growth_pct",
+    "unitHint": "%",
+    "needs_prev_fy": true,
+    "altColumns": ["revenue_growth_yoy_pct"],
+    "practice_head": "growth-and-pipeline-revenue-growth-yoy-equity-partner",
+    "partner": "growth-and-pipeline-revenue-growth-yoy-partner",
+    "associate": "growth-and-pipeline-revenue-growth-yoy-associate"
+  },
+  "GP-07": {
+    "valueColumn": "total_revenue",
+    "unitHint": "₹Cr",
+    "scale": 1e-7,
+    "altColumns": ["book_revenue"],
+    "remark": "Scorecard uses FH-01 revenue as origination proxy",
+    "practice_head": "financial-health-total-revenue-equity-partner",
+    "partner": "financial-health-total-revenue-partner"
+  },
+  "PO-05": {
+    "valueColumn": "avg_cycle_days",
+    "unitHint": "days",
+    "practice_head": "people-and-operations-cycle-time-per-matter-type-equity-partner",
+    "partner": "people-and-operations-cycle-time-per-matter-type-partner",
+    "associate": "people-and-operations-cycle-time-per-matter-type-associate"
+  },
+  "PO-08": {
+    "valueColumn": "avg_billing_cycle_days",
+    "unitHint": "days",
+    "practice_head": "people-and-operations-billing-cycle-length-equity-partner",
+    "partner": "people-and-operations-billing-cycle-length-partner",
+    "associate": "people-and-operations-billing-cycle-length-associate"
+  },
+  "PO-09": {
+    "valueColumn": "realization_rate_pct",
+    "unitHint": "%",
+    "practice_head": "people-and-operations-cost-to-collect-ratio-equity-partner",
+    "partner": "financial-health-realization-rate-partner"
+  }
+}

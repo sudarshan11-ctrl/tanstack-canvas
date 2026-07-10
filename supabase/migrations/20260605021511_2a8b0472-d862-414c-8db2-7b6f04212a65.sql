@@ -1,0 +1,1 @@
+revoke execute on function public.enforce_signup_email_domain() from public, anon, authenticated;

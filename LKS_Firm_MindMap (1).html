@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LKS Firm Hierarchy - Mind Map</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #0f1729; color: #e2e8f0; min-height: 100vh; }
+
+  .header { padding: 24px 32px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-bottom: 1px solid #334155; }
+  .header h1 { font-size: 22px; font-weight: 700; color: #f1f5f9; letter-spacing: -0.5px; }
+  .header p { font-size: 13px; color: #94a3b8; margin-top: 4px; }
+  .header .badge { display: inline-block; background: #1e40af; color: #bfdbfe; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 12px; margin-top: 8px; }
+
+  .container { padding: 24px 32px; }
+
+  .managing-partner {
+    text-align: center; margin-bottom: 32px;
+  }
+  .mp-card {
+    display: inline-block; background: linear-gradient(135deg, #7c3aed, #4f46e5); padding: 16px 40px;
+    border-radius: 16px; box-shadow: 0 8px 32px rgba(99,102,241,0.3);
+  }
+  .mp-card .name { font-size: 20px; font-weight: 700; color: #fff; }
+  .mp-card .role { font-size: 12px; color: #c4b5fd; margin-top: 2px; text-transform: uppercase; letter-spacing: 1px; }
+  .connector-line { width: 2px; height: 24px; background: #475569; margin: 0 auto; }
+
+  .groups-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px;
+  }
+
+  .group-card {
+    background: #1e293b; border: 1px solid #334155; border-radius: 12px; overflow: hidden;
+    transition: all 0.2s ease;
+  }
+  .group-card:hover { border-color: #4f46e5; box-shadow: 0 4px 24px rgba(79,70,229,0.15); }
+
+  .group-header {
+    padding: 16px 20px; cursor: pointer; display: flex; align-items: center; gap: 14px;
+    border-bottom: 1px solid #334155; position: relative;
+  }
+  .group-header .sno {
+    width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; flex-shrink: 0;
+  }
+  .group-header .info { flex: 1; }
+  .group-header .info .gh-name { font-size: 15px; font-weight: 600; color: #f1f5f9; }
+  .group-header .info .practice { font-size: 12px; color: #94a3b8; margin-top: 2px; }
+  .group-header .count-badge {
+    background: #334155; color: #94a3b8; font-size: 11px; font-weight: 600; padding: 4px 10px;
+    border-radius: 10px; flex-shrink: 0;
+  }
+  .group-header .chevron {
+    width: 20px; height: 20px; transition: transform 0.2s; flex-shrink: 0; color: #64748b;
+  }
+  .group-card.open .chevron { transform: rotate(180deg); }
+
+  .group-body { display: none; padding: 0; }
+  .group-card.open .group-body { display: block; }
+
+  .sub-head-bar {
+    padding: 8px 20px; background: #1a2332; border-bottom: 1px solid #334155;
+    font-size: 12px; color: #818cf8; font-weight: 500;
+  }
+
+  .team-tree { padding: 12px 16px; }
+  .tree-node {
+    margin-left: 0; padding: 6px 12px; border-left: 2px solid #334155;
+    margin-bottom: 2px; cursor: pointer; border-radius: 0 6px 6px 0;
+    transition: background 0.15s;
+  }
+  .tree-node:hover { background: #1a2332; }
+  .tree-node.partner-level { border-left-color: #4f46e5; }
+  .tree-node.ep-level { border-left-color: #7c3aed; }
+  .tree-node.sp-level { border-left-color: #ec4899; }
+
+  .tree-node .node-name { font-size: 13px; font-weight: 500; color: #e2e8f0; }
+  .tree-node .node-role { font-size: 11px; color: #64748b; }
+  .tree-node .node-loc { font-size: 11px; color: #475569; }
+
+  .tree-children { margin-left: 20px; }
+  .tree-children .tree-node { border-left-color: #1e3a5f; }
+
+  .na-label { padding: 16px 20px; font-size: 13px; color: #ef4444; font-style: italic; }
+
+  .legend { margin-top: 32px; display: flex; gap: 20px; flex-wrap: wrap; padding: 16px 20px; background: #1e293b; border-radius: 12px; border: 1px solid #334155; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #94a3b8; }
+  .legend-dot { width: 12px; height: 3px; border-radius: 2px; }
+
+  .color-1 .sno { background: #4f46e5; color: #fff; }
+  .color-2 .sno { background: #0891b2; color: #fff; }
+  .color-3 .sno { background: #059669; color: #fff; }
+  .color-4 .sno { background: #d97706; color: #fff; }
+  .color-5 .sno { background: #dc2626; color: #fff; }
+  .color-6 .sno { background: #7c3aed; color: #fff; }
+  .color-7 .sno { background: #2563eb; color: #fff; }
+  .color-8 .sno { background: #0d9488; color: #fff; }
+  .color-9 .sno { background: #c026d3; color: #fff; }
+  .color-10 .sno { background: #ea580c; color: #fff; }
+
+  .stats-bar { display: flex; gap: 24px; margin-bottom: 24px; flex-wrap: wrap; }
+  .stat-card { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 14px 20px; min-width: 140px; }
+  .stat-card .stat-val { font-size: 28px; font-weight: 700; color: #818cf8; }
+  .stat-card .stat-label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+
+  .search-bar { margin-bottom: 20px; }
+  .search-bar input {
+    width: 100%; max-width: 400px; padding: 10px 16px; background: #1e293b; border: 1px solid #334155;
+    border-radius: 8px; color: #e2e8f0; font-size: 14px; font-family: inherit; outline: none;
+  }
+  .search-bar input::placeholder { color: #475569; }
+  .search-bar input:focus { border-color: #4f46e5; }
+  .highlight { background: #4f46e520; border-left-color: #4f46e5 !important; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>LKS Corporate & Tax Lawyers — Firm Hierarchy Mind Map</h1>
+  <p>Source: Team Mapping Data (19 June 2026) &nbsp;|&nbsp; Interactive organizational hierarchy</p>
+  <span class="badge">Managing Partner → Group Heads → Partners → Associates</span>
+</div>
+
+<div class="container">
+  <div class="managing-partner">
+    <div class="mp-card">
+      <div class="name">V. Lakshmikumaran</div>
+      <div class="role">Managing Partner</div>
+    </div>
+    <div class="connector-line"></div>
+  </div>
+
+  <div class="stats-bar" id="stats"></div>
+  <div class="search-bar"><input type="text" id="search" placeholder="Search employee name..." /></div>
+  <div class="groups-grid" id="groups"></div>
+  <div class="legend" id="legend"></div>
+</div>
+
+<script>
+const data = {"name":"V. Lakshmikumaran","role":"Managing Partner","children":[{"name":"Badri N","full_name":"L Badrinarayanan","role":"Group Head","practice":"Corporate","count":55,"children":[{"name":"L Badrinarayanan","role":"Executive Partner","location":"Delhi-WTC","reports":5,"children":[{"name":"Gaurav Dayal","role":"Executive Partner","location":"Delhi-WTC"},{"name":"Kunal Arora","role":"Partner","location":"Delhi-WTC"},{"name":"S K Noorul Hassan","role":"Executive Partner","location":"Hyderabad"},{"name":"Srabonee Roy","role":"Partner","location":"Mumbai"},{"name":"K Prathiba","role":"Partner","location":"Delhi-WTC"}]},{"name":"Gaurav Dayal","role":"Executive Partner","location":"Delhi-WTC","reports":2,"children":[{"name":"Paritosh Chauhan","role":"Partner","location":"Delhi-WTC"},{"name":"Sushrut Biswal","role":"Partner","location":"Delhi-WTC"}]},{"name":"S K Noorul Hassan","role":"Executive Partner","location":"Hyderabad","reports":3,"children":[{"name":"Kumar Panda","role":"Principal Associate","location":"Hyderabad"},{"name":"Shipra Verma","role":"Associate Partner","location":"Hyderabad"},{"name":"Dinesh Babu Eedi","role":"Partner","location":"Hyderabad"}]},{"name":"Paritosh Chauhan","role":"Partner","location":"Delhi-WTC","reports":2,"children":[{"name":"Shylla Sawhney","role":"Principal Associate","location":"Delhi-WTC"},{"name":"Snigdha Ghosh","role":"Associate","location":"Delhi-WTC"}]},{"name":"Sushrut Biswal","role":"Partner","location":"Delhi-WTC","reports":4,"children":[{"name":"Rohan Verma","role":"Associate Partner","location":"Delhi-WTC"},{"name":"Saurabh Raman","role":"Principal Associate","location":"Delhi-WTC"},{"name":"Chetan Soni","role":"Associate","location":"Delhi-WTC"},{"name":"Sukoon Dinodia","role":"Senior Associate","location":"Delhi-WTC"}]},{"name":"Kunal Arora","role":"Partner","location":"Delhi-WTC","reports":4,"children":[{"name":"Anupam Misra","role":"Associate Partner","location":"Delhi-WTC"},{"name":"Mitushi Garg","role":"Principal Associate","location":"Delhi-WTC"},{"name":"Jeevesh Jain","role":"Associate","location":"Delhi-WTC"},{"name":"Satwik Mohapatra","role":"Associate","location":"Delhi-WTC"}]},{"name":"Dinesh Babu Eedi","role":"Partner","location":"Hyderabad","reports":2,"children":[{"name":"Guru Charan Anumula","role":"Associate","location":"Hyderabad"},{"name":"Aishwarya Kumar","role":"Consultant","location":"Hyderabad"}]},{"name":"Srabonee Roy","role":"Partner","location":"Mumbai","reports":4,"children":[{"name":"Annanya Elhence","role":"Senior Associate","location":"Delhi-WTC"},{"name":"Atrijo Banerjee","role":"Associate","location":"Mumbai"},{"name":"Mathanki N","role":"Associate","location":"Mumbai"},{"name":"Vishakha Singh","role":"Associate Partner","location":"Delhi-WTC"}]},{"name":"K Prathiba","role":"Partner","location":"Delhi-WTC","reports":0,"children":[]},{"name":"Gopal Machiraju","role":"Associate Partner","location":"Mumbai","reports":3,"children":[{"name":"Krusha Maheshwari","role":"Principal Associate","location":"Mumbai"},{"name":"Ruchi Anand Wagaralkar","role":"Associate","location":"Mumbai"},{"name":"Abhishek Santosh Kamble","role":"Associate","location":"Mumbai"}]},{"name":"Astha Sinha","role":"Associate Partner","location":"Mumbai","reports":1,"children":[{"name":"Rishita Sethi","role":"Associate","location":"Mumbai"}]},{"name":"Bhusan Porwal","role":"Principal Associate","location":"Mumbai","reports":2,"children":[{"name":"Kinnari Solanki","role":"Associate","location":"Mumbai"},{"name":"Pranav Sharma","role":"Associate","location":"Mumbai"}]},{"name":"Pratyush Jain","role":"Principal Associate","location":"Mumbai","reports":2,"children":[{"name":"Priyanshi Rachchh","role":"Associate","location":"Mumbai"},{"name":"Khushi Kumari","role":"Associate","location":"Mumbai"}]}]},{"name":"T Viswanathan","full_name":"Viswanathan T","role":"Group Head","practice":"Customs, Intl Trade & Investigations","count":92,"children":[{"name":"Devinder Bagia","role":"Sub-Head/Lead","practice":"International Trade","count":15,"children":[{"name":"Devinder Bagia","role":"Executive Partner","location":"Delhi-WTC","reports":3,"children":[{"name":"Gopakrushna Das","role":"Associate Partner","location":"Delhi-WTC"},{"name":"Ankur Sharma","role":"Partner","location":"Delhi-WTC"},{"name":"Pareesha Gupta","role":"Partner","location":"Delhi-WTC"}]},{"name":"Ankur Sharma","role":"Partner","location":"Delhi-WTC","reports":2,"children":[{"name":"Nikita Chauhan","role":"Senior Associate","location":"Delhi-WTC"},{"name":"Divyashree Suri","role":"Principal Associate","location":"Delhi-WTC"}]},{"name":"Pareesha Gupta","role":"Partner","location":"Delhi-WTC","reports":5,"children":[{"name":"Akansha Tyagi","role":"Senior Associate","location":"Delhi-WTC"},{"name":"Abhishek Tripathi","role":"Associate","location":"Delhi-WTC"},{"name":"Ekta Agarwal","role":"Associate","location":"Delhi-WTC"},{"name":"Shobhit Chaudhary","role":"Associate","location":"Delhi-WTC"},{"name":"Mahima Ahuja","role":"Senior Associate","location":"Delhi-WTC"}]}]},{"name":"Ratan Jain","role":"Executive Partner","location":"Mumbai","reports":1,"children":[{"name":"Srinidhi Ganeshan","role":"Partner","location":"Mumbai"}]},{"name":"Rachit Jain","role":"Executive Partner","location":"Bengaluru","reports":5,"children":[{"name":"Harshdeep Singh Khurana","role":"Associate Director","location":"Delhi-WTC"},{"name":"Anurag Kapur","role":"Partner","location":"Delhi-WTC"},{"name":"Jyoti Pal","role":"Partner","location":"Delhi-WTC"},{"name":"D. Kalirajan","role":"Associate Partner","location":"Bengaluru"},{"name":"Purvi Asati","role":"Associate Partner","location":"Bengaluru"}]},{"name":"Nupur Maheshwari","role":"Executive Partner","location":"Delhi-WTC","reports":2,"children":[{"name":"Dhruv Matta","role":"Partner","location":"Delhi-WTC"},{"name":"Disha Bhandari","role":"Partner","location":"Delhi-WTC"}]},{"name":"Manish Jain","role":"Partner","location":"Ahmedabad","reports":3,"children":[{"name":"Surbhi Chandani","role":"Associate","location":"Ahmedabad"},{"name":"Raksha Bhandari","role":"Associate","location":"Ahmedabad"},{"name":"Navya Dubey","role":"Associate","location":"Ahmedabad"}]},{"name":"Srinidhi Ganeshan","role":"Partner","location":"Mumbai","reports":9,"children":[{"name":"Shambhavi Mishra","role":"Principal Associate","location":"Bengaluru"},{"name":"Neha Agrawal","role":"Principal Associate","location":"Mumbai"},{"name":"Akshay S. Deokule","role":"Principal Associate","location":"Mumbai"},{"name":"Madhur Azad","role":"Senior Associate","location":"Mumbai"},{"name":"Anaya Bhide","role":"Senior Associate","location":"Mumbai"},{"name":"Kratik Patni","role":"Associate","location":"Mumbai"},{"name":"Dhruv Pamecha","role":"Associate","location":"Mumbai"},{"name":"Bharath Krishna S. Menon","role":"Principal Associate","location":"Mumbai"},{"name":"Kedar Kokatay","role":"Associate","location":"Mumbai"}]},{"name":"Akhilesh Kangsia","role":"Partner","location":"Mumbai","reports":1,"children":[{"name":"Madhura Milind Khandekar","role":"Associate Partner","location":"Mumbai"}]},{"name":"Anurag Kapur","role":"Partner","location":"Delhi-WTC","reports":3,"children":[{"name":"Rubel Bareja","role":"Principal Associate","location":"Delhi-WTC"},{"name":"Rohan Muralidharan","role":"Partner","location":"Chennai"},{"name":"Santhana Gopalan D","role":"Associate Partner","location":"Delhi-WTC"}]},{"name":"Rohan Muralidharan","role":"Partner","location":"Chennai","reports":5,"children":[{"name":"T K Swathilekha","role":"Associate Partner","location":"Chennai"},{"name":"Shobhana Krishnan","role":"Principal Associate","location":"Chennai"},{"name":"Yogesh Srinivasan","role":"Senior Associate","location":"Chennai"},{"name":"Brijesh Dash","role":"Associate","location":"Chennai"},{"name":"Anagha Ramdass","role":"Associate","location":"Chennai"}]},{"name":"Jyoti Pal","role":"Partner","location":"Delhi-WTC","reports":2,"children":[{"name":"Ashwani Bhatia","role":"Principal Associate","location":"Delhi-WTC"},{"name":"Kruti Parashar","role":"Associate Partner","location":"Delhi-WTC"}]},{"name":"Dhruv Matta","role":"Partner","location":"Delhi-WTC","reports":7,"children":[{"name":"Aasheesh Modgil","role":"Associate","location":"Delhi-WTC"},{"name":"Shobhit Jain","role":"Principal Associate","location":"Delhi-WTC"},{"name":"Ananya Prakash","role":"Associate","location":"Delhi-WTC"},{"name":"Namrata Singhal","role":"Associate","location":"Delhi-WTC"},{"name":"Simone Jain","role":"Associate","location":"Delhi-WTC"},{"name":"Akshay Mohan Gupta","role":"Associate","location":"Delhi-WTC"},{"name":"Siddhant Indrajit","role":"Principal Associate","location":"Delhi-WTC"}]},{"name":"Disha Bhandari","role":"Partner","location":"Delhi-WTC","reports":2,"children":[{"name":"Prety Priya","role":"Associate","location":"Delhi-WTC"},{"name":"Aditi Singh","role":"Senior Associate","location":"Delhi-WTC"}]},{"name":"Apoorva Singh Parihar","role":"Principal Associate","location":"Mumbai","reports":3,"children":[{"name":"D Drishya","role":"Associate","location":"Mumbai"},{"name":"Sakshi Lawangare","role":"Associate","location":"Mumbai"},{"name":"Shreshtha Singh","role":"Associate","location":"Hyderabad"}]}]},{"name":"B L Narsimhan","full_name":"B. Lakshmi Narasimhan","role":"Group Head","practice":"North GST Litigation & Kolkata Tax","count":49,"children":[{"name":"Manish Gaur","role":"Sub-Head/Lead","practice":"North GST Lit. & Kolkata Tax","count":49,"children":[{"name":"Manish Gaur","role":"Senior Partner","location":"Delhi-WTC","reports":6,"children":[{"name":"Vinay Kumar Jain","role":"Executive Partner","location":"Jaipur"},{"name":"Amar Pratap Singh","role":"Executive Partner","location":"Chandigarh"},{"name":"Atul Gupta","role":"Executive Partner","location":"Delhi-WTC"},{"name":"Rahul Tangri","role":"Executive Partner","location":"Kolkata"},{"name":"Krati Singh","role":"Executive Partner","location":"Chandigarh"},{"name":"Sukriti Das","role":"Partner","location":"Delhi-WTC"}]},{"name":"Vinay Kumar Jain","role":"Executive Partner","location":"Jaipur","reports":1,"children":[{"name":"Priyamvada Joshi","role":"Principal Associate","location":"Jaipur"}]},{"name":"Amar Pratap Singh","role":"Executive Partner","location":"Chandigarh","reports":3,"children":[{"name":"Niren Sharma","role":"Associate","location":"Chandigarh"},{"name":"Mahesh Singh","role":"Associate","location":"Chandigarh"},{"name":"Priyam Gandhi","role":"Associate","location":"Chandigarh"}]},{"name":"Atul Gupta","role":"Executive Partner","location":"Delhi-WTC","reports":3,"children":[{"name":"Akanksha Pandey","role":"Consultant","location":"Prayagraj"},{"name":"Tanya Singh","role":"Consultant","location":"Prayagraj"},{"name":"Animesh Srivastava","role":"Consultant","location":"Prayagraj"}]},{"name":"Rahul Tangri","role":"Executive Partner","location":"Kolkata","reports":3,"children":[{"name":"Deepro Sen","role":"Partner","location":"Kolkata"},{"name":"Ekta Jhunjhunwala","role":"Principal Associate","location":"Kolkata"},{"name":"Payal Bharwani","role":"Principal Associate","location":"Kolkata"}]},{"name":"Krati Singh","role":"Executive Partner","location":"Chandigarh","reports":6,"children":[{"name":"Shagun Arora","role":"Partner","location":"Delhi-WTC"},{"name":"Samiksha Uniyal","role":"Senior Associate","location":"Chandigarh"},{"name":"Jashanpreet Kaur","role":"Associate","location":"Chandigarh"},{"name":"Monarch Mittal","role":"Associate","location":"Chandigarh"},{"name":"Khushbu Sood","role":"Associate","location":"Chandigarh"},{"name":"Jai Ahuja","role":"Consultant","location":"Chandigarh"}]},{"name":"Deepro Sen","role":"Partner","location":"Kolkata","reports":4,"children":[{"name":"Shovit Betal","role":"Senior Associate","location":"Kolkata"},{"name":"Taniya Roy","role":"Associate","location":"Kolkata"},{"name":"Sreeja Chakraborty","role":"Associate","location":"Kolkata"},{"name":"Disha Seth","role":"Associate","location":"Kolkata"}]},{"name":"Shagun Arora","role":"Partner","location":"Delhi-WTC","reports":2,"children":[{"name":"Kunal Aggarwal","role":"Associate Partner","location":"Delhi-WTC"},{"name":"Shreya Khunteta","role":"Principal Associate","location":"Delhi-WTC"}]},{"name":"Sukriti Das","role":"Partner","location":"Delhi-WTC","reports":2,"children":[{"name":"Shivam Bansal","role":"Principal Associate","location":"Delhi-WTC"},{"name":"Anugya Jain","role":"Senior Associate","location":"Delhi-WTC"}]}]}]},{"name":"Raghavan R.","full_name":"Raghavan Ramabadran","role":"Group Head","practice":"Chennai Tax","count":25,"children":[{"name":"Raghavan Ramabadran","role":"Executive Partner","location":"Chennai","reports":5,"children":[{"name":"Krithika Jaganathan","role":"Associate Partner","location":"Chennai"},{"name":"R Sahana","role":"Associate Partner","location":"Chennai"},{"name":"Charulatha Rajaji","role":"Associate Partner","location":"Chennai"},{"name":"Lavanya Lakshmi Govindarajan","role":"Principal Associate","location":"Chennai"},{"name":"Karthik S Nair","role":"Associate Partner","location":"Kochi"}]},{"name":"Raghav Rajeev","role":"Principal Associate","location":"Chennai","reports":4,"children":[{"name":"Abhijit Roy","role":"Associate","location":"Chennai"},{"name":"Ami Thakker","role":"Associate","location":"Chennai"},{"name":"Harikrishna Palaniappan","role":"Associate","location":"Chennai"},{"name":"Samyuktha Banusekar","role":"Associate","location":"Chennai"}]}]},{"name":"Ravi Raghavan","full_name":"Ravi R","role":"Group Head","practice":"Bangalore Tax","count":26,"children":[{"name":"Ravi R","role":"Senior Partner","location":"Bengaluru","reports":2,"children":[{"name":"Syed Maqdum Peeran","role":"Executive Partner","location":"Bengaluru"},{"name":"Sudeshna Banerjee","role":"Partner","location":"Bengaluru"}]},{"name":"Syed Maqdum Peeran","role":"Executive Partner","location":"Bengaluru","reports":5,"children":[{"name":"Rohan Karia","role":"Associate Partner","location":"Bengaluru"},{"name":"Meghna Lal","role":"Principal Associate","location":"Bengaluru"},{"name":"Mohammed Ibrahim","role":"Principal Associate","location":"Bengaluru"},{"name":"Siddharth Manoj Bavle","role":"Principal Associate","location":"Bengaluru"},{"name":"A S Aniruddha","role":"Associate Partner","location":"Bengaluru"}]},{"name":"Sudeshna Banerjee","role":"Partner","location":"Bengaluru","reports":2,"children":[{"name":"Sneha Mary Philip","role":"Principal Associate","location":"Bengaluru"},{"name":"Akshay Purohit","role":"Principal Associate","location":"Bengaluru"}]}]},{"name":"Charanya L","full_name":"Charanya Lakshmikumaran","role":"Group Head","practice":"HC, SC & Competition Law","count":28,"children":[{"name":"Charanya Lakshmikumaran","role":"Executive Partner","location":"Delhi-WTC","reports":6,"children":[{"name":"Nitum Jain","role":"Associate Partner","location":"Delhi-WTC"},{"name":"Neha Choudhary","role":"Associate Partner","location":"Delhi-WTC"},{"name":"Agrim Arora","role":"Associate Partner","location":"Delhi-WTC"},{"name":"Darpan Bhuyan","role":"Associate Partner","location":"Delhi-WTC"},{"name":"Yogendra Aldak","role":"Executive Partner","location":"Delhi-WTC"},{"name":"Neelambera Sandeepan","role":"Partner","location":"Delhi-WTC"}]},{"name":"Yogendra Aldak","role":"Executive Partner","location":"Delhi-WTC","reports":4,"children":[{"name":"Kunal Kapoor","role":"Associate Partner","location":"Delhi-WTC"},{"name":"Pranav Mundra","role":"Principal Associate","location":"Delhi-WTC"},{"name":"Rashi Srivastava","role":"Principal Associate","location":"Delhi-WTC"},{"name":"Tamanna Sharma","role":"Senior Associate","location":"Delhi-WTC"}]},{"name":"Neelambera Sandeepan","role":"Partner","location":"Delhi-WTC","reports":2,"children":[{"name":"Charms Mathews","role":"Senior Associate","location":"Delhi-WTC"},{"name":"Rohan Zaveri","role":"Associate","location":"Delhi-WTC"}]},{"name":"Sameer Avasarala","role":"Principal Associate","location":"Hyderabad","reports":1,"children":[{"name":"Gayathri Viswan K","role":"Consultant","location":"Hyderabad"}]}]},{"name":"S Vasudevan","full_name":"S Vasudevan","role":"Group Head","practice":"Direct Tax","count":46,"children":[{"name":"S Vasudevan","role":"Executive Partner","location":"Delhi-WTC","reports":7,"children":[{"name":"Tanmay Bhatnagar","role":"Associate Partner","location":"Delhi-WTC"},{"name":"Harshit Khurana","role":"Associate Partner","location":"Delhi-WTC"},{"name":"Prachi Bhardwaj","role":"Associate Director","location":"Delhi-WTC"},{"name":"Mahendra Singh","role":"Associate Partner","location":"Delhi-WTC"},{"name":"Bharathi Krishnaprasad","role":"Director","location":"Chennai"},{"name":"Sriram S","role":"Executive Partner","location":"Mumbai"},{"name":"Sudin Sabnis","role":"Director","location":"Pune"}]},{"name":"Sriram S","role":"Executive Partner","location":"Mumbai","reports":3,"children":[{"name":"Samyak Lohade","role":"Associate Director","location":"Mumbai"},{"name":"Dinesh Srichand Kukreja","role":"Principal Associate","location":"Mumbai"},{"name":"Ravi Sawana","role":"Partner","location":"Mumbai"}]},{"name":"Ravi Sawana","role":"Partner","location":"Mumbai","reports":1,"children":[{"name":"Neha Sharma","role":"Associate Partner","location":"Mumbai"}]},{"name":"Bharathi Krishnaprasad","role":"Director","location":"Chennai","reports":1,"children":[{"name":"B Venkat Ramanan","role":"Associate Partner","location":"Chennai"}]},{"name":"Sudin Sabnis","role":"Director","location":"Pune","reports":0,"children":[]},{"name":"Giridhar Nadathur Vasudevan","role":"Principal Associate","location":"Bengaluru","reports":1,"children":[{"name":"Romil Hotwani","role":"Senior Associate","location":"Bengaluru"}]}]},{"name":"Nambi R","full_name":"Nambirajan R","role":"Group Head","practice":"West & Hyderabad Tax","count":83,"children":[{"name":"Gajendra Jain","role":"Senior Partner","location":"Mumbai","reports":4,"children":[{"name":"Rajesh Ostwal","role":"Executive Partner","location":"Mumbai"},{"name":"Sriram Sridharan","role":"Partner","location":"Mumbai"},{"name":"Sahil Parghi","role":"Partner","location":"Mumbai"},{"name":"Narendra S Dave","role":"Executive Partner","location":"Hyderabad"}]},{"name":"Kalpesh Nitish Shah","role":"Senior Partner","location":"Mumbai","reports":5,"children":[{"name":"Asish Philip Abraham","role":"Executive Partner","location":"Mumbai"},{"name":"L V Venkata Naga Satya Sai","role":"Partner","location":"Hyderabad"},{"name":"Chaitanya R. Bhatt","role":"Partner","location":"Mumbai"},{"name":"Nirav Sanjay Karia","role":"Partner","location":"Mumbai"},{"name":"Nupoor Agrawal","role":"Executive Partner","location":"Mumbai"}]},{"name":"Anand Nainawati","role":"Executive Partner","location":"Ahmedabad","reports":4,"children":[{"name":"Rinkal Lalit Patel","role":"Principal Associate","location":"Ahmedabad"},{"name":"Sanket Gupta","role":"Principal Associate","location":"Ahmedabad"},{"name":"Saurin Thakkar","role":"Associate","location":"Ahmedabad"},{"name":"Jigar Shah","role":"Executive Partner","location":"Ahmedabad"}]},{"name":"Jigar Shah","role":"Executive Partner","location":"Ahmedabad","reports":2,"children":[{"name":"Priyanka Kalwani","role":"Associate Partner","location":"Ahmedabad"},{"name":"Amber Kumrawat","role":"Principal Associate","location":"Ahmedabad"}]},{"name":"Asish Philip Abraham","role":"Executive Partner","location":"Mumbai","reports":2,"children":[{"name":"Darshan Chandrakant Machchhar","role":"Associate Partner","location":"Mumbai"},{"name":"Apeksha Bansal","role":"Associate Partner","location":"Mumbai"}]},{"name":"Rajesh Ostwal","role":"Executive Partner","location":"Mumbai","reports":3,"children":[{"name":"Payal Pravin Nahar","role":"Partner","location":"Mumbai"},{"name":"Jay Manoj Chheda","role":"Associate Partner","location":"Mumbai"},{"name":"Aditya Vikram Jain","role":"Associate Director","location":"Mumbai"}]},{"name":"Narendra S Dave","role":"Executive Partner","location":"Hyderabad","reports":2,"children":[{"name":"Ranadeep Voriganti","role":"Associate Director","location":"Hyderabad"},{"name":"Chanda Sumanth","role":"Associate Partner","location":"Hyderabad"}]},{"name":"Nupoor Agrawal","role":"Executive Partner","location":"Mumbai","reports":1,"children":[{"name":"Kunal Sunil Nikumbh","role":"Associate Partner","location":"Mumbai"}]},{"name":"Payal Pravin Nahar","role":"Partner","location":"Mumbai","reports":5,"children":[{"name":"Hanisha Jatania","role":"Senior Associate","location":"Mumbai"},{"name":"Sikha Suman","role":"Senior Associate","location":"Mumbai"},{"name":"Charu Agrawal","role":"Associate","location":"Mumbai"},{"name":"Karan Omprakash Anwani","role":"Associate","location":"Mumbai"},{"name":"Rana Dhruv Harshadkumar","role":"Associate","location":"Mumbai"}]},{"name":"Sriram Sridharan","role":"Partner","location":"Mumbai","reports":3,"children":[{"name":"Dhananjay Sethuraj","role":"Principal Associate","location":"Mumbai"},{"name":"Shanmuga Dev","role":"Principal Associate","location":"Mumbai"},{"name":"Trinayani Kaoshik Iyer","role":"Associate","location":"Mumbai"}]},{"name":"Sahil Parghi","role":"Partner","location":"Mumbai","reports":2,"children":[{"name":"Aditi Gajendra Jain","role":"Associate","location":"Mumbai"},{"name":"Devanshi Sharma","role":"Principal Associate","location":"Mumbai"}]},{"name":"L V Venkata Naga Satya Sai","role":"Partner","location":"Hyderabad","reports":1,"children":[{"name":"Satish Gandla","role":"Associate Partner","location":"Hyderabad"}]},{"name":"Chaitanya R. Bhatt","role":"Partner","location":"Mumbai","reports":3,"children":[{"name":"Vatsal Bhansali","role":"Principal Associate","location":"Mumbai"},{"name":"Raghav Khuteta","role":"Associate","location":"Mumbai"},{"name":"Saurabh Malpani","role":"Associate Partner","location":"Nagpur"}]},{"name":"Nirav Sanjay Karia","role":"Partner","location":"Mumbai","reports":1,"children":[{"name":"Jayesh Talreja","role":"Associate Partner","location":"Mumbai"}]},{"name":"Shankar Pawan Rochlani","role":"Associate Director","location":"Pune","reports":7,"children":[{"name":"Varada Jahagirdar","role":"Senior Associate","location":"Pune"},{"name":"Jatin Kukreja","role":"Senior Associate","location":"Pune"},{"name":"Pushpam Jha","role":"Associate","location":"Pune"},{"name":"Rama Sane","role":"Consultant","location":"Pune"},{"name":"Asmita Gupta","role":"Associate","location":"Pune"},{"name":"Jatan Mudgal","role":"Senior Associate","location":"Pune"},{"name":"Mayur Vishwas Varik","role":"Principal Associate","location":"Pune"}]}]},{"name":"Mathivanan N","full_name":"Mathivanan N","role":"Group Head","practice":"North GST Consulting","count":26,"children":[{"name":"Bipin Verma","role":"Sub-Head/Lead","practice":"North GST Consulting","count":26,"children":[{"name":"Bipin Kumar Verma","role":"Senior Partner","location":"Delhi-WTC","reports":2,"children":[{"name":"Anshul Mathur","role":"Executive Partner","location":"Delhi-WTC"},{"name":"Shivam Mehta","role":"Executive Partner","location":"Delhi-WTC"}]},{"name":"Anshul Mathur","role":"Executive Partner","location":"Delhi-WTC","reports":2,"children":[{"name":"Vinayak Kohli","role":"Principal Associate","location":"Delhi-WTC"},{"name":"Kundan Kumar","role":"Associate Partner","location":"Delhi-WTC"}]},{"name":"Shivam Mehta","role":"Executive Partner","location":"Delhi-WTC","reports":3,"children":[{"name":"Rohini Mukherjee","role":"Partner","location":"Delhi-WTC"},{"name":"Shubham Vijay","role":"Associate Partner","location":"Delhi-WTC"},{"name":"Shweta Kathuria","role":"Executive Partner","location":"Delhi-WTC"}]},{"name":"Shweta Kathuria","role":"Executive Partner","location":"Delhi-WTC","reports":2,"children":[{"name":"Rachit Arora","role":"Associate Director","location":"Delhi-WTC"},{"name":"Divya Bhardwaj","role":"Principal Associate","location":"Delhi-WTC"}]},{"name":"Rohini Mukherjee","role":"Partner","location":"Delhi-WTC","reports":2,"children":[{"name":"Deep Chandra Upreti","role":"Principal Associate","location":"Delhi-WTC"},{"name":"Tanya Garg","role":"Associate Director","location":"Delhi-WTC"}]}]}]},{"name":"Malathi L","full_name":"Malathi Lakshmikumaran","role":"Group Head","practice":"IPR","count":7,"children":[{"name":"Prashant Phillips","role":"Executive Partner","location":"Delhi-WTC","reports":0,"children":[]},{"name":"Vindhya S. Mani","role":"Partner","location":"Bengaluru","reports":5,"children":[{"name":"Kavya Ramasubramanian","role":"Associate","location":"Bengaluru"},{"name":"Ardra Goodwin","role":"Associate","location":"Delhi-WTC"},{"name":"Kartikay Singhal","role":"Associate","location":"Delhi-WTC"},{"name":"Khushi Lokwani","role":"Consultant","location":"Delhi-WTC"},{"name":"Pallaash Shankhdhar","role":"Senior Associate","location":"Delhi-WTC"}]}]}]};
+
+const colors = ['#4f46e5','#0891b2','#059669','#d97706','#dc2626','#7c3aed','#2563eb','#0d9488','#c026d3','#ea580c'];
+
+function getRoleClass(role) {
+  if (role.includes('Senior Partner') || role.includes('Principal Partner')) return 'sp-level';
+  if (role.includes('Executive Partner')) return 'ep-level';
+  if (role === 'Partner' || role === 'Director') return 'partner-level';
+  return '';
+}
+
+function renderTree(node, depth = 0) {
+  if (!node.children || node.children.length === 0) {
+    return `<div class="tree-node ${getRoleClass(node.role)}" data-name="${(node.name||'').toLowerCase()}">
+      <span class="node-name">${node.name}</span>
+      <span class="node-role"> · ${node.role}</span>
+      ${node.location ? `<span class="node-loc"> · ${node.location}</span>` : ''}
+    </div>`;
+  }
+
+  const childrenHtml = node.children.map(c => renderTree(c, depth + 1)).join('');
+
+  if (node.role === 'Sub-Head/Lead') {
+    return `<div class="sub-head-bar">▸ Sub-Head: ${node.name} — ${node.practice} (${node.count} members)</div>
+    <div class="team-tree">${childrenHtml}</div>`;
+  }
+
+  return `<div class="tree-node ${getRoleClass(node.role)}" data-name="${(node.name||'').toLowerCase()}">
+    <span class="node-name">${node.name}</span>
+    <span class="node-role"> · ${node.role}${node.reports ? ` · ${node.reports} direct reports` : ''}</span>
+    ${node.location ? `<span class="node-loc"> · ${node.location}</span>` : ''}
+  </div>
+  <div class="tree-children">${childrenHtml}</div>`;
+}
+
+// Stats
+const totalMembers = data.children.reduce((s, c) => s + (c.count || 0), 0);
+document.getElementById('stats').innerHTML = `
+  <div class="stat-card"><div class="stat-val">${data.children.length}</div><div class="stat-label">Group Heads</div></div>
+  <div class="stat-card"><div class="stat-val">${totalMembers}</div><div class="stat-label">Total Lawyers</div></div>
+  <div class="stat-card"><div class="stat-val">10</div><div class="stat-label">Practice Areas</div></div>
+`;
+
+// Render groups
+const groupsEl = document.getElementById('groups');
+data.children.forEach((gh, i) => {
+  const card = document.createElement('div');
+  card.className = `group-card color-${i+1}`;
+  card.innerHTML = `
+    <div class="group-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="sno">${i+1}</div>
+      <div class="info">
+        <div class="gh-name">${gh.name} <span style="font-weight:400;font-size:12px;color:#64748b">(${gh.full_name})</span></div>
+        <div class="practice">${gh.practice}</div>
+      </div>
+      <div class="count-badge">${gh.count} members</div>
+      <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
+    </div>
+    <div class="group-body">
+      <div class="team-tree">${gh.children.map(c => renderTree(c)).join('')}</div>
+    </div>
+  `;
+  groupsEl.appendChild(card);
+});
+
+// Legend
+document.getElementById('legend').innerHTML = `
+  <div class="legend-item"><div class="legend-dot" style="background:#ec4899"></div>Senior/Principal Partner</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>Executive Partner</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#4f46e5"></div>Partner/Director</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#1e3a5f"></div>Associate/Consultant</div>
+`;
+
+// Search
+document.getElementById('search').addEventListener('input', function(e) {
+  const q = e.target.value.toLowerCase().trim();
+  document.querySelectorAll('.tree-node').forEach(n => n.classList.remove('highlight'));
+  if (!q) return;
+  document.querySelectorAll('.tree-node').forEach(n => {
+    if (n.dataset.name && n.dataset.name.includes(q)) {
+      n.classList.add('highlight');
+      let card = n.closest('.group-card');
+      if (card && !card.classList.contains('open')) card.classList.add('open');
+    }
+  });
+});
+</script>
+</body>
+</html>

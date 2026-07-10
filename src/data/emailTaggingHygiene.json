@@ -1,0 +1,53 @@
+{
+  "period": "FY2025-26",
+  "source": "Email tagging dashboard · FY25-26 active scope",
+  "coverage": {
+    "metric": "Tagging Coverage",
+    "formula": "tagged(N+E) / all emails",
+    "scopes": [
+      {
+        "scope": "Active (recommended)",
+        "taggedNE": 362378,
+        "allEmails": 388308,
+        "coveragePct": 93.32
+      },
+      {
+        "scope": "Incoming active",
+        "taggedNE": 228446,
+        "allEmails": 251879,
+        "coveragePct": 90.7
+      },
+      {
+        "scope": "FY25-26 active",
+        "taggedNE": 60384,
+        "allEmails": 61699,
+        "coveragePct": 97.87
+      }
+    ]
+  },
+  "hygiene": {
+    "metric": "Tagging Hygiene",
+    "formula": "tagged(N+E) / (tagged(N+E) + drop_leaks)",
+    "definition": "drop_leaks = N/E tagged, then discarded by Maker",
+    "scopes": [
+      {
+        "scope": "Active (recommended)",
+        "taggedNE": 362378,
+        "dropLeaks": 1001,
+        "hygienePct": 99.72
+      },
+      {
+        "scope": "Incoming active",
+        "taggedNE": 228446,
+        "dropLeaks": 643,
+        "hygienePct": 99.72
+      },
+      {
+        "scope": "FY25-26 active",
+        "taggedNE": 60384,
+        "dropLeaks": 0,
+        "hygienePct": 100
+      }
+    ]
+  }
+}

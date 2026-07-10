@@ -1,0 +1,1 @@
+REVOKE EXECUTE ON FUNCTION public.enforce_signup_email_domain() FROM PUBLIC, anon, authenticated;
