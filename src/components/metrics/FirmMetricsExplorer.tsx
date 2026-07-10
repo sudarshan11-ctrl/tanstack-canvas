@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Search } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import Card from "@/components/ui/card";
 import { RAG_FG } from "@/components/ui/rag-colors";
 import { formatMetricValue } from "@/utils/format";
 import {
@@ -169,7 +169,7 @@ export default function FirmMetricsExplorer({
           <button
             key={rag}
             type="button"
-            onClick={() => setStatus(rag)}
+            onClick={() => setStatus(rag as StatusFilter)}
             className="rounded-full border px-2.5 py-1 text-[11px] font-semibold transition-opacity hover:opacity-80"
             style={{
               color: RAG_FG[rag],
