@@ -117,14 +117,14 @@ export default function FirmLanding() {
       />
 
       {/* Bento grid — league table 2/3 + Player of the Match 1/3 */}
-      <div className="grid gap-5 lg:grid-cols-3">
-        {/* Practice Head league table — 2/3 width */}
-        <section className="lg:col-span-2">
+      <div className="grid gap-5 lg:grid-cols-4">
+        {/* Practice Head league table — 3/4 width */}
+        <section className="lg:col-span-3">
           <SectionLabel>Practice Head league · this period</SectionLabel>
           <PracticeHeadLeagueTable eps={eps} scores={personScores} />
         </section>
 
-        {/* Player of the Match — 1/3 width */}
+        {/* Player of the Match — 1/4 width */}
         <section className="lg:col-span-1">
           <SectionLabel>Player of the match · this period</SectionLabel>
           <PlayerOfTheMatch tags={tags} />
