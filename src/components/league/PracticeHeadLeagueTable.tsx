@@ -121,6 +121,9 @@ export default function PracticeHeadLeagueTable({
         </div>
       </div>
 
+      {/* Horizontal scroll container for header + rows */}
+      <div className="overflow-x-auto">
+        <div className="min-w-[1080px]">
       {/* Header row */}
       <div
         className={`${colGrid} items-center gap-3 border-b px-4 py-2 text-[10px] font-semibold uppercase tracking-wider`}
