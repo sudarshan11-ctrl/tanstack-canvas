@@ -306,7 +306,7 @@ export default function FirmMetricsExplorer({
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[960px] text-[12px]">
+        <table className="w-full min-w-[60rem] text-[12px]">
           <thead>
             <tr
               className="border-b text-left text-[10px] font-semibold uppercase tracking-wider"

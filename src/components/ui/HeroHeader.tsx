@@ -100,14 +100,14 @@ export default function HeroHeader({
       )}
 
       {/* Main content */}
-      <div className="flex flex-col gap-6 p-6">
+      <div className="flex flex-col gap-6 p-4 sm:p-6">
         {/* Top row — identity + hygiene + stats */}
-        <div className="flex flex-wrap items-start gap-6">
+        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4 sm:flex sm:flex-wrap sm:gap-6">
           {/* Identity zone — left */}
-          <div className="flex items-center gap-4">
+          <div className="flex min-w-0 items-center gap-3 sm:gap-4">
             {/* Initials avatar */}
             <div
-              className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-[18px] font-bold"
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-base font-bold sm:h-14 sm:w-14 sm:text-lg"
               style={{
                 backgroundColor: "color-mix(in srgb, var(--lks-accent) 15%, transparent)",
                 color: "var(--lks-accent)",
@@ -125,7 +125,7 @@ export default function HeroHeader({
                 {eyebrow}
               </div>
               <div
-                className="font-display mt-0.5 text-[26px] leading-tight"
+                className="font-display mt-0.5 truncate text-xl leading-tight sm:text-2xl lg:text-[1.625rem]"
                 style={{ color: "var(--text-1)" }}
               >
                 {name}
@@ -150,28 +150,30 @@ export default function HeroHeader({
             </div>
           </div>
 
-          {/* Spacer */}
-          <div className="flex-1" />
+          {/* Spacer — only when the row is flex (sm+) */}
+          <div className="hidden sm:block sm:flex-1" />
 
           {/* Hygiene panel */}
           {hygieneMetrics && hygieneMetrics.length > 0 && (
-            <HygieneMetricsPanel metrics={hygieneMetrics} />
+            <div className="col-span-2 min-w-0 sm:col-auto sm:shrink-0">
+              <HygieneMetricsPanel metrics={hygieneMetrics} />
+            </div>
           )}
 
           {/* Stats band */}
           {stats && stats.length > 0 && (
-            <div className="flex flex-wrap gap-3">
+            <div className="col-span-2 flex flex-wrap gap-2 sm:col-auto sm:gap-3">
               {stats.map((s) => (
                 <div
                   key={s.label}
-                  className="flex min-w-[72px] flex-col items-center rounded-[var(--radius)] p-3 text-center"
+                  className="flex min-w-[4.5rem] flex-1 flex-col items-center rounded-[var(--radius)] p-3 text-center sm:flex-none"
                   style={{
                     backgroundColor: "var(--surface-2)",
                     border: "1px solid var(--line)",
                   }}
                 >
                   <span
-                    className="tabular text-[22px] font-bold leading-none"
+                    className="tabular text-xl font-bold leading-none sm:text-2xl"
                     style={{ color: "var(--text-1)" }}
                   >
                     {s.value}
@@ -197,14 +199,14 @@ export default function HeroHeader({
         <div className="flex flex-wrap items-center justify-end gap-4">
           {sparklineData && sparklineData.length > 1 && (
             <div
-              className="hidden w-[160px] sm:block"
-              style={{ height: 80 }}
+              className="hidden min-w-0 flex-1 sm:block sm:max-w-[10rem]"
+              style={{ height: "5rem" }}
               aria-hidden
             >
-              <Sparkline data={sparklineData} color={ragColor} height={80} />
+              <Sparkline data={sparklineData} color={ragColor} height="100%" />
             </div>
           )}
-          <div className="flex flex-col items-center">
+          <div className="flex shrink-0 flex-col items-center">
             <LPIDial score={lpi} status={rag} size="lg" />
             <div
               className="mt-1 text-center text-[10px] font-semibold uppercase tracking-wider"
@@ -214,7 +216,7 @@ export default function HeroHeader({
             </div>
             {hygieneNote ? (
               <div
-                className="mt-2 max-w-[220px] text-center text-[11px] font-medium leading-snug"
+                className="mt-2 max-w-[14rem] text-center text-[11px] font-medium leading-snug"
                 style={{ color: "var(--text-1)", opacity: 0.8 }}
               >
                 {hygieneNote}
@@ -223,6 +225,7 @@ export default function HeroHeader({
           </div>
         </div>
       </div>
+
 
       {/* Alert bar — firm landing */}
       {alert && (
