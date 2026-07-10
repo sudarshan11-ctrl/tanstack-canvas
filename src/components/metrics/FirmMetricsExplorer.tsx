@@ -9,7 +9,7 @@ import {
   type FirmMetricAggregate,
   type AggregateLevel,
 } from "@/utils/firmMetricAggregates";
-import { isMetricActive } from "@/utils/metricActivity";
+import { isMetricActive, metricInactiveReason } from "@/utils/metricActivity";
 import type { PersonScore, RAGStatus } from "@/types";
 
 type StatusFilter = "all" | "red" | "amber" | "green";
