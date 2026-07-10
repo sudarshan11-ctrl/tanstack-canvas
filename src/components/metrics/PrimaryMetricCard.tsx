@@ -6,8 +6,15 @@ import { formatMetricValue } from "@/utils/format";
 import { isLowerIsBetter } from "@/utils/metricDirection";
 import { runRateFor, STATUS_COLOR, STATUS_LABEL } from "@/utils/runRate";
 import ScorecardStar from "@/components/ui/ScorecardStar";
+import { metricInactiveReason } from "@/utils/metricActivity";
 import type { PrimaryScore } from "@/utils/rollup";
 import type { MetricValue } from "@/types";
+
+// Light green-gray tint for metrics that will activate once a target is entered.
+const AWAITING_BG = "#eef4ee";
+const AWAITING_BORDER = "#c7d6c7";
+const AWAITING_CHIP_BG = "#dde8dd";
+const AWAITING_TEXT = "#5b6d5b";
 
 export interface PrimaryMetricCardProps {
   primary: PrimaryScore;
