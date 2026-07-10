@@ -343,6 +343,8 @@ export default function PracticeHeadLeagueTable({
           </Link>
         );
       })}
+        </div>
+      </div>
     </div>
   );
 }
