@@ -66,7 +66,7 @@ export default function MindMap() {
 
   return (
     <PageWrapper title="Metrics relationship map">
-      <div className="mx-auto max-w-[1280px] space-y-4 p-2">
+      <div className="mx-auto w-full max-w-7xl space-y-4 p-2">
         <Card padding="sm">
           <div className="flex flex-wrap items-center gap-3">
             <div className="flex items-center gap-1">

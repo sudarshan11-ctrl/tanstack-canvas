@@ -47,7 +47,7 @@ function HygieneShell({
 }) {
   return (
     <div
-      className="min-w-[200px] max-w-[240px] rounded-[var(--radius)] px-3 py-2.5"
+      className="w-full min-w-0 rounded-[var(--radius)] px-3 py-2.5 sm:min-w-[12.5rem] sm:max-w-[15rem]"
       style={{
         backgroundColor: "var(--surface-2)",
         border: "1px solid var(--line)",
@@ -166,13 +166,13 @@ export default function HygieneMetricsPanel({
   const lines = summaryLines(metrics);
 
   return (
-    <div className="flex flex-col items-end gap-2">
+    <div className="flex w-full min-w-0 flex-col items-stretch gap-2 sm:w-auto sm:items-end">
       <button
         type="button"
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex w-full max-w-[280px] items-start gap-2 rounded-[var(--radius)] px-3 py-2 text-left transition-opacity hover:opacity-80"
+        className="inline-flex w-full items-start gap-2 rounded-[var(--radius)] px-3 py-2 text-left transition-opacity hover:opacity-80 sm:max-w-[17.5rem]"
         style={{
           backgroundColor: "var(--surface-2)",
           border: "1px solid var(--line)",

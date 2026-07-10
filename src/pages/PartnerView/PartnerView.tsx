@@ -76,7 +76,7 @@ export default function PartnerView() {
   ];
 
   return (
-    <div className="mx-auto max-w-[1320px] space-y-5 p-1">
+    <div className="mx-auto w-full max-w-7xl space-y-5 p-1">
       <Breadcrumbs
         crumbs={[
           { label: ep.name, to: "/ep/$epId", params: { epId: ep.id } },

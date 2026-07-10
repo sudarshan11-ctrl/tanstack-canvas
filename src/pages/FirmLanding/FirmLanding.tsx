@@ -90,7 +90,7 @@ export default function FirmLanding() {
   );
 
   return (
-    <div className="mx-auto max-w-[1320px] space-y-5">
+    <div className="mx-auto w-full max-w-7xl space-y-5">
       {/* Admin tool */}
       <div className="flex justify-end">
         <ReplicaConnectivityButton />

@@ -298,7 +298,7 @@ export default function FirmMetricsExplorer({
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="Search metric…"
-            className="w-[160px] bg-transparent text-[12px] outline-none"
+            className="w-40 bg-transparent text-[12px] outline-none"
             style={{ color: "var(--text-1)" }}
           />
         </div>
@@ -306,7 +306,7 @@ export default function FirmMetricsExplorer({
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[960px] text-[12px]">
+        <table className="w-full min-w-[60rem] text-[12px]">
           <thead>
             <tr
               className="border-b text-left text-[10px] font-semibold uppercase tracking-wider"
@@ -318,7 +318,7 @@ export default function FirmMetricsExplorer({
               <th className="px-2 py-2 text-right">Firm avg</th>
               <th className="px-2 py-2 text-right">Target</th>
               <th className="px-2 py-2 text-right">Δ vs target</th>
-              <th className="w-[160px] px-2 py-2">RAG spread</th>
+              <th className="w-40 px-2 py-2">RAG spread</th>
               <th className="px-2 py-2 text-right">Lagging</th>
               <th className="px-2 py-2" />
             </tr>
@@ -376,7 +376,7 @@ export default function FirmMetricsExplorer({
                     }
                   >
                     <td className="px-2 py-2.5">
-                      <div className="flex min-w-[220px] flex-col gap-0.5">
+                      <div className="flex min-w-[13.75rem] flex-col gap-0.5">
                         <div className="flex items-center gap-2">
                           <span
                             className="font-metric-id shrink-0 text-[10px] font-semibold uppercase tracking-wider"

@@ -103,7 +103,7 @@ export default function MetricDrilldown() {
 
   return (
     <PageWrapper>
-      <div className="mx-auto max-w-[1200px] space-y-4 p-2">
+      <div className="mx-auto w-full max-w-7xl space-y-4 p-2">
         <Link
           to="/"
           className="inline-flex items-center gap-1 text-[12px] transition-opacity hover:opacity-70"
@@ -146,7 +146,7 @@ export default function MetricDrilldown() {
               >
                 {def.name}
               </h2>
-              <p className="mt-1 max-w-[640px] text-[13px] leading-relaxed" style={{ color: "var(--text-2)" }}>
+              <p className="mt-1 max-w-[40rem] text-[13px] leading-relaxed" style={{ color: "var(--text-2)" }}>
                 {def.description}
               </p>
               <div className="mt-3 grid grid-cols-3 gap-3 text-[12px]">

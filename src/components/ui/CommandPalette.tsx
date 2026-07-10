@@ -135,7 +135,7 @@ export default function CommandPalette({ open, onClose }: CommandPaletteProps) {
       }}
     >
       <div
-        className="w-full max-w-[560px] overflow-hidden rounded-[var(--radius)] shadow-2xl"
+        className="w-full max-w-[35rem] overflow-hidden rounded-[var(--radius)] shadow-2xl"
         style={{
           backgroundColor: "var(--surface)",
           border: "1px solid var(--line)",
@@ -179,7 +179,7 @@ export default function CommandPalette({ open, onClose }: CommandPaletteProps) {
         </div>
 
         {/* Results */}
-        <div className="max-h-[360px] overflow-y-auto py-1">
+        <div className="max-h-[22.5rem] overflow-y-auto py-1">
           {results.length === 0 ? (
             <div
               className="px-4 py-6 text-center text-[13px]"

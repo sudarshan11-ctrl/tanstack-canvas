@@ -78,7 +78,7 @@ export default function Settings() {
 
   return (
     <PageWrapper>
-      <div className="mx-auto max-w-[1320px]">
+      <div className="mx-auto w-full max-w-7xl">
         {/* Page title */}
         <div
           className="font-display mb-6 text-[28px] leading-tight"
