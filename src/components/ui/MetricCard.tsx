@@ -21,7 +21,7 @@ export default function MetricCard({ metric, value }: MetricCardProps) {
 
   return (
     <div
-      className="flex min-h-[132px] flex-col rounded-[var(--radius)] border p-3"
+      className="flex min-h-[8.25rem] flex-col rounded-[var(--radius)] border p-3"
       style={{
         backgroundColor: "var(--surface)",
         borderColor: "var(--line)",

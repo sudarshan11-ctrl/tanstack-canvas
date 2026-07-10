@@ -311,7 +311,7 @@ export default function CohortView() {
         {/* Leaderboard */}
         <Card padding="sm">
           <div className="overflow-x-auto">
-            <div className="min-w-[900px]">
+            <div className="min-w-[56.25rem]">
               <div
                 className="flex items-center gap-2 border-b py-2 text-[12px] font-medium uppercase tracking-wider"
                 style={{ borderColor: "var(--line)", color: "var(--text-2)" }}
@@ -324,7 +324,7 @@ export default function CohortView() {
                     {AREA_SHORT[a]}
                   </div>
                 ))}
-                <div className="min-w-[220px] flex-1">3 Key Metrics</div>
+                <div className="min-w-[13.75rem] flex-1">3 Key Metrics</div>
                 <div className="w-6 shrink-0" />
               </div>
 
@@ -400,7 +400,7 @@ export default function CohortView() {
                         </div>
                       );
                     })}
-                    <div className="flex min-w-[220px] flex-1 items-center gap-2">
+                    <div className="flex min-w-[13.75rem] flex-1 items-center gap-2">
                       {keys.map((mid) => {
                         const v = score.metricValues.find((m) => m.metricId === mid);
                         if (!v) return null;

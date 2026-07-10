@@ -240,7 +240,7 @@ function VerifyView() {
                     </td>
                     <td className="py-2 pr-3 font-mono text-[10px] text-slate-500">
                       {row?.rawFirstRow ? (
-                        <pre className="max-w-[260px] overflow-x-auto whitespace-pre-wrap break-all">
+                        <pre className="max-w-[16.25rem] overflow-x-auto whitespace-pre-wrap break-all">
                           {JSON.stringify(row.rawFirstRow, null, 0)}
                         </pre>
                       ) : (

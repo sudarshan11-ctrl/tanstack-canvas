@@ -146,7 +146,7 @@ export default function MetricDrilldown() {
               >
                 {def.name}
               </h2>
-              <p className="mt-1 max-w-[640px] text-[13px] leading-relaxed" style={{ color: "var(--text-2)" }}>
+              <p className="mt-1 max-w-[40rem] text-[13px] leading-relaxed" style={{ color: "var(--text-2)" }}>
                 {def.description}
               </p>
               <div className="mt-3 grid grid-cols-3 gap-3 text-[12px]">

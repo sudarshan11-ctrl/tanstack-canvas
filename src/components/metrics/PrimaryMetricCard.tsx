@@ -117,7 +117,7 @@ export default function PrimaryMetricCard({ primary, metricValue, href, hrefPara
       <div
         title={metricValue?.remark ?? "Data not yet available for this metric."}
         aria-disabled="true"
-        className="flex min-h-[170px] cursor-not-allowed flex-col rounded-lg border p-3 opacity-80"
+        className="flex min-h-[10.625rem] cursor-not-allowed flex-col rounded-lg border p-3 opacity-80"
         style={{
           backgroundColor: "var(--surface-2)",
           borderColor: "var(--line)",
@@ -135,7 +135,7 @@ export default function PrimaryMetricCard({ primary, metricValue, href, hrefPara
       to={href as any}
       params={hrefParams as never}
       search={hrefSearch as never}
-      className="flex min-h-[170px] flex-col rounded-lg border p-3 transition-shadow hover:shadow-md"
+      className="flex min-h-[10.625rem] flex-col rounded-lg border p-3 transition-shadow hover:shadow-md"
       style={{
         backgroundColor: "var(--surface)",
         borderColor: "var(--line)",

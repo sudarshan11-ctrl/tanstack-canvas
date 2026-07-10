@@ -64,7 +64,7 @@ export default function FirmCommand() {
       <Card padding="lg">
         <div className="flex flex-wrap items-center gap-8">
           <LPIDial score={firmLpi} status={firmRag} size="lg" />
-          <div className="flex-1 min-w-[280px]">
+          <div className="flex-1 min-w-[17.5rem]">
             <div className="text-[12px] uppercase tracking-wider text-slate-500">
               Time Period · {CURRENT_PERIOD} · {LAST_SYNC}
             </div>
@@ -75,7 +75,7 @@ export default function FirmCommand() {
               6 PH squads · {personScores.length} lawyers · {wickets} primary metrics in red.
             </div>
           </div>
-          <div className="min-w-[340px] flex-1">
+          <div className="min-w-[21.25rem] flex-1">
             <MatchCentreStrap
               innings={firmLpi}
               required={85}
