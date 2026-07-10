@@ -137,11 +137,12 @@ export default function PrimaryMetricCard({ primary, metricValue, href, hrefPara
       <div
         title={metricValue?.remark ?? "Data not yet available for this metric."}
         aria-disabled="true"
-        className="flex min-h-[10.625rem] cursor-not-allowed flex-col rounded-lg border p-3 opacity-80"
+        className="flex min-h-[10.625rem] cursor-not-allowed flex-col rounded-lg border p-3"
         style={{
-          backgroundColor: "var(--surface-2)",
-          borderColor: "var(--line)",
-          borderTop: "2px solid var(--line)",
+          backgroundColor: awaitingTarget ? AWAITING_BG : "var(--surface-2)",
+          borderColor: awaitingTarget ? AWAITING_BORDER : "var(--line)",
+          borderTop: `2px solid ${awaitingTarget ? AWAITING_BORDER : "var(--line)"}`,
+          opacity: awaitingTarget ? 1 : 0.8,
         }}
       >
         {cardBody}
