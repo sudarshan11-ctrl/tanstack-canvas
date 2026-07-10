@@ -47,7 +47,7 @@ function HygieneShell({
 }) {
   return (
     <div
-      className="w-full min-w-0 rounded-[var(--radius)] px-3 py-2.5 sm:min-w-[12.5rem] sm:max-w-[15rem]"
+      className="flex w-full min-w-0 flex-col rounded-[var(--radius)] px-3 py-2.5"
       style={{
         backgroundColor: "var(--surface-2)",
         border: "1px solid var(--line)",
