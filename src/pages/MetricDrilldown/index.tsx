@@ -3,7 +3,7 @@ import { Link, useParams } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { Bar, BarChart, Cell, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
 import PageWrapper from "@/components/layout/PageWrapper";
-import { Card } from "@/components/ui/card";
+import Card from "@/components/ui/card";
 import SectionLabel from "@/components/ui/SectionLabel";
 import CausalSubgraph from "@/components/metrics/CausalSubgraph";
 import SecondaryDriverList from "@/components/metrics/SecondaryDriverList";
