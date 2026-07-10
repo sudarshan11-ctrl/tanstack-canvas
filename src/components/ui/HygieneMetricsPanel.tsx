@@ -221,7 +221,7 @@ export default function HygieneMetricsPanel({
       <div
         id={panelId}
         hidden={!open}
-        className="flex flex-wrap items-stretch justify-start gap-3"
+        className="grid w-full min-w-0 grid-cols-1 items-stretch gap-3 sm:grid-cols-3"
       >
         {metrics.map((metric) =>
           metric.kind === "buckets" ? (
