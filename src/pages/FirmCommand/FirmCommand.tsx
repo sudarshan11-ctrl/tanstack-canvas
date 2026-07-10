@@ -59,7 +59,7 @@ export default function FirmCommand() {
   });
 
   return (
-    <div className="mx-auto max-w-[1320px] space-y-5 p-1">
+    <div className="mx-auto w-full max-w-7xl space-y-5 p-1">
       {/* HERO */}
       <Card padding="lg">
         <div className="flex flex-wrap items-center gap-8">

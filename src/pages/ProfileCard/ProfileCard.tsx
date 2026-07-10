@@ -115,7 +115,7 @@ export default function ProfileCard() {
 
   return (
     <PageWrapper>
-      <div className="mx-auto max-w-[1320px] space-y-5">
+      <div className="mx-auto w-full max-w-7xl space-y-5">
         <div className="flex items-center justify-between">
           <Link
             to={mySquad ? "/squad/$epId" : "/"}

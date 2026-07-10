@@ -103,7 +103,7 @@ export default function MetricDrilldown() {
 
   return (
     <PageWrapper>
-      <div className="mx-auto max-w-[1200px] space-y-4 p-2">
+      <div className="mx-auto w-full max-w-7xl space-y-4 p-2">
         <Link
           to="/"
           className="inline-flex items-center gap-1 text-[12px] transition-opacity hover:opacity-70"

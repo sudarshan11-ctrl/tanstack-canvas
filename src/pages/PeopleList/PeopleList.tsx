@@ -124,7 +124,7 @@ export function PeopleList({ role, title }: Props) {
 
   return (
     <PageWrapper title={title}>
-      <div className="mx-auto max-w-[1280px]">
+      <div className="mx-auto w-full max-w-7xl">
         <Card padding="md">
           <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
             <div className="text-[12px] text-slate-500">

@@ -185,7 +185,7 @@ export default function CohortView() {
 
   return (
     <PageWrapper title="">
-      <div className="mx-auto max-w-[1320px] space-y-5">
+      <div className="mx-auto w-full max-w-7xl space-y-5">
         {/* Page header */}
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>

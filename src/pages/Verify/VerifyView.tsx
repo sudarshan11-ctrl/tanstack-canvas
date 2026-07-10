@@ -159,7 +159,7 @@ function VerifyView() {
   }
 
   return (
-    <div className="mx-auto max-w-[1400px] space-y-4 p-1">
+    <div className="mx-auto w-full max-w-7xl space-y-4 p-1">
       <Breadcrumbs crumbs={[{ label: person.name }, { label: "API verification" }]} />
 
       <Card padding="lg">
