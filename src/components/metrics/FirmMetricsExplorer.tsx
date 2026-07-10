@@ -9,7 +9,7 @@ import {
   type FirmMetricAggregate,
   type AggregateLevel,
 } from "@/utils/firmMetricAggregates";
-import { isMetricActive } from "@/utils/metricActivity";
+import { isMetricActive, metricInactiveReason } from "@/utils/metricActivity";
 import type { PersonScore, RAGStatus } from "@/types";
 
 type StatusFilter = "all" | "red" | "amber" | "green";
@@ -345,13 +345,18 @@ export default function FirmMetricsExplorer({
                         ? "var(--rag-red)"
                         : "var(--rag-amber)";
                 const active = isMetricActive(r.id);
+                const reason = metricInactiveReason(r.id);
+                const awaitingTarget = reason === "awaiting-target";
                 return (
                   <tr
                     key={r.id}
                     className="border-b transition-colors"
                     style={{
                       borderColor: "var(--line)",
-                      opacity: active ? 1 : 0.55,
+                      opacity: active ? 1 : awaitingTarget ? 0.85 : 0.55,
+                      borderLeft: awaitingTarget
+                        ? "3px dashed var(--rag-amber)"
+                        : undefined,
                     }}
                     onMouseEnter={(e) => {
                       if (active)
@@ -362,7 +367,13 @@ export default function FirmMetricsExplorer({
                       (e.currentTarget as HTMLTableRowElement).style.backgroundColor =
                         "transparent";
                     }}
-                    title={active ? undefined : "Data not yet available for this metric."}
+                    title={
+                      active
+                        ? undefined
+                        : awaitingTarget
+                          ? "Metric will be calculated once the target is entered."
+                          : "Data not yet available for this metric."
+                    }
                   >
                     <td className="px-2 py-2.5">
                       <div className="flex min-w-[220px] flex-col gap-0.5">
@@ -376,12 +387,22 @@ export default function FirmMetricsExplorer({
                           {!active && (
                             <span
                               className="rounded-full px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider"
-                              style={{
-                                backgroundColor: "var(--surface-2)",
-                                color: "var(--text-2)",
-                              }}
+                              style={
+                                awaitingTarget
+                                  ? {
+                                      backgroundColor:
+                                        "color-mix(in srgb, var(--rag-amber) 18%, transparent)",
+                                      color: "var(--rag-amber)",
+                                      border:
+                                        "1px solid color-mix(in srgb, var(--rag-amber) 40%, transparent)",
+                                    }
+                                  : {
+                                      backgroundColor: "var(--surface-2)",
+                                      color: "var(--text-2)",
+                                    }
+                              }
                             >
-                              No data · Request upload
+                              {awaitingTarget ? "Awaiting target" : "No data · Request upload"}
                             </span>
                           )}
                         </div>
@@ -393,6 +414,7 @@ export default function FirmMetricsExplorer({
                         </span>
                       </div>
                     </td>
+
                     <td className="px-2 py-2" style={{ color: "var(--text-2)" }}>
                       {AREA_LABEL[r.area] ?? r.area}
                     </td>
