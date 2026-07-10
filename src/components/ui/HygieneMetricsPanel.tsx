@@ -156,7 +156,7 @@ function RateMetricCard({
 
 export default function HygieneMetricsPanel({
   metrics,
-  defaultOpen = true,
+  defaultOpen = false,
 }: HygieneMetricsPanelProps) {
   const [open, setOpen] = useState(defaultOpen);
   const panelId = useId();
@@ -166,13 +166,13 @@ export default function HygieneMetricsPanel({
   const lines = summaryLines(metrics);
 
   return (
-    <div className="flex w-full min-w-0 flex-col items-stretch gap-2 sm:w-auto sm:items-end">
+    <div className="flex w-full min-w-0 flex-col items-stretch gap-2">
       <button
         type="button"
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex w-full items-start gap-2 rounded-[var(--radius)] px-3 py-2 text-left transition-opacity hover:opacity-80 sm:max-w-[17.5rem]"
+        className="inline-flex w-full items-start gap-2 rounded-[var(--radius)] px-3 py-2 text-left transition-opacity hover:opacity-80"
         style={{
           backgroundColor: "var(--surface-2)",
           border: "1px solid var(--line)",
@@ -184,7 +184,7 @@ export default function HygieneMetricsPanel({
             className="text-[10px] font-semibold uppercase tracking-wider"
             style={{ color: "var(--text-2)" }}
           >
-            Matter Hygiene Metrics
+            Matter Hygiene
           </span>
           {!open && (
             <ul className="flex flex-col gap-0.5">
