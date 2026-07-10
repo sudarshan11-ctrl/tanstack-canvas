@@ -127,15 +127,23 @@ export default function MindMap() {
             {primaries.map((m) => {
               const drivers = visibleLinks.filter((l) => l.toId === m.id);
               const active = isMetricActive(m.id);
+              const reason = metricInactiveReason(m.id);
+              const awaitingTarget = reason === "awaiting-target";
               const card = (
                 <>
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-[10px] font-semibold text-slate-500">{m.id}</span>
                     <span
                       className="rounded-full px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white"
-                      style={{ backgroundColor: active ? AREA_COLOR[m.area] : "#94a3b8" }}
+                      style={{
+                        backgroundColor: active
+                          ? AREA_COLOR[m.area]
+                          : awaitingTarget
+                            ? "#f59e0b"
+                            : "#94a3b8",
+                      }}
                     >
-                      {active ? "Primary" : "No data"}
+                      {active ? "Primary" : awaitingTarget ? "Awaiting target" : "No data"}
                     </span>
                   </div>
                   <div className="mt-1 text-[14px] font-semibold text-slate-900">{m.name}</div>
@@ -161,15 +169,28 @@ export default function MindMap() {
               return (
                   <div
                     key={m.id}
-                    title="Data not yet available for this metric."
+                    title={
+                      awaitingTarget
+                        ? "Metric will be calculated once the target is entered."
+                        : "Data not yet available for this metric."
+                    }
                     aria-disabled="true"
-                    className="block cursor-not-allowed rounded-lg border bg-slate-50 p-3 opacity-60"
-                    style={{ borderColor: "#cbd5e1", borderLeftWidth: 4 }}
+                    className={
+                      awaitingTarget
+                        ? "block cursor-not-allowed rounded-lg border bg-amber-50 p-3 opacity-90"
+                        : "block cursor-not-allowed rounded-lg border bg-slate-50 p-3 opacity-60"
+                    }
+                    style={
+                      awaitingTarget
+                        ? { borderColor: "#f59e0b", borderLeftWidth: 4, borderLeftStyle: "dashed" }
+                        : { borderColor: "#cbd5e1", borderLeftWidth: 4 }
+                    }
                   >
                     {card}
                   </div>
                 );
               }
+
               return (
                 <Link
                   key={m.id}
