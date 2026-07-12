@@ -11,7 +11,7 @@ import {
   YAxis,
 } from "recharts";
 import PageWrapper from "@/components/layout/PageWrapper";
-import Card from "@/components/ui/Card";
+import Card from "@/components/ui/card";
 import LPIDial from "@/components/ui/LPIDial";
 import DeltaBadge from "@/components/ui/DeltaBadge";
 import { RAG_FG, RAG_BG } from "@/components/ui/rag-colors";

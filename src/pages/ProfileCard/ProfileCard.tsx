@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useParams } from "@tanstack/react-router";
 import { ArrowLeft, BarChart2 } from "lucide-react";
 import PageWrapper from "@/components/layout/PageWrapper";
-import Card from "@/components/ui/Card";
+import Card from "@/components/ui/card";
 import SectionLabel from "@/components/ui/SectionLabel";
 import HeroHeader from "@/components/ui/HeroHeader";
 import MetricCard from "@/components/ui/MetricCard";
@@ -19,6 +19,7 @@ import { lpiToRAG } from "@/utils/rag";
 import type { Role } from "@/types";
 import { snapshotInfo } from "@/data/snapshotMetricValues";
 import { personTimesheetHygiene } from "@/utils/timesheetDelay";
+import { formatPeriod, formatSyncedAt } from "@/utils/format";
 
 const ROLE_LABEL: Record<Role, string> = {
   practice_head: "Practice Head",
