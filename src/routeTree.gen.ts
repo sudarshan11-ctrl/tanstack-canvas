@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
@@ -28,6 +29,11 @@ import { Route as AuthenticatedEpEpIdPPartnerIdRouteImport } from './routes/_aut
 import { Route as AuthenticatedEpEpIdPPartnerIdIndexRouteImport } from './routes/_authenticated/ep.$epId.p.$partnerId.index'
 import { Route as AuthenticatedEpEpIdPPartnerIdAAssociateIdRouteImport } from './routes/_authenticated/ep.$epId.p.$partnerId.a.$associateId'
 
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
@@ -126,6 +132,7 @@ const AuthenticatedEpEpIdPPartnerIdAAssociateIdRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/associates': typeof AuthenticatedAssociatesRoute
   '/firm': typeof AuthenticatedFirmRoute
   '/mindmap': typeof AuthenticatedMindmapRoute
@@ -145,6 +152,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/associates': typeof AuthenticatedAssociatesRoute
   '/firm': typeof AuthenticatedFirmRoute
   '/mindmap': typeof AuthenticatedMindmapRoute
@@ -164,6 +172,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
   '/_authenticated/associates': typeof AuthenticatedAssociatesRoute
   '/_authenticated/firm': typeof AuthenticatedFirmRoute
   '/_authenticated/mindmap': typeof AuthenticatedMindmapRoute
@@ -185,6 +194,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth'
     | '/associates'
     | '/firm'
     | '/mindmap'
@@ -204,6 +214,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auth'
     | '/associates'
     | '/firm'
     | '/mindmap'
@@ -222,6 +233,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/auth'
     | '/_authenticated/associates'
     | '/_authenticated/firm'
     | '/_authenticated/mindmap'
@@ -243,10 +255,18 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated': {
       id: '/_authenticated'
       path: ''
@@ -444,6 +464,7 @@ const AuthenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

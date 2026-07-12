@@ -1,4 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
+import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 
 // Pings the replica-db-api list endpoint to verify base URL + API key reach
 // the server. Returns only safe, non-secret diagnostics — the key itself is
@@ -13,7 +14,9 @@ export interface ConnectivityResult {
   message: string;
 }
 
-export const testReplicaConnectivity = createServerFn({ method: "GET" }).handler(
+export const testReplicaConnectivity = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .handler(
   async (): Promise<ConnectivityResult> => {
     const { getReplicaApiConfig } = await import("@/lib/config.server");
     const started = Date.now();
