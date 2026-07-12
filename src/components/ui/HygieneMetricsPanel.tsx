@@ -144,7 +144,7 @@ function RateMetricCard({
 
 export default function HygieneMetricsPanel({
   metrics,
-  defaultOpen = true,
+  defaultOpen = false,
 }: HygieneMetricsPanelProps) {
   const [open, setOpen] = useState(defaultOpen);
   const panelId = useId();
