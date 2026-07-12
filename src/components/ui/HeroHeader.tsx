@@ -47,6 +47,12 @@ export interface HeroHeaderProps {
   /** Non-scoring hygiene context shown under the LPI dial (person views) */
   hygieneNote?: string;
 
+  /** Red warning styling for missing timesheet / similar alerts */
+  hygieneTone?: "default" | "warning";
+
+  /** Team roll-up hygiene (managers with >1 direct reports) */
+  teamHygieneNote?: string;
+
   /** Firm-level hygiene metrics shown beside the LPI dial */
   hygieneMetrics?: FirmHygieneMetric[];
 }
@@ -63,6 +69,8 @@ export default function HeroHeader({
   strap,
   alert,
   hygieneNote,
+  hygieneTone = "default",
+  teamHygieneNote,
   hygieneMetrics,
 }: HeroHeaderProps) {
   const theme = useThemeStore((s) => s.theme);
@@ -99,12 +107,13 @@ export default function HeroHeader({
         />
       )}
 
-      {/* Main content — quadrant layout */}
-      <div className="grid grid-cols-1 gap-6 p-4 sm:p-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-x-8">
-        {/* Top-left: identity zone */}
-        <div className="flex min-w-0 items-center gap-3 sm:gap-4 lg:col-start-1 lg:row-start-1">
+      {/* Main content row */}
+      <div className="flex flex-wrap items-center gap-6 p-6">
+        {/* Identity zone — left */}
+        <div className="flex items-center gap-4">
+          {/* Initials avatar */}
           <div
-            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-base font-bold sm:h-14 sm:w-14 sm:text-lg"
+            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-[18px] font-bold"
             style={{
               backgroundColor: "color-mix(in srgb, var(--lks-accent) 15%, transparent)",
               color: "var(--lks-accent)",
@@ -122,7 +131,7 @@ export default function HeroHeader({
               {eyebrow}
             </div>
             <div
-              className="font-display mt-0.5 truncate text-xl leading-tight sm:text-2xl lg:text-[1.625rem]"
+              className="font-display mt-0.5 text-[26px] leading-tight"
               style={{ color: "var(--text-1)" }}
             >
               {name}
@@ -147,20 +156,23 @@ export default function HeroHeader({
           </div>
         </div>
 
-        {/* Top-right: stats band */}
+        {/* Spacer */}
+        <div className="flex-1" />
+
+        {/* Stats band — all themes */}
         {stats && stats.length > 0 && (
-          <div className="flex flex-wrap gap-2 sm:gap-3 lg:col-start-2 lg:row-start-1 lg:justify-end">
+          <div className="flex flex-wrap gap-3">
             {stats.map((s) => (
               <div
                 key={s.label}
-                className="flex min-w-[4.5rem] flex-col items-center rounded-[var(--radius)] p-3 text-center"
+                className="flex min-w-[72px] flex-col items-center rounded-[var(--radius)] p-3 text-center"
                 style={{
                   backgroundColor: "var(--surface-2)",
                   border: "1px solid var(--line)",
                 }}
               >
                 <span
-                  className="tabular text-xl font-bold leading-none sm:text-2xl"
+                  className="tabular text-[22px] font-bold leading-none"
                   style={{ color: "var(--text-1)" }}
                 >
                   {s.value}
@@ -181,25 +193,21 @@ export default function HeroHeader({
           </div>
         )}
 
-        {/* Bottom-left: hygiene panel */}
-        {hygieneMetrics && hygieneMetrics.length > 0 && (
-          <div className="min-w-0 lg:col-start-1 lg:row-start-2 lg:max-w-md">
+        {/* Score zone — right: hygiene metrics + sparkline + dial */}
+        <div className="flex shrink-0 flex-wrap items-center gap-4">
+          {hygieneMetrics && hygieneMetrics.length > 0 && (
             <HygieneMetricsPanel metrics={hygieneMetrics} />
-          </div>
-        )}
-
-        {/* Bottom-right: sparkline + LPI dial */}
-        <div className="flex flex-wrap items-center justify-end gap-4 lg:col-start-2 lg:row-start-2">
+          )}
           {sparklineData && sparklineData.length > 1 && (
             <div
-              className="hidden min-w-0 flex-1 sm:block sm:max-w-[10rem]"
-              style={{ height: "5rem" }}
+              className="hidden w-[120px] sm:block"
+              style={{ height: 80 }}
               aria-hidden
             >
-              <Sparkline data={sparklineData} color={ragColor} height="100%" />
+              <Sparkline data={sparklineData} color={ragColor} height={80} />
             </div>
           )}
-          <div className="flex shrink-0 flex-col items-center">
+          <div className="flex flex-col items-center">
             <LPIDial score={lpi} status={rag} size="lg" />
             <div
               className="mt-1 text-center text-[10px] font-semibold uppercase tracking-wider"
@@ -207,19 +215,36 @@ export default function HeroHeader({
             >
               LPI
             </div>
-            {hygieneNote ? (
-              <div
-                className="mt-2 max-w-[14rem] text-center text-[11px] font-medium leading-snug"
-                style={{ color: "var(--text-1)", opacity: 0.8 }}
-              >
-                {hygieneNote}
+            {(hygieneNote || teamHygieneNote) ? (
+              <div className="mt-2 max-w-[240px] space-y-1.5 text-center">
+                {hygieneNote ? (
+                  <div
+                    className="text-[11px] font-medium leading-snug"
+                    style={{
+                      color:
+                        hygieneTone === "warning"
+                          ? "var(--rag-red)"
+                          : "var(--text-1)",
+                      opacity: hygieneTone === "warning" ? 1 : 0.85,
+                      fontWeight: hygieneTone === "warning" ? 600 : 500,
+                    }}
+                  >
+                    {hygieneNote}
+                  </div>
+                ) : null}
+                {teamHygieneNote ? (
+                  <div
+                    className="text-[11px] font-medium leading-snug"
+                    style={{ color: "var(--text-1)", opacity: 0.85 }}
+                  >
+                    {teamHygieneNote}
+                  </div>
+                ) : null}
               </div>
             ) : null}
           </div>
         </div>
       </div>
-
-
 
       {/* Alert bar — firm landing */}
       {alert && (

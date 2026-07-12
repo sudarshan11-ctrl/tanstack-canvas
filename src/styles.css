@@ -85,7 +85,7 @@
   --brand-panel: #f1f1f1;
   --brand-orange: #ed7524;
   --brand-blue: #2f3fb6;
-  --sidebar-width: 15rem;
+  --sidebar-width: 240px;
 }
 
 /* ============================================================
@@ -285,25 +285,6 @@
   html {
     /* Smooth theme transitions — background + text only */
     transition: background-color 150ms ease, color 150ms ease;
-    /* Prevent stray horizontal scrollbars from any single overflowing child */
-    overflow-x: hidden;
-  }
-
-  /* All media scales down inside its parent, never blows out the grid */
-  img,
-  svg,
-  video,
-  canvas,
-  audio,
-  iframe,
-  embed,
-  object {
-    max-width: 100%;
-  }
-
-  img,
-  video {
-    height: auto;
   }
 
   body {

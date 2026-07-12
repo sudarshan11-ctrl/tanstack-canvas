@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useParams } from "@tanstack/react-router";
-import Card from "@/components/ui/card";
+import Card from "@/components/ui/Card";
 import SectionLabel from "@/components/ui/SectionLabel";
 import HeroHeader from "@/components/ui/HeroHeader";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
@@ -11,7 +11,7 @@ import { personById, partnerOfAssociate, epOfPartner } from "@/utils/hierarchy";
 import { rollupFor, primariesFor } from "@/utils/rollup";
 import { driverOverviewFor } from "@/utils/secondaryDrivers";
 import { lpiToRAG } from "@/utils/rag";
-import { formatTimesheetDelayLabel, timesheetDelayFor } from "@/utils/timesheetDelay";
+import { personTimesheetHygiene } from "@/utils/timesheetDelay";
 
 const TARGET_ASSOCIATE = 75;
 
@@ -67,10 +67,7 @@ export default function AssociateView() {
   const summary = buildSummary(r.personLpi, worstPrim?.metricId, worstPrim?.name);
   const sparkline = r.trend.length > 1 ? r.trend : undefined;
 
-  const hygieneNote = (() => {
-    const entry = timesheetDelayFor(assoc.id);
-    return entry ? formatTimesheetDelayLabel(entry) : undefined;
-  })();
+  const timesheetHygiene = personTimesheetHygiene(assoc.id);
 
   const heroStats = [
     { label: "PI", value: Math.round(r.personLpi) },
@@ -79,7 +76,7 @@ export default function AssociateView() {
   ];
 
   return (
-    <div className="mx-auto w-full max-w-7xl space-y-5 p-1">
+    <div className="mx-auto max-w-[1320px] space-y-5 p-1">
       <Breadcrumbs
         crumbs={[
           { label: ep.name, to: "/ep/$epId", params: { epId: ep.id } },
@@ -123,7 +120,9 @@ export default function AssociateView() {
           projection: r.personLpi + 1,
           wickets: r.wickets,
         }}
-        hygieneNote={hygieneNote}
+        hygieneNote={timesheetHygiene.note}
+        hygieneTone={timesheetHygiene.tone}
+        teamHygieneNote={timesheetHygiene.teamNote}
       />
 
       {/* Worst/Best drivers directly under hero */}

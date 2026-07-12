@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useParams } from "@tanstack/react-router";
 import { ArrowLeft, BarChart2 } from "lucide-react";
 import PageWrapper from "@/components/layout/PageWrapper";
-import Card from "@/components/ui/card";
+import Card from "@/components/ui/Card";
 import SectionLabel from "@/components/ui/SectionLabel";
 import HeroHeader from "@/components/ui/HeroHeader";
 import MetricCard from "@/components/ui/MetricCard";
@@ -18,8 +18,7 @@ import { squadForPerson } from "@/utils/squad";
 import { lpiToRAG } from "@/utils/rag";
 import type { Role } from "@/types";
 import { snapshotInfo } from "@/data/snapshotMetricValues";
-import { formatTimesheetDelayLabel, timesheetDelayFor } from "@/utils/timesheetDelay";
-import { formatPeriod, formatSyncedAt } from "@/utils/format";
+import { personTimesheetHygiene } from "@/utils/timesheetDelay";
 
 const ROLE_LABEL: Record<Role, string> = {
   practice_head: "Practice Head",
@@ -101,10 +100,7 @@ export default function ProfileCard() {
     .filter((mv) => mv.trend.length > 1)
     .slice(0, 1)[0]?.trend;
 
-  const hygieneNote = (() => {
-    const entry = timesheetDelayFor(person.id);
-    return entry ? formatTimesheetDelayLabel(entry) : undefined;
-  })();
+  const timesheetHygiene = personTimesheetHygiene(person.id);
 
   const heroStats = [
     { label: ROLE_LABEL[person.role], value: score.lpi.toFixed(0) },
@@ -115,7 +111,7 @@ export default function ProfileCard() {
 
   return (
     <PageWrapper>
-      <div className="mx-auto w-full max-w-7xl space-y-5">
+      <div className="mx-auto max-w-[1320px] space-y-5">
         <div className="flex items-center justify-between">
           <Link
             to={mySquad ? "/squad/$epId" : "/"}
@@ -154,7 +150,9 @@ export default function ProfileCard() {
             wickets,
             topRunRate: topRR,
           }}
-          hygieneNote={hygieneNote}
+          hygieneNote={timesheetHygiene.note}
+          hygieneTone={timesheetHygiene.tone}
+          teamHygieneNote={timesheetHygiene.teamNote}
         />
 
         {/* Primary metrics grid */}

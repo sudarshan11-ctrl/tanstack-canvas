@@ -6,15 +6,8 @@ import { formatMetricValue } from "@/utils/format";
 import { isLowerIsBetter } from "@/utils/metricDirection";
 import { runRateFor, STATUS_COLOR, STATUS_LABEL } from "@/utils/runRate";
 import ScorecardStar from "@/components/ui/ScorecardStar";
-import { metricInactiveReason } from "@/utils/metricActivity";
 import type { PrimaryScore } from "@/utils/rollup";
 import type { MetricValue } from "@/types";
-
-// Light green-gray tint for metrics that will activate once a target is entered.
-const AWAITING_BG = "#eef4ee";
-const AWAITING_BORDER = "#c7d6c7";
-const AWAITING_CHIP_BG = "#dde8dd";
-const AWAITING_TEXT = "#5b6d5b";
 
 export interface PrimaryMetricCardProps {
   primary: PrimaryScore;
@@ -26,7 +19,6 @@ export interface PrimaryMetricCardProps {
 
 export default function PrimaryMetricCard({ primary, metricValue, href, hrefParams, hrefSearch }: PrimaryMetricCardProps) {
   const passive = metricValue?.passive === true;
-  const awaitingTarget = passive && metricInactiveReason(primary.metricId) === "awaiting-target";
   const ragColor = passive ? "var(--text-2)" : RAG_FG[primary.rag];
   const lower = isLowerIsBetter(primary.metricId);
   const rr = passive || !metricValue ? null : runRateFor(metricValue);
@@ -38,7 +30,7 @@ export default function PrimaryMetricCard({ primary, metricValue, href, hrefPara
       <div className="flex items-center justify-between gap-2">
         <span
           className="font-metric-id flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider"
-          style={{ color: awaitingTarget ? AWAITING_TEXT : "var(--lks-accent)" }}
+          style={{ color: "var(--lks-accent)" }}
         >
           {primary.metricId}
           <ScorecardStar show={metricValue?.scorecardStar} />
@@ -46,13 +38,9 @@ export default function PrimaryMetricCard({ primary, metricValue, href, hrefPara
         {passive ? (
           <span
             className="rounded-full px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider"
-            style={
-              awaitingTarget
-                ? { backgroundColor: AWAITING_CHIP_BG, color: AWAITING_TEXT }
-                : { backgroundColor: "var(--surface-2)", color: "var(--text-2)" }
-            }
+            style={{ backgroundColor: "var(--surface-2)", color: "var(--text-2)" }}
           >
-            {awaitingTarget ? "Awaiting target" : "No data"}
+            No data
           </span>
         ) : (
           <DeltaBadge delta={metricValue?.deltaVsTarget ?? null} unit="%" lowerIsBetter={lower} />
@@ -60,12 +48,11 @@ export default function PrimaryMetricCard({ primary, metricValue, href, hrefPara
       </div>
       <div
         className="mt-1 line-clamp-2 text-[13px] font-semibold leading-snug"
-        style={{ color: passive ? (awaitingTarget ? AWAITING_TEXT : "var(--text-2)") : "var(--text-1)" }}
+        style={{ color: passive ? "var(--text-2)" : "var(--text-1)" }}
         title={primary.name}
       >
         {primary.name}
       </div>
-
 
       <div className="mt-1.5 flex items-end justify-between gap-2">
         <div className="font-mono text-[20px] font-semibold leading-none" style={{ color: ragColor }}>
@@ -78,21 +65,14 @@ export default function PrimaryMetricCard({ primary, metricValue, href, hrefPara
         </div>
       </div>
 
-      <div
-        className="mt-1.5 text-[11px] font-medium"
-        style={{ color: awaitingTarget ? AWAITING_TEXT : "var(--text-2)" }}
-      >
+      <div className="mt-1.5 text-[11px] font-medium" style={{ color: "var(--text-2)" }}>
         Target: {target}
       </div>
 
       {passive ? (
         <div
           className="mt-auto rounded px-2 py-1.5 text-[10px] italic"
-          style={
-            awaitingTarget
-              ? { backgroundColor: AWAITING_CHIP_BG, color: AWAITING_TEXT }
-              : { backgroundColor: "var(--surface-2)", color: "var(--text-2)" }
-          }
+          style={{ backgroundColor: "var(--surface-2)", color: "var(--text-2)" }}
         >
           {metricValue?.remark ?? "Data not yet available for this metric."}
         </div>
@@ -137,12 +117,11 @@ export default function PrimaryMetricCard({ primary, metricValue, href, hrefPara
       <div
         title={metricValue?.remark ?? "Data not yet available for this metric."}
         aria-disabled="true"
-        className="flex min-h-[10.625rem] cursor-not-allowed flex-col rounded-lg border p-3"
+        className="flex min-h-[170px] cursor-not-allowed flex-col rounded-lg border p-3 opacity-80"
         style={{
-          backgroundColor: awaitingTarget ? AWAITING_BG : "var(--surface-2)",
-          borderColor: awaitingTarget ? AWAITING_BORDER : "var(--line)",
-          borderTop: `2px solid ${awaitingTarget ? AWAITING_BORDER : "var(--line)"}`,
-          opacity: awaitingTarget ? 1 : 0.8,
+          backgroundColor: "var(--surface-2)",
+          borderColor: "var(--line)",
+          borderTop: "2px solid var(--line)",
         }}
       >
         {cardBody}
@@ -156,7 +135,7 @@ export default function PrimaryMetricCard({ primary, metricValue, href, hrefPara
       to={href as any}
       params={hrefParams as never}
       search={hrefSearch as never}
-      className="flex min-h-[10.625rem] flex-col rounded-lg border p-3 transition-shadow hover:shadow-md"
+      className="flex min-h-[170px] flex-col rounded-lg border p-3 transition-shadow hover:shadow-md"
       style={{
         backgroundColor: "var(--surface)",
         borderColor: "var(--line)",

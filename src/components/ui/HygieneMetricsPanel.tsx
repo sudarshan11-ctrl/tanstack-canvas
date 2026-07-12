@@ -18,23 +18,11 @@ function formatPct(pct: number): string {
   return `${pct.toFixed(2)}%`;
 }
 
-interface SummaryLine {
-  id: string;
-  label: string;
-  value: string;
-}
-
-function summaryLines(metrics: FirmHygieneMetric[]): SummaryLine[] {
+function summaryBits(metrics: FirmHygieneMetric[]): string[] {
   return metrics.map((m) => {
-    if (m.kind === "rate") {
-      return { id: m.id, label: m.title, value: formatPct(m.valuePct) };
-    }
+    if (m.kind === "rate") return `${m.title.split(" ").pop()}: ${formatPct(m.valuePct)}`;
     const top = m.buckets[m.buckets.length - 1];
-    return {
-      id: m.id,
-      label: m.title,
-      value: top ? `${formatPct(top.sharePct)} ${top.label}` : "—",
-    };
+    return top ? `${formatPct(top.sharePct)} < 1d` : m.title;
   });
 }
 
@@ -47,7 +35,7 @@ function HygieneShell({
 }) {
   return (
     <div
-      className="flex w-full min-w-0 flex-col rounded-[var(--radius)] px-3 py-2.5"
+      className="min-w-[200px] max-w-[240px] rounded-[var(--radius)] px-3 py-2.5"
       style={{
         backgroundColor: "var(--surface-2)",
         border: "1px solid var(--line)",
@@ -156,60 +144,47 @@ function RateMetricCard({
 
 export default function HygieneMetricsPanel({
   metrics,
-  defaultOpen = false,
+  defaultOpen = true,
 }: HygieneMetricsPanelProps) {
   const [open, setOpen] = useState(defaultOpen);
   const panelId = useId();
 
   if (metrics.length === 0) return null;
 
-  const lines = summaryLines(metrics);
+  const bits = summaryBits(metrics);
 
   return (
-    <div className="flex w-full min-w-0 flex-col items-stretch gap-2">
+    <div className="flex flex-col items-end gap-2">
       <button
         type="button"
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex w-full items-start gap-2 rounded-[var(--radius)] px-3 py-2 text-left transition-opacity hover:opacity-80"
+        className="inline-flex max-w-[280px] items-center gap-1.5 rounded-full px-2.5 py-1 text-left transition-opacity hover:opacity-80"
         style={{
           backgroundColor: "var(--surface-2)",
           border: "1px solid var(--line)",
           color: "var(--text-1)",
         }}
       >
-        <div className="flex min-w-0 flex-1 flex-col gap-1">
+        <span
+          className="text-[10px] font-semibold uppercase tracking-wider"
+          style={{ color: "var(--text-2)" }}
+        >
+          Matter Hygiene Metrics
+        </span>
+        {!open && (
           <span
-            className="text-[10px] font-semibold uppercase tracking-wider"
-            style={{ color: "var(--text-2)" }}
+            className="truncate text-[11px] font-medium tabular"
+            style={{ color: "var(--text-1)" }}
+            title={bits.join(" · ")}
           >
-            Matter Hygiene
+            {bits.join(" · ")}
           </span>
-          {!open && (
-            <ul className="flex flex-col gap-0.5">
-              {lines.map((l) => (
-                <li
-                  key={l.id}
-                  className="flex items-baseline justify-between gap-2 text-[11px]"
-                >
-                  <span className="truncate" style={{ color: "var(--text-2)" }}>
-                    {l.label}
-                  </span>
-                  <span
-                    className="tabular shrink-0 font-semibold"
-                    style={{ color: "var(--text-1)" }}
-                  >
-                    {l.value}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+        )}
         <ChevronDown
           size={14}
-          className="mt-0.5 shrink-0 transition-transform duration-200"
+          className="shrink-0 transition-transform duration-200"
           style={{
             color: "var(--text-2)",
             transform: open ? "rotate(0deg)" : "rotate(-90deg)",
@@ -221,7 +196,7 @@ export default function HygieneMetricsPanel({
       <div
         id={panelId}
         hidden={!open}
-        className="grid w-full min-w-0 grid-cols-1 items-stretch gap-3 sm:grid-cols-3"
+        className="flex flex-wrap items-stretch justify-end gap-3"
       >
         {metrics.map((metric) =>
           metric.kind === "buckets" ? (

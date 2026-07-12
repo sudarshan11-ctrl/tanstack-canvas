@@ -19,23 +19,23 @@ export default function PageWrapper({
       }}
     >
       <Sidebar />
-      <div className="flex min-h-screen flex-col md:ml-[var(--sidebar-width)]">
+      <div
+        className="flex min-h-screen flex-col md:ml-[var(--sidebar-width)]"
+      >
         <TopBar />
         <main
-          className="flex-1 overflow-y-auto px-4 py-4 sm:px-6 sm:py-5 lg:px-8 lg:py-6"
+          className="flex-1 overflow-y-auto p-6"
           style={{ backgroundColor: "var(--canvas)" }}
         >
-          <div className="mx-auto w-full max-w-7xl">
-            {title ? (
-              <h1
-                className="font-display mb-4 text-2xl leading-tight sm:text-3xl"
-                style={{ color: "var(--text-1)" }}
-              >
-                {title}
-              </h1>
-            ) : null}
-            {children}
-          </div>
+          {title ? (
+            <h1
+              className="font-display mb-4 text-[32px] leading-tight"
+              style={{ color: "var(--text-1)" }}
+            >
+              {title}
+            </h1>
+          ) : null}
+          {children}
         </main>
       </div>
     </div>

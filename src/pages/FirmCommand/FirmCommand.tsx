@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import Card from "@/components/ui/card";
+import Card from "@/components/ui/Card";
 import SectionLabel from "@/components/ui/SectionLabel";
 import LPIDial from "@/components/ui/LPIDial";
 import LeagueTable from "@/components/ipl/LeagueTable";
@@ -59,12 +59,12 @@ export default function FirmCommand() {
   });
 
   return (
-    <div className="mx-auto w-full max-w-7xl space-y-5 p-1">
+    <div className="mx-auto max-w-[1320px] space-y-5 p-1">
       {/* HERO */}
       <Card padding="lg">
         <div className="flex flex-wrap items-center gap-8">
           <LPIDial score={firmLpi} status={firmRag} size="lg" />
-          <div className="flex-1 min-w-[17.5rem]">
+          <div className="flex-1 min-w-[280px]">
             <div className="text-[12px] uppercase tracking-wider text-slate-500">
               Time Period · {CURRENT_PERIOD} · {LAST_SYNC}
             </div>
@@ -75,7 +75,7 @@ export default function FirmCommand() {
               6 PH squads · {personScores.length} lawyers · {wickets} primary metrics in red.
             </div>
           </div>
-          <div className="min-w-[21.25rem] flex-1">
+          <div className="min-w-[340px] flex-1">
             <MatchCentreStrap
               innings={firmLpi}
               required={85}

@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Search } from "lucide-react";
-import Card from "@/components/ui/card";
+import Card from "@/components/ui/Card";
 import { RAG_FG } from "@/components/ui/rag-colors";
 import { formatMetricValue } from "@/utils/format";
 import {
@@ -9,7 +9,7 @@ import {
   type FirmMetricAggregate,
   type AggregateLevel,
 } from "@/utils/firmMetricAggregates";
-import { isMetricActive, metricInactiveReason } from "@/utils/metricActivity";
+import { isMetricActive } from "@/utils/metricActivity";
 import type { PersonScore, RAGStatus } from "@/types";
 
 type StatusFilter = "all" | "red" | "amber" | "green";
@@ -169,7 +169,7 @@ export default function FirmMetricsExplorer({
           <button
             key={rag}
             type="button"
-            onClick={() => setStatus(rag as StatusFilter)}
+            onClick={() => setStatus(rag)}
             className="rounded-full border px-2.5 py-1 text-[11px] font-semibold transition-opacity hover:opacity-80"
             style={{
               color: RAG_FG[rag],
@@ -298,7 +298,7 @@ export default function FirmMetricsExplorer({
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="Search metric…"
-            className="w-40 bg-transparent text-[12px] outline-none"
+            className="w-[160px] bg-transparent text-[12px] outline-none"
             style={{ color: "var(--text-1)" }}
           />
         </div>
@@ -306,7 +306,7 @@ export default function FirmMetricsExplorer({
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[60rem] text-[12px]">
+        <table className="w-full text-[12px]">
           <thead>
             <tr
               className="border-b text-left text-[10px] font-semibold uppercase tracking-wider"
@@ -318,7 +318,7 @@ export default function FirmMetricsExplorer({
               <th className="px-2 py-2 text-right">Firm avg</th>
               <th className="px-2 py-2 text-right">Target</th>
               <th className="px-2 py-2 text-right">Δ vs target</th>
-              <th className="w-40 px-2 py-2">RAG spread</th>
+              <th className="w-[160px] px-2 py-2">RAG spread</th>
               <th className="px-2 py-2 text-right">Lagging</th>
               <th className="px-2 py-2" />
             </tr>
@@ -345,18 +345,13 @@ export default function FirmMetricsExplorer({
                         ? "var(--rag-red)"
                         : "var(--rag-amber)";
                 const active = isMetricActive(r.id);
-                const reason = metricInactiveReason(r.id);
-                const awaitingTarget = reason === "awaiting-target";
                 return (
                   <tr
                     key={r.id}
                     className="border-b transition-colors"
                     style={{
                       borderColor: "var(--line)",
-                      opacity: active ? 1 : awaitingTarget ? 0.85 : 0.55,
-                      borderLeft: awaitingTarget
-                        ? "3px dashed var(--rag-amber)"
-                        : undefined,
+                      opacity: active ? 1 : 0.55,
                     }}
                     onMouseEnter={(e) => {
                       if (active)
@@ -367,16 +362,10 @@ export default function FirmMetricsExplorer({
                       (e.currentTarget as HTMLTableRowElement).style.backgroundColor =
                         "transparent";
                     }}
-                    title={
-                      active
-                        ? undefined
-                        : awaitingTarget
-                          ? "Metric will be calculated once the target is entered."
-                          : "Data not yet available for this metric."
-                    }
+                    title={active ? undefined : "Data not yet available for this metric."}
                   >
                     <td className="px-2 py-2.5">
-                      <div className="flex min-w-[13.75rem] flex-col gap-0.5">
+                      <div className="flex min-w-[220px] flex-col gap-0.5">
                         <div className="flex items-center gap-2">
                           <span
                             className="font-metric-id shrink-0 text-[10px] font-semibold uppercase tracking-wider"
@@ -387,22 +376,12 @@ export default function FirmMetricsExplorer({
                           {!active && (
                             <span
                               className="rounded-full px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider"
-                              style={
-                                awaitingTarget
-                                  ? {
-                                      backgroundColor:
-                                        "color-mix(in srgb, var(--rag-amber) 18%, transparent)",
-                                      color: "var(--rag-amber)",
-                                      border:
-                                        "1px solid color-mix(in srgb, var(--rag-amber) 40%, transparent)",
-                                    }
-                                  : {
-                                      backgroundColor: "var(--surface-2)",
-                                      color: "var(--text-2)",
-                                    }
-                              }
+                              style={{
+                                backgroundColor: "var(--surface-2)",
+                                color: "var(--text-2)",
+                              }}
                             >
-                              {awaitingTarget ? "Awaiting target" : "No data · Request upload"}
+                              No data · Request upload
                             </span>
                           )}
                         </div>
@@ -414,7 +393,6 @@ export default function FirmMetricsExplorer({
                         </span>
                       </div>
                     </td>
-
                     <td className="px-2 py-2" style={{ color: "var(--text-2)" }}>
                       {AREA_LABEL[r.area] ?? r.area}
                     </td>

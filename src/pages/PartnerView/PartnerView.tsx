@@ -9,7 +9,7 @@ import { useDashboardStore } from "@/store/dashboardStore";
 import { personById, epOfPartner, partnersOfPartner, directAssociatesOfPartner } from "@/utils/hierarchy";
 import { rollupFor, primariesFor } from "@/utils/rollup";
 import { lpiToRAG } from "@/utils/rag";
-import { formatTimesheetDelayLabel, timesheetDelayFor } from "@/utils/timesheetDelay";
+import { personTimesheetHygiene } from "@/utils/timesheetDelay";
 import { AlertTriangle } from "lucide-react";
 
 const TARGET_PARTNER = 80;
@@ -62,10 +62,7 @@ export default function PartnerView() {
   const prims = primariesFor(partnerId, personScores);
   const sparkline = r.trend.length > 1 ? r.trend : undefined;
 
-  const hygieneNote = (() => {
-    const entry = timesheetDelayFor(partner.id);
-    return entry ? formatTimesheetDelayLabel(entry) : undefined;
-  })();
+  const timesheetHygiene = personTimesheetHygiene(partner.id);
 
   const heroStats = [
     { label: "Self PI", value: Math.round(r.personLpi) },
@@ -76,7 +73,7 @@ export default function PartnerView() {
   ];
 
   return (
-    <div className="mx-auto w-full max-w-7xl space-y-5 p-1">
+    <div className="mx-auto max-w-[1320px] space-y-5 p-1">
       <Breadcrumbs
         crumbs={[
           { label: ep.name, to: "/ep/$epId", params: { epId: ep.id } },
@@ -105,7 +102,9 @@ export default function PartnerView() {
           projection: r.teamLpi + 2,
           wickets: r.wickets,
         }}
-        hygieneNote={hygieneNote}
+        hygieneNote={timesheetHygiene.note}
+        hygieneTone={timesheetHygiene.tone}
+        teamHygieneNote={timesheetHygiene.teamNote}
       />
 
       {/* Needs-attention coaching callout */}

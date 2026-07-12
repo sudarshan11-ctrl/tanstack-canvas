@@ -2,7 +2,7 @@ import { useState, Fragment } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronDown, ChevronRight, ArrowUp, ArrowDown, ArrowUpDown, Search } from "lucide-react";
 import PageWrapper from "@/components/layout/PageWrapper";
-import Card from "@/components/ui/card";
+import Card from "@/components/ui/Card";
 import RAGDot from "@/components/ui/RAGDot";
 import { mockPeople } from "@/data/mockPeople";
 import { useDashboardStore } from "@/store/dashboardStore";
@@ -124,7 +124,7 @@ export function PeopleList({ role, title }: Props) {
 
   return (
     <PageWrapper title={title}>
-      <div className="mx-auto w-full max-w-7xl">
+      <div className="mx-auto max-w-[1280px]">
         <Card padding="md">
           <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
             <div className="text-[12px] text-slate-500">

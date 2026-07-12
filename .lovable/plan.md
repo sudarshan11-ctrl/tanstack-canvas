@@ -1,62 +1,47 @@
+# API Implementation Changelog Report
 
-## Goal
+## Deliverable
 
-Make every page hold its layout under any viewport width and any browser zoom level (50%–200%): no overlap, no clipped text, no unexpected horizontal scrollbars, and media that scales inside its parent.
+A single new markdown file at `docs/api-implementation-changelog.md` that documents every prompt and change since the replica-db-api integration began (26 Jun 2026) through the latest designation-to-endpoint rule (30 Jun 2026).
 
-## Guiding rules (apply to every touched file)
+Attribution: every user prompt is credited to **Actual User**.
 
-1. Layout with `flex` / `grid` only. Absolute positioning reserved for true overlays (tooltips, popovers, dial center labels), always pinned inside a `relative` parent.
-2. No hard pixel sizes on layout containers. Replace `min-w-[1080px]`, `w-64`, `h-[...px]`, inline `style={{ width: 240 }}` etc. with `rem`, `%`, `min-w-0`, `basis-*`, `max-w-*`, or Tailwind spacing tokens. Pixels stay only for hairlines (1px borders), icons, avatars, and chart primitives (sparkline stroke).
-3. Typography via Tailwind scale (`text-xs`…`text-2xl`) with `leading-*` and `truncate` / `break-words` where needed. Replace inline `fontSize: 13` style overrides.
-4. Page shell uses `w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8` via `PageWrapper`.
-5. Media: `img`, chart wrappers → `max-w-full h-auto` or an `aspect-*` box.
-6. Every flex/grid text cell gets `min-w-0`; every fixed widget gets `shrink-0`; single-line headings get `truncate`. Multi-item header rows follow the pattern in `responsive-layout-patterns` (grid on mobile, flex at `sm:`).
+## Structure
 
-## Order of work
+Front matter (title, date range, scope note), then one entry per user prompt in chronological order. Each entry uses this template:
 
-### Phase 1: Foundation (shared shell + tokens)
-- `src/components/layout/PageWrapper.tsx` — wrap `<main>` content in `max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8`; drop the `p-6` in favour of responsive padding; heading uses `text-2xl sm:text-3xl lg:text-[2rem]`.
-- `src/components/layout/Sidebar.tsx` + `--sidebar-width` in `src/styles.css` — convert `240px` to `rem` (e.g. `15rem`) so it scales with root font-size on zoom.
-- `src/components/layout/TopBar.tsx`, `Breadcrumbs.tsx` — audit for fixed widths; add `min-w-0` + `truncate` on title slots.
-- `src/styles.css` — add global rules: `html { overflow-x: hidden; }`, `img, svg, video { max-width: 100%; height: auto; }`, and register a `.no-scrollbar` utility for horizontal scroll shelves.
+```
+### Entry N — <short title>
+- Date: DD/MM/YYYY
+- Requested by: Actual User
+- Prompt (verbatim, quoted): ...
+- Intent: what the user was trying to achieve
+- Actions taken: decisions made, options offered, clarifications gathered
+- Execution steps: files created/edited/deleted, functions/endpoints introduced, verification performed
+- Outcome: what shipped, known follow-ups
+```
 
-### Phase 2: Hero / header row (highest-visibility, currently pixel-heavy)
-- `src/components/ui/HeroHeader.tsx` — convert the two-row layout to `grid grid-cols-[minmax(0,1fr)_auto] gap-4 sm:flex sm:flex-wrap`, add `min-w-0` on identity zone, `shrink-0` on hygiene/dial, `truncate` on name, replace inline `style={{ fontSize }}` with `text-*`.
-- `src/components/ui/HygieneMetricsPanel.tsx` — drop `max-w-[280px]`, use `w-full sm:max-w-xs`, replace `px-3 py-2` inline sizes with tokens only.
-- `src/components/ui/Sparkline.tsx` + LPI dial — wrap in `aspect-[3/1]` / `aspect-square` box so SVG scales via `width="100%" height="100%"` instead of fixed px height.
+Closing section: a "Files touched (cumulative)" table and a short "Open follow-ups" list (e.g. FH-12 unit, mock retention outside Badri subtree).
 
-### Phase 3: Data-dense tables and grids
-- `src/components/league/PracticeHeadLeagueTable.tsx` — replace `min-w-[1080px]` with `min-w-[64rem]` (or drop entirely and switch to a responsive grid that stacks columns under `md`). Column template moves from mixed `px` to `fr` + `minmax(0,*)`. Search input `w-64` → `w-full sm:w-64`.
-- `src/components/league/TeamTable.tsx`, `src/components/ipl/LeagueTable.tsx` — same treatment.
-- `src/components/metrics/FirmMetricsExplorer.tsx` — `min-w-[960px]` → `min-w-[60rem]`; row grid uses `minmax(0,*)`; badges wrap instead of clipping.
-- `src/components/metrics/PrimaryMetricGrid.tsx`, `PrimaryMetricCard.tsx`, `SecondaryDriverList.tsx` — grid becomes `grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4`, cards get `min-w-0`, numbers get `tabular` + `truncate`.
-- `src/pages/MindMap/MindMap.tsx` — audit primary/secondary card blocks for fixed widths; align with grid rules above.
+## Entries to include (chronological)
 
-### Phase 4: Page-level surfaces
-Sweep each page for pixel widths, absolute positioning, and horizontal overflow. One pass per file, verify at 720px and 200% zoom:
-- `src/pages/FirmLanding/FirmLanding.tsx`
-- `src/pages/PracticeHeadView/PracticeHeadView.tsx`
-- `src/pages/PartnerView/PartnerView.tsx`
-- `src/pages/AssociateView/AssociateView.tsx`
-- `src/pages/SquadView/SquadView.tsx`
-- `src/pages/CohortView/CohortView.tsx`
-- `src/pages/PeopleList/PeopleList.tsx`
-- `src/pages/MetricDrilldown/index.tsx`
-- `src/pages/ProfileCard/ProfileCard.tsx`
-- `src/pages/Settings/*`
+1. **26/06** Wire portal to replica-db-api (initial plan + implementation). Server-side data pipeline, env config, `REPLICA_API_KEY` moved to Lovable secret. Files: `.env`, `src/lib/config.server.ts`, `src/lib/api/replica-api.server.ts`, `src/lib/api/metrics.functions.ts`, `src/store/dashboardStore.ts`.
+2. **26/06** "Where is the replica db api key set?" — clarification that the key is a Lovable secret, injected server-side only.
+3. **26/06** Add connectivity test endpoint + UI button. Files: `src/lib/api/healthcheck.ts` (later `connectivity.functions.ts`), `src/components/admin/ReplicaConnectivityButton.tsx`.
+4. **26/06** "Is data getting fed?" — diagnosed RFC1918 base URL unreachable from Cloudflare Worker; switched base URL to the public tunnel.
+5. **26/06** Confirm dashboard uses live data + user 420 verification. `apiMetricMap.json`, `lcmsUserMap.json` updated.
+6. **~28/06** Single-profile headline demo: `HEADLINE_METRIC_IDS = ["FH-01","FH-08","CM-03"]`, `fetchMetricsForPerson` accepts `metricIds` / `includePriorYear`.
+7. **29/06** "Implement this hierarchy on the dashboard" (LKS_Firm_Hierarchy_1.xlsx). Created `scripts/generateLksHierarchy.py`, `src/data/lksHierarchy.json`, replaced roster (10 practice heads, 58 partners, 374 associates).
+8. **29/06** Load FY25-26 data for L Badrinarayanan and team. Fiscal constants updated, `CONCURRENCY` 2→3, new `getTeamMetrics` server function, auto-fetch on practice-head mount.
+9. **29/06** Reference metric list provided; comparison of API values against reference; LCMS 378 mapped for `lks-1130`; `transformMetric` refactored for scaling / combineColumns / multi-row aggregation.
+10. **29/06** Verify page introduced at `/verify/lks-1130`; three known mapping issues flagged (FH-12 unit, and two others).
+11. **29/06** Verify page timeout refactor: replaced batch `verifyPersonMetrics` with per-metric `verifyOnePersonMetric` + `listVerifyMetricIds`, fan-out on the client.
+12. **30/06** Remove existing dashboard data, keep 442 hierarchy people, ingest Badri's team. New `src/data/badriSubtree.ts`; mock metric values stripped for Badri subtree only; on-demand `loadPersonMetrics` / `loadTeamMetrics` per page mount.
+13. **30/06** API endpoint should follow hierarchy designation. Added `designation` to `Person`, introduced `designationToApiRole`, wired through `metricRegistry.ts`, `metrics.functions.ts`, `dashboardStore.ts`.
+14. **30/06** Designation mapping refinement (equity partner = group heads). Replaced `designationToApiRole` with `resolveApiRole(role, designation)`: group heads → equity-partner endpoints; other Partner tiers → partner endpoints; associate tiers → associate endpoints.
 
-### Phase 5: Verification
-- Playwright script under `/tmp/browser/responsive/`: load Firm Landing, PH view, Partner view, Metric drilldown, MindMap at viewports 360, 720, 1024, 1440 and at simulated zoom (via `deviceScaleFactor` + reduced viewport). Screenshot each; assert `document.documentElement.scrollWidth <= innerWidth` on every page.
-- Manual check on the current preview (720×589) that no page produces a horizontal scrollbar on the body and that HeroHeader/tables no longer clip.
+## Notes
 
-## Technical notes
-
-- Keep the existing design tokens (`--surface`, `--line`, `--text-*`) untouched — this is purely a sizing / structural pass, no color or typography redesign.
-- Horizontal scroll on very wide tables is acceptable *inside* their card (`overflow-x-auto` + `min-w-[…rem]`), but must never bleed to the page body. Confirm every such wrapper has a `max-w-full` parent.
-- Do not switch the `px` used inside `<svg>` viewBox math, stroke widths, or icon `size={}` props — those are correct pixel primitives.
-- Ban new inline `style={{ width|height|fontSize|padding|margin: <number> }}` in touched files; move to Tailwind classes.
-- Total scope is presentation-only; no data, routing, or business-logic changes.
-
-## Deliverable per phase
-
-Each phase is a separate build turn with: (a) the file edits, (b) a Playwright screenshot pass at 360 / 1024 / 1440 widths, (c) a short PASS/FAIL note per page touched.
+- Report is documentation only. No source code, config, or data files change.
+- All prompt quotes come from the chat history for messages #3 through #104; anything ambiguous will be labelled as such rather than invented.
+- Punctuation and formatting follow project standards: sentence case headings, no em dashes, dates as DD/MM/YYYY.

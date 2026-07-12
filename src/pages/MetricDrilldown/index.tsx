@@ -3,7 +3,7 @@ import { Link, useParams } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { Bar, BarChart, Cell, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
 import PageWrapper from "@/components/layout/PageWrapper";
-import Card from "@/components/ui/card";
+import Card from "@/components/ui/Card";
 import SectionLabel from "@/components/ui/SectionLabel";
 import CausalSubgraph from "@/components/metrics/CausalSubgraph";
 import SecondaryDriverList from "@/components/metrics/SecondaryDriverList";
@@ -103,7 +103,7 @@ export default function MetricDrilldown() {
 
   return (
     <PageWrapper>
-      <div className="mx-auto w-full max-w-7xl space-y-4 p-2">
+      <div className="mx-auto max-w-[1200px] space-y-4 p-2">
         <Link
           to="/"
           className="inline-flex items-center gap-1 text-[12px] transition-opacity hover:opacity-70"
@@ -146,7 +146,7 @@ export default function MetricDrilldown() {
               >
                 {def.name}
               </h2>
-              <p className="mt-1 max-w-[40rem] text-[13px] leading-relaxed" style={{ color: "var(--text-2)" }}>
+              <p className="mt-1 max-w-[640px] text-[13px] leading-relaxed" style={{ color: "var(--text-2)" }}>
                 {def.description}
               </p>
               <div className="mt-3 grid grid-cols-3 gap-3 text-[12px]">

@@ -1,11 +1,11 @@
 import { useState, useMemo } from "react";
 import { Link } from "@tanstack/react-router";
 import PageWrapper from "@/components/layout/PageWrapper";
-import Card from "@/components/ui/card";
+import Card from "@/components/ui/Card";
 import SectionLabel from "@/components/ui/SectionLabel";
 import { causalLinks } from "@/data/mockCausalLinks";
 import { mockMetricDefinitions } from "@/data/mockMetricDefinitions";
-import { isMetricActive, metricInactiveReason } from "@/utils/metricActivity";
+import { isMetricActive } from "@/utils/metricActivity";
 import type { MetricArea, Role } from "@/types";
 
 const ROLE_TABS: { id: Role; label: string }[] = [
@@ -66,7 +66,7 @@ export default function MindMap() {
 
   return (
     <PageWrapper title="Metrics relationship map">
-      <div className="mx-auto w-full max-w-7xl space-y-4 p-2">
+      <div className="mx-auto max-w-[1280px] space-y-4 p-2">
         <Card padding="sm">
           <div className="flex flex-wrap items-center gap-3">
             <div className="flex items-center gap-1">
@@ -127,23 +127,15 @@ export default function MindMap() {
             {primaries.map((m) => {
               const drivers = visibleLinks.filter((l) => l.toId === m.id);
               const active = isMetricActive(m.id);
-              const reason = metricInactiveReason(m.id);
-              const awaitingTarget = reason === "awaiting-target";
               const card = (
                 <>
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-[10px] font-semibold text-slate-500">{m.id}</span>
                     <span
                       className="rounded-full px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white"
-                      style={{
-                        backgroundColor: active
-                          ? AREA_COLOR[m.area]
-                          : awaitingTarget
-                            ? "#f59e0b"
-                            : "#94a3b8",
-                      }}
+                      style={{ backgroundColor: active ? AREA_COLOR[m.area] : "#94a3b8" }}
                     >
-                      {active ? "Primary" : awaitingTarget ? "Awaiting target" : "No data"}
+                      {active ? "Primary" : "No data"}
                     </span>
                   </div>
                   <div className="mt-1 text-[14px] font-semibold text-slate-900">{m.name}</div>
@@ -169,28 +161,15 @@ export default function MindMap() {
               return (
                   <div
                     key={m.id}
-                    title={
-                      awaitingTarget
-                        ? "Metric will be calculated once the target is entered."
-                        : "Data not yet available for this metric."
-                    }
+                    title="Data not yet available for this metric."
                     aria-disabled="true"
-                    className={
-                      awaitingTarget
-                        ? "block cursor-not-allowed rounded-lg border bg-amber-50 p-3 opacity-90"
-                        : "block cursor-not-allowed rounded-lg border bg-slate-50 p-3 opacity-60"
-                    }
-                    style={
-                      awaitingTarget
-                        ? { borderColor: "#f59e0b", borderLeftWidth: 4, borderLeftStyle: "dashed" }
-                        : { borderColor: "#cbd5e1", borderLeftWidth: 4 }
-                    }
+                    className="block cursor-not-allowed rounded-lg border bg-slate-50 p-3 opacity-60"
+                    style={{ borderColor: "#cbd5e1", borderLeftWidth: 4 }}
                   >
                     {card}
                   </div>
                 );
               }
-
               return (
                 <Link
                   key={m.id}
@@ -217,8 +196,6 @@ export default function MindMap() {
               .map(({ m, degree }) => {
                 const drives = visibleLinks.filter((l) => l.fromId === m.id);
                 const active = isMetricActive(m.id);
-                const reason = metricInactiveReason(m.id);
-                const awaitingTarget = reason === "awaiting-target";
                 const inner = (
                   <>
                     <span className="font-mono text-[10px] text-slate-400 w-12">{m.id}</span>
@@ -232,10 +209,6 @@ export default function MindMap() {
                           </span>
                         )}
                       </>
-                    ) : awaitingTarget ? (
-                      <span className="rounded-full border border-amber-300 bg-amber-100 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-amber-700">
-                        Awaiting target
-                      </span>
                     ) : (
                       <span className="rounded-full bg-slate-200 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-slate-500">
                         No data
@@ -247,28 +220,15 @@ export default function MindMap() {
                   return (
                     <div
                       key={m.id}
-                      title={
-                        awaitingTarget
-                          ? "Metric will be calculated once the target is entered."
-                          : "Data not yet available for this metric."
-                      }
+                      title="Data not yet available for this metric."
                       aria-disabled="true"
-                      className={
-                        awaitingTarget
-                          ? "flex cursor-not-allowed items-center gap-3 rounded-md border bg-amber-50 px-3 py-2 opacity-90"
-                          : "flex cursor-not-allowed items-center gap-3 rounded-md border bg-slate-50 px-3 py-2 opacity-60"
-                      }
-                      style={
-                        awaitingTarget
-                          ? { borderColor: "#fcd34d", borderLeft: `3px dashed #f59e0b` }
-                          : { borderColor: "#e2e8f0", borderLeft: `3px solid #cbd5e1` }
-                      }
+                      className="flex cursor-not-allowed items-center gap-3 rounded-md border bg-slate-50 px-3 py-2 opacity-60"
+                      style={{ borderColor: "#e2e8f0", borderLeft: `3px solid #cbd5e1` }}
                     >
                       {inner}
                     </div>
                   );
                 }
-
                 return (
                   <Link
                     key={m.id}

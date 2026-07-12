@@ -31,14 +31,14 @@ export default function Breadcrumbs({ crumbs }: { crumbs: Crumb[] }) {
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 to={c.to as any}
                 params={c.params as any}
-                className="max-w-[13.75rem] truncate transition-opacity hover:opacity-80"
+                className="max-w-[220px] truncate transition-opacity hover:opacity-80"
                 style={{ color: "var(--text-2)" }}
               >
                 {c.label}
               </Link>
             ) : (
               <span
-                className="max-w-[16.25rem] truncate font-medium"
+                className="max-w-[260px] truncate font-medium"
                 style={{ color: "var(--text-1)" }}
               >
                 {c.label}

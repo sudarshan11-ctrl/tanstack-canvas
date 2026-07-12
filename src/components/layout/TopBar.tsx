@@ -85,15 +85,16 @@ export default function TopBar() {
 
   return (
     <header
-      className="sticky top-0 z-10 flex min-h-[3.25rem] flex-wrap items-center justify-between gap-2 border-b px-4 py-2 sm:flex-nowrap sm:px-6"
+      className="sticky top-0 z-10 flex items-center justify-between border-b px-6"
       style={{
+        height: 52,
         backgroundColor: "var(--surface)",
         borderColor: "var(--line)",
         transition: "background-color 150ms ease, border-color 150ms ease",
       }}
     >
       {/* Breadcrumb */}
-      <nav className="flex min-w-0 flex-1 items-center gap-1 overflow-hidden text-[12px]" style={{ color: "var(--text-2)" }}>
+      <nav className="flex items-center gap-1 text-[12px]" style={{ color: "var(--text-2)" }}>
         {crumbs.map((c, i) => {
           const isLast = i === crumbs.length - 1;
           const node =
@@ -126,7 +127,7 @@ export default function TopBar() {
       </nav>
 
       {/* Right cluster */}
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="flex items-center gap-2">
         {/* Cmd+K search hint */}
         <button
           type="button"

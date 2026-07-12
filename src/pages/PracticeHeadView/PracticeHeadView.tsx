@@ -9,7 +9,7 @@ import { useDashboardStore } from "@/store/dashboardStore";
 import { personById, partnersOfEp, directAssociatesOfEp } from "@/utils/hierarchy";
 import { rollupFor } from "@/utils/rollup";
 import { lpiToRAG } from "@/utils/rag";
-import { formatTimesheetDelayLabel, timesheetDelayFor } from "@/utils/timesheetDelay";
+import { personTimesheetHygiene } from "@/utils/timesheetDelay";
 
 const TARGET_PH = 85;
 
@@ -40,10 +40,7 @@ export default function PracticeHeadView() {
 
   const sparkline = r.trend.length > 1 ? r.trend : undefined;
 
-  const hygieneNote = (() => {
-    const entry = timesheetDelayFor(ep.id);
-    return entry ? formatTimesheetDelayLabel(entry) : undefined;
-  })();
+  const timesheetHygiene = personTimesheetHygiene(ep.id);
 
   const heroStats = [
     { label: "Self PI", value: Math.round(r.personLpi) },
@@ -53,7 +50,7 @@ export default function PracticeHeadView() {
   ];
 
   return (
-    <div className="mx-auto w-full max-w-7xl space-y-5 p-1">
+    <div className="mx-auto max-w-[1320px] space-y-5 p-1">
       <div className="flex items-center justify-between">
         <Breadcrumbs crumbs={[{ label: ep.name }]} />
         <Link
@@ -81,7 +78,9 @@ export default function PracticeHeadView() {
           projection: r.teamLpi + 3,
           wickets: r.wickets,
         }}
-        hygieneNote={hygieneNote}
+        hygieneNote={timesheetHygiene.note}
+        hygieneTone={timesheetHygiene.tone}
+        teamHygieneNote={timesheetHygiene.teamNote}
       />
 
       <section>

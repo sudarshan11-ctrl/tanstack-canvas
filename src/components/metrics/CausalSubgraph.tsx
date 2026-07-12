@@ -23,7 +23,7 @@ function Pill({ id, side }: { id: string; side: "in" | "out" | "center" }) {
       className={`inline-flex items-center gap-2 rounded-md border px-2 py-1 text-[12px] transition-colors hover:opacity-80 ${tone}`}
     >
       <span className="font-mono text-[10px] opacity-70">{id}</span>
-      <span className="truncate max-w-[10rem]">{nameOf(id)}</span>
+      <span className="truncate max-w-[160px]">{nameOf(id)}</span>
     </Link>
   );
 }
@@ -41,7 +41,7 @@ export default function CausalSubgraph({ centerId, incoming, outgoing }: CausalS
           incoming.map((l) => (
             <div key={l.fromId + l.toId} className="flex flex-col items-end gap-1">
               <Pill id={l.fromId} side="in" />
-              <div className="text-[10px] text-slate-500 italic max-w-[13.75rem] text-right">
+              <div className="text-[10px] text-slate-500 italic max-w-[220px] text-right">
                 {l.mechanism}
               </div>
             </div>
@@ -64,7 +64,7 @@ export default function CausalSubgraph({ centerId, incoming, outgoing }: CausalS
           outgoing.map((l) => (
             <div key={l.fromId + l.toId} className="flex flex-col items-start gap-1">
               <Pill id={l.toId} side="out" />
-              <div className="text-[10px] text-slate-500 italic max-w-[13.75rem]">
+              <div className="text-[10px] text-slate-500 italic max-w-[220px]">
                 {l.mechanism}
               </div>
             </div>

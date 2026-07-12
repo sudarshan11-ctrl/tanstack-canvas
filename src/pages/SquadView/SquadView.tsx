@@ -1,7 +1,7 @@
 import { Link, useParams } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import PageWrapper from "@/components/layout/PageWrapper";
-import Card from "@/components/ui/card";
+import Card from "@/components/ui/Card";
 import SectionLabel from "@/components/ui/SectionLabel";
 import LPIDial from "@/components/ui/LPIDial";
 import CompetencyWheel from "@/components/bsc/CompetencyWheel";
@@ -36,7 +36,7 @@ export default function SquadView() {
 
   return (
     <PageWrapper title="">
-      <div className="mx-auto w-full max-w-7xl space-y-4 p-2">
+      <div className="mx-auto max-w-[1280px] space-y-4 p-2">
         <Link to="/firm" className="inline-flex items-center gap-1 text-[12px] text-slate-500 hover:text-slate-800">
           <ArrowLeft size={14} /> Firm Command
         </Link>

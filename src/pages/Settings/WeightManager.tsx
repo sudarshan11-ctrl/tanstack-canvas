@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { CheckCircle2, AlertTriangle, RotateCcw, Save } from "lucide-react";
-import Card from "@/components/ui/card";
+import Card from "@/components/ui/Card";
 import { useDashboardStore } from "@/store/dashboardStore";
 import { mockMetricDefinitions } from "@/data/mockMetricDefinitions";
 import { mockPeople } from "@/data/mockPeople";
