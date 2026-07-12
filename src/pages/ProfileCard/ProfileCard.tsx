@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useParams } from "@tanstack/react-router";
 import { ArrowLeft, BarChart2 } from "lucide-react";
 import PageWrapper from "@/components/layout/PageWrapper";
-import Card from "@/components/ui/Card";
+import Card from "@/components/ui/card";
 import SectionLabel from "@/components/ui/SectionLabel";
 import HeroHeader from "@/components/ui/HeroHeader";
 import MetricCard from "@/components/ui/MetricCard";

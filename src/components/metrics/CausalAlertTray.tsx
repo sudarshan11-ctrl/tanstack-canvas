@@ -1,6 +1,6 @@
 import { TriangleAlert, CheckCircle } from "lucide-react";
 import type { CausalAlert } from "@/types";
-import Card from "@/components/ui/Card";
+import Card from "@/components/ui/card";
 
 export interface CausalAlertTrayProps {
   alerts: CausalAlert[];

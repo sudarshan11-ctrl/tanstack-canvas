@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useParams } from "@tanstack/react-router";
-import Card from "@/components/ui/Card";
+import Card from "@/components/ui/card";
 import SectionLabel from "@/components/ui/SectionLabel";
 import HeroHeader from "@/components/ui/HeroHeader";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";

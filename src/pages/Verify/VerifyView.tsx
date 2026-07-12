@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "@tanstack/react-router";
 import PageWrapper from "@/components/layout/PageWrapper";
-import Card from "@/components/ui/Card";
+import Card from "@/components/ui/card";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { personById } from "@/utils/hierarchy";
 import {
