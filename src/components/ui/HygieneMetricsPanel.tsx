@@ -154,13 +154,13 @@ export default function HygieneMetricsPanel({
   const bits = summaryBits(metrics);
 
   return (
-    <div className="flex flex-col items-end gap-2">
+    <div className="flex w-full flex-col gap-2">
       <button
         type="button"
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex max-w-[280px] items-center gap-1.5 rounded-full px-2.5 py-1 text-left transition-opacity hover:opacity-80"
+        className="inline-flex w-fit items-center gap-1.5 rounded-full px-2.5 py-1 text-left transition-opacity hover:opacity-80"
         style={{
           backgroundColor: "var(--surface-2)",
           border: "1px solid var(--line)",
@@ -171,7 +171,7 @@ export default function HygieneMetricsPanel({
           className="text-[10px] font-semibold uppercase tracking-wider"
           style={{ color: "var(--text-2)" }}
         >
-          Matter Hygiene Metrics
+          Matter Hygiene
         </span>
         {!open && (
           <span
@@ -196,7 +196,7 @@ export default function HygieneMetricsPanel({
       <div
         id={panelId}
         hidden={!open}
-        className="flex flex-wrap items-stretch justify-end gap-3"
+        className="flex flex-wrap items-stretch gap-3"
       >
         {metrics.map((metric) =>
           metric.kind === "buckets" ? (
