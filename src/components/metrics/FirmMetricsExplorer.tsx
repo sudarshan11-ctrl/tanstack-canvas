@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Search } from "lucide-react";
-import Card from "@/components/ui/Card";
+import Card from "@/components/ui/card";
 import { RAG_FG } from "@/components/ui/rag-colors";
 import { formatMetricValue } from "@/utils/format";
 import {
