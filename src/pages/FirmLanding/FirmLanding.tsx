@@ -90,7 +90,7 @@ export default function FirmLanding() {
   );
 
   return (
-    <div className="mx-auto max-w-[1320px] space-y-5">
+    <div className="mx-auto w-full min-w-0 max-w-7xl space-y-5">
       {/* Admin tool */}
       <div className="flex justify-end">
         <ReplicaConnectivityButton />
@@ -116,23 +116,23 @@ export default function FirmLanding() {
         alert={alert}
       />
 
-      {/* Bento grid — league table 2/3 + Player of the Match 1/3 */}
-      <div className="grid gap-5 lg:grid-cols-3">
-        {/* Practice Head league table — 2/3 width */}
-        <section className="lg:col-span-2">
+      {/* Bento grid — league table 3/4 + Player of the Match 1/4 */}
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-4">
+        {/* Practice Head league table — 3/4 width */}
+        <section className="min-w-0 lg:col-span-3">
           <SectionLabel>Practice Head league · this period</SectionLabel>
           <PracticeHeadLeagueTable eps={eps} scores={personScores} />
         </section>
 
-        {/* Player of the Match — 1/3 width */}
-        <section className="lg:col-span-1">
+        {/* Player of the Match — 1/4 width */}
+        <section className="min-w-0 lg:col-span-1">
           <SectionLabel>Player of the match · this period</SectionLabel>
           <PlayerOfTheMatch tags={tags} />
         </section>
       </div>
 
       {/* Metrics explorer — full width */}
-      <section>
+      <section className="min-w-0">
         <SectionLabel>
           All firm metrics · filter by level · drill into any parameter
         </SectionLabel>
@@ -141,3 +141,4 @@ export default function FirmLanding() {
     </div>
   );
 }
+

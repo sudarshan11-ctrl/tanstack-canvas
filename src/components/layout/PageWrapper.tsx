@@ -12,32 +12,31 @@ export default function PageWrapper({
 }) {
   return (
     <div
-      className="min-h-screen"
+      className="flex min-h-screen w-full flex-col"
       style={{
         backgroundColor: "var(--canvas)",
         transition: "background-color 150ms ease",
       }}
     >
       <Sidebar />
-      <div
-        className="flex min-h-screen flex-col md:ml-[var(--sidebar-width)]"
-      >
+      <div className="flex min-h-screen min-w-0 flex-1 flex-col md:ml-[var(--sidebar-width)]">
         <TopBar />
         <main
-          className="flex-1 overflow-y-auto p-6"
+          className="w-full min-w-0 flex-1 overflow-x-hidden overflow-y-auto px-4 py-6 sm:px-6 lg:px-8"
           style={{ backgroundColor: "var(--canvas)" }}
         >
           {title ? (
             <h1
-              className="font-display mb-4 text-[32px] leading-tight"
+              className="font-display mb-4 text-2xl leading-tight sm:text-3xl"
               style={{ color: "var(--text-1)" }}
             >
               {title}
             </h1>
           ) : null}
-          {children}
+          <div className="mx-auto w-full max-w-7xl min-w-0">{children}</div>
         </main>
       </div>
     </div>
   );
 }
+

@@ -285,14 +285,26 @@
   html {
     /* Smooth theme transitions — background + text only */
     transition: background-color 150ms ease, color 150ms ease;
+    /* Prevent horizontal scroll from stray overflow anywhere */
+    overflow-x: hidden;
   }
 
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: Inter, system-ui, sans-serif;
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  /* Media never breaks its parent */
+  img,
+  svg,
+  video,
+  canvas {
+    max-width: 100%;
+    height: auto;
   }
 
   /* Tabular numerals everywhere metrics appear */
@@ -311,3 +323,28 @@
     font-family: "Geist Mono", "JetBrains Mono", monospace;
   }
 }
+
+/* Fluid page container: fills width, caps at 80rem, scales padding */
+@utility fluid-container {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+@media (min-width: 640px) {
+  .fluid-container {
+    padding-inline: 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .fluid-container {
+    padding-inline: 2rem;
+  }
+}
+
+/* Any table that would overflow scrolls itself, not the page */
+@utility table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+

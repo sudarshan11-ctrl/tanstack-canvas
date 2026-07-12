@@ -83,12 +83,14 @@ export default function PracticeHeadLeagueTable({
 
   return (
     <div
-      className="overflow-hidden rounded-[var(--radius)] border"
+      className="w-full min-w-0 overflow-x-auto rounded-[var(--radius)] border"
       style={{
         backgroundColor: "var(--surface)",
         borderColor: "var(--line)",
       }}
     >
+      <div className="min-w-[62rem]">
+
       {/* Toolbar */}
       <div
         className="flex items-center justify-between gap-3 border-b px-4 py-2"
@@ -340,6 +342,8 @@ export default function PracticeHeadLeagueTable({
           </Link>
         );
       })}
+      </div>
     </div>
   );
 }
+
