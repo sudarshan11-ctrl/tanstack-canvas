@@ -35,20 +35,20 @@ function HygieneShell({
 }) {
   return (
     <div
-      className="min-w-[200px] max-w-[240px] rounded-[var(--radius)] px-3 py-2.5"
+      className="min-w-0 w-full rounded-[var(--radius)] px-3 py-2.5"
       style={{
         backgroundColor: "var(--surface-2)",
         border: "1px solid var(--line)",
       }}
     >
       <div
-        className="text-[10px] font-semibold uppercase tracking-wider"
+        className="text-[0.625rem] font-semibold uppercase tracking-wider"
         style={{ color: "var(--text-2)" }}
       >
         Hygiene
       </div>
       <div
-        className="mt-0.5 text-[12px] font-semibold leading-snug"
+        className="mt-0.5 break-words text-xs font-semibold leading-snug"
         style={{ color: "var(--text-1)" }}
       >
         {title}
@@ -57,6 +57,7 @@ function HygieneShell({
     </div>
   );
 }
+
 
 function BucketMetricCard({
   metric,
