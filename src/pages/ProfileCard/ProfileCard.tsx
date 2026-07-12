@@ -19,6 +19,7 @@ import { lpiToRAG } from "@/utils/rag";
 import type { Role } from "@/types";
 import { snapshotInfo } from "@/data/snapshotMetricValues";
 import { personTimesheetHygiene } from "@/utils/timesheetDelay";
+import { formatPeriod, formatSyncedAt } from "@/utils/format";
 
 const ROLE_LABEL: Record<Role, string> = {
   practice_head: "Practice Head",
