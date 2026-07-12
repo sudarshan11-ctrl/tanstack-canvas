@@ -256,29 +256,30 @@ export default function HeroHeader({
       {/* Alert bar — firm landing */}
       {alert && (
         <div
-          className="flex items-center gap-2 border-t px-6 py-2.5"
+          className="flex flex-wrap items-center gap-2 border-t px-4 py-2.5 sm:px-6"
           style={{
             backgroundColor: "color-mix(in srgb, var(--rag-red) 8%, transparent)",
             borderColor: "color-mix(in srgb, var(--rag-red) 20%, transparent)",
           }}
         >
-          <AlertCircle size={14} style={{ color: "var(--rag-red)", flexShrink: 0 }} />
+          <AlertCircle size={14} className="shrink-0" style={{ color: "var(--rag-red)" }} />
           {alert.href ? (
             <Link
               to={alert.href as never}
-              className="text-[12px] font-medium transition-opacity hover:opacity-80"
+              className="min-w-0 break-words text-xs font-medium transition-opacity hover:opacity-80"
               style={{ color: "var(--rag-red)" }}
             >
               {alert.message}
               <ChevronRight size={12} className="ml-1 inline-block" />
             </Link>
           ) : (
-            <span className="text-[12px] font-medium" style={{ color: "var(--rag-red)" }}>
+            <span className="min-w-0 break-words text-xs font-medium" style={{ color: "var(--rag-red)" }}>
               {alert.message}
             </span>
           )}
         </div>
       )}
+
 
       {/* MatchCentreStrap — full-width footer band */}
       <MatchCentreStrap {...strap} />
