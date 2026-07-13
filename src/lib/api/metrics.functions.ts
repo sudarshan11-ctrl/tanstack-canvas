@@ -1,6 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 
 import type { MetricValue, Role } from "@/types";
 import { mockPeople } from "@/data/mockPeople";
@@ -115,7 +114,6 @@ async function fetchMetricsForPerson(
 }
 
 export const getPersonMetrics = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
   .inputValidator(
     z.object({
       personId: z.string().min(1),
@@ -135,7 +133,6 @@ export const getPersonMetrics = createServerFn({ method: "POST" })
   });
 
 export const getFirmMetrics = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
   .inputValidator(
     z.object({
       period: z.string().optional(),
@@ -156,7 +153,6 @@ export const getFirmMetrics = createServerFn({ method: "POST" })
   });
 
 export const getTeamMetrics = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
   .inputValidator(
     z.object({
       rootPersonId: z.string().min(1),
@@ -200,7 +196,6 @@ export const getTeamMetrics = createServerFn({ method: "POST" })
   });
 
 export const getMetricCatalog = createServerFn({ method: "GET" })
-  .middleware([requireSupabaseAuth])
   .handler(async () => {
   const { listPerformanceMetrics } = await import("./replica-api.server");
   return listPerformanceMetrics();
@@ -228,7 +223,6 @@ export interface VerifyMetricRow {
 // timeout. The client fans out 23 of these in parallel so the UI fills in
 // progressively even when individual calls hit replica-api rate limits.
 export const verifyOnePersonMetric = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
   .inputValidator(
     z.object({
       personId: z.string().min(1),
@@ -342,7 +336,6 @@ export const verifyOnePersonMetric = createServerFn({ method: "POST" })
   });
 
 export const listVerifyMetricIds = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
   .inputValidator(z.object({ personId: z.string().min(1) }))
   .handler(async ({ data }): Promise<string[]> => {
     const person = resolvePerson(data.personId);
