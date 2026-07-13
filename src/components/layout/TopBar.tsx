@@ -85,16 +85,18 @@ export default function TopBar() {
 
   return (
     <header
-      className="sticky top-0 z-10 flex items-center justify-between border-b px-6"
+      className="sticky top-0 z-10 flex min-w-0 flex-wrap items-center justify-between gap-2 border-b px-4 py-2 sm:flex-nowrap sm:px-6"
       style={{
-        height: 52,
         backgroundColor: "var(--surface)",
         borderColor: "var(--line)",
         transition: "background-color 150ms ease, border-color 150ms ease",
       }}
     >
       {/* Breadcrumb */}
-      <nav className="flex items-center gap-1 text-[12px]" style={{ color: "var(--text-2)" }}>
+      <nav
+        className="flex min-w-0 flex-1 flex-wrap items-center gap-1 text-[12px]"
+        style={{ color: "var(--text-2)" }}
+      >
         {crumbs.map((c, i) => {
           const isLast = i === crumbs.length - 1;
           const node =
@@ -103,22 +105,22 @@ export default function TopBar() {
                 to={c.to}
                 params={c.params as never}
                 style={{ color: "var(--text-2)" }}
-                className="transition-colors hover:opacity-80"
+                className="max-w-[10rem] truncate transition-colors hover:opacity-80"
               >
                 {c.label}
               </Link>
             ) : (
               <span
                 style={{ color: isLast ? "var(--text-1)" : "var(--text-2)" }}
-                className={isLast ? "font-medium" : ""}
+                className={`max-w-[12rem] truncate ${isLast ? "font-medium" : ""}`}
               >
                 {c.label}
               </span>
             );
           return (
-            <span key={i} className="flex items-center gap-1">
+            <span key={i} className="flex min-w-0 items-center gap-1">
               {i > 0 && (
-                <ChevronRight size={14} style={{ color: "var(--line)" }} />
+                <ChevronRight size={14} className="shrink-0" style={{ color: "var(--line)" }} />
               )}
               {node}
             </span>
@@ -127,11 +129,11 @@ export default function TopBar() {
       </nav>
 
       {/* Right cluster */}
-      <div className="flex items-center gap-2">
+      <div className="flex min-w-0 flex-wrap items-center justify-end gap-2">
         {/* Cmd+K search hint */}
         <button
           type="button"
-          className="hidden items-center gap-2 rounded-md px-3 py-1.5 text-[12px] transition-colors sm:flex"
+          className="hidden shrink-0 items-center gap-2 rounded-md px-3 py-1.5 text-[12px] transition-colors md:flex"
           style={{
             backgroundColor: "var(--surface-2)",
             color: "var(--text-2)",
@@ -154,7 +156,7 @@ export default function TopBar() {
         </button>
         {/* Freshness pill */}
         <span
-          className="inline-flex items-center gap-1.5 rounded-full px-2 py-1 text-[11px] font-medium"
+          className="hidden shrink-0 items-center gap-1.5 rounded-full px-2 py-1 text-[11px] font-medium sm:inline-flex"
           style={{ color: tone.color, backgroundColor: tone.bg }}
           title={`API snapshot · ${snapshotInfo.okCount} values for ${snapshotInfo.peopleCount} people · synced ${LAST_SYNC_DISPLAY}`}
         >
@@ -167,7 +169,7 @@ export default function TopBar() {
 
         {/* Period selector */}
         <select
-          className="rounded-md border px-2 py-1 text-[12px] transition-colors"
+          className="max-w-[8rem] shrink-0 truncate rounded-md border px-2 py-1 text-[12px] transition-colors"
           style={{
             backgroundColor: "var(--surface-2)",
             borderColor: "var(--line)",
@@ -182,7 +184,7 @@ export default function TopBar() {
         {/* Export button */}
         <button
           type="button"
-          className="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-[12px] font-medium transition-colors"
+          className="inline-flex shrink-0 items-center gap-1.5 rounded-md px-3 py-1.5 text-[12px] font-medium transition-colors"
           style={{
             backgroundColor: "var(--primary)",
             color: "var(--primary-foreground)",
@@ -195,7 +197,8 @@ export default function TopBar() {
           }}
         >
           <Download size={14} />
-          Export {PERIOD_LABEL} (CSV)
+          <span className="hidden sm:inline">Export {PERIOD_LABEL} (CSV)</span>
+          <span className="sm:hidden">Export</span>
         </button>
 
         {/* Theme switcher */}
