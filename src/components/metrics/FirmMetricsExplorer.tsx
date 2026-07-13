@@ -290,15 +290,15 @@ export default function FirmMetricsExplorer({
 
         {/* Search */}
         <div
-          className="ml-auto flex items-center gap-1 rounded-md border px-2 py-1"
+          className="flex min-w-0 flex-1 items-center gap-1 rounded-md border px-2 py-1 sm:ml-auto sm:max-w-[16rem] sm:flex-none"
           style={{ borderColor: "var(--line)" }}
         >
-          <Search size={12} style={{ color: "var(--text-2)" }} />
+          <Search size={12} className="shrink-0" style={{ color: "var(--text-2)" }} />
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="Search metric…"
-            className="w-[160px] bg-transparent text-[12px] outline-none"
+            className="w-full min-w-0 bg-transparent text-[12px] outline-none"
             style={{ color: "var(--text-1)" }}
           />
         </div>
